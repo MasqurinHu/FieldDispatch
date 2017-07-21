@@ -15,6 +15,7 @@
 		45080E341F1DD73300E6F590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45080E331F1DD73300E6F590 /* Assets.xcassets */; };
 		45080E371F1DD73300E6F590 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45080E351F1DD73300E6F590 /* LaunchScreen.storyboard */; };
 		45080E3F1F1DDD8700E6F590 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45080E3E1F1DDD8700E6F590 /* GoogleService-Info.plist */; };
+		45E9FEBA1F2207A100025E7F /* LogIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E9FEB91F2207A100025E7F /* LogIn.m */; };
 		55042A07791E18DF2950DA35 /* libPods-FieldDispatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8372D5AD33AD30C4EEE0F64 /* libPods-FieldDispatch.a */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,8 @@
 		45080E361F1DD73300E6F590 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45080E381F1DD73300E6F590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45080E3E1F1DDD8700E6F590 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		45E9FEB81F2207A100025E7F /* LogIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogIn.h; sourceTree = "<group>"; };
+		45E9FEB91F2207A100025E7F /* LogIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogIn.m; sourceTree = "<group>"; };
 		D8372D5AD33AD30C4EEE0F64 /* libPods-FieldDispatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FieldDispatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -74,6 +77,8 @@
 				45080E2A1F1DD73300E6F590 /* ViewController.h */,
 				45080E2B1F1DD73300E6F590 /* ViewController.m */,
 				45080E2D1F1DD73300E6F590 /* Main.storyboard */,
+				45E9FEB81F2207A100025E7F /* LogIn.h */,
+				45E9FEB91F2207A100025E7F /* LogIn.m */,
 				45080E331F1DD73300E6F590 /* Assets.xcassets */,
 				45080E351F1DD73300E6F590 /* LaunchScreen.storyboard */,
 				45080E381F1DD73300E6F590 /* Info.plist */,
@@ -234,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45080E2C1F1DD73300E6F590 /* ViewController.m in Sources */,
+				45E9FEBA1F2207A100025E7F /* LogIn.m in Sources */,
 				45080E291F1DD73300E6F590 /* AppDelegate.m in Sources */,
 				45080E321F1DD73300E6F590 /* FieldDispatch.xcdatamodeld in Sources */,
 				45080E261F1DD73300E6F590 /* main.m in Sources */,
