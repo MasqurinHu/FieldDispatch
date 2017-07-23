@@ -7,52 +7,110 @@
 //
 
 #import "ViewController.h"
-#import <FBSDKCoreKit.h>
-#import <FBSDKLoginKit.h>
-#import <GoogleSignIn/GoogleSignIn.h>
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "LogIn.h"
 
-@interface ViewController ()<GIDSignInUIDelegate>
-@property(weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
+
+@interface ViewController ()<MKMapViewDelegate,CLLocationManagerDelegate>
+{
+    MKMapView *map;
+    CLLocationManager *locManager;
+}
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    // 選擇性：將按鈕置於檢視中央。測試
-    [GIDSignIn sharedInstance].uiDelegate = self;
-    loginButton.center = self.view.center;
-    [self.view addSubview:loginButton];
-    if ([FBSDKAccessToken currentAccessToken]) {
-        // 用戶已登入，執行如前往下一個檢視控制器的操作。
-        loginButton.readPermissions =
-        @[@"public_profile", @"email", @"user_friends"];
-        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                      initWithGraphPath:@"me"
-                                      parameters:@{@"fields" : @"gender,picture,email, name, first_name, last_name"}
-                                      HTTPMethod:@"GET"];
-        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
-                                              id result,
-                                              NSError *error) {
-            // Handle the result
-            NSLog(@"我是資料%@",result);
-        }];
-        
-        
-    }
+    [self prepare];
 }
 
-- (IBAction)didTapSignOut:(id)sender {
-    [[GIDSignIn sharedInstance] signOut];
+-(void)viewWillAppear:(BOOL)animated{
+    [self prepare];
 }
 
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    
+}
+
+-(void)prepare{
+    LogIn *login = [LogIn sharedInstance];
+    if ([login didLogin] != true) {
+        LoginViewController *logVC = [self.storyboard instantiateViewControllerWithIdentifier:@"VC"];
+        [self.navigationController pushViewController:logVC animated:true];
+        return;
+    };
+    
+    locManager = [CLLocationManager new];
+    locManager.delegate = self;
+    
+    locManager.allowsBackgroundLocationUpdates = true;
+    NSLayoutConstraint *cn;
+    map = [MKMapView new];
+    map.delegate = self;
+    map.userTrackingMode = MKUserTrackingModeFollowWithHeading;
+    [map setTranslatesAutoresizingMaskIntoConstraints:false];
+    [self.view addSubview:map];
+    cn = [NSLayoutConstraint
+          constraintWithItem:map
+          attribute:NSLayoutAttributeWidth
+          relatedBy:NSLayoutRelationEqual
+          toItem:self.view
+          attribute:NSLayoutAttributeWidth
+          multiplier:1.0
+          constant:0.0
+          ];
+    [self.view addConstraint:cn];
+    
+    cn= [NSLayoutConstraint
+         constraintWithItem:map
+         attribute:NSLayoutAttributeHeight
+         relatedBy:NSLayoutRelationEqual
+         toItem:self.view
+         attribute:NSLayoutAttributeHeight
+         multiplier:1.0
+         constant:0.0
+         ];
+    [self.view addConstraint:cn];
+    cn = [NSLayoutConstraint
+          constraintWithItem:map
+          attribute:NSLayoutAttributeCenterX
+          relatedBy:NSLayoutRelationEqual
+          toItem:self.view
+          attribute:NSLayoutAttributeCenterX
+          multiplier:1.0
+          constant:0.0
+          ];
+    [self.view addConstraint:cn];
+
+    cn= [NSLayoutConstraint
+         constraintWithItem:map
+         attribute:NSLayoutAttributeCenterY
+         relatedBy:NSLayoutRelationEqual
+         toItem:self.view
+         attribute:NSLayoutAttributeCenterY
+         multiplier:1.0
+         constant:0.0
+         ];
+    [self.view addConstraint:cn];
+    [locManager requestAlwaysAuthorization];
+    
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
+
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
 
 @end

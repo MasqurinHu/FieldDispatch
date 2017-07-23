@@ -19,12 +19,27 @@ static LogIn *login = nil;
     return login;
 }
 
--(void)didLogin{
+-(BOOL)didLogin{
+    id scapegoat = [[NSUserDefaults standardUserDefaults] objectForKey:@"login"];
+    BOOL tryLogin;
+    if (scapegoat == nil) {
+        tryLogin = false;
+    }else{
+        if ([(NSString*)scapegoat isEqualToString:@"Google"])
+            tryLogin = true;
+        else if ([(NSString*)scapegoat isEqualToString:@"Facebook"])
+            tryLogin = true;
+        else if ([(NSString*)scapegoat isEqualToString:@"FieldDispatch"])
+            tryLogin = true;
+        else
+            tryLogin = false;
+    }
+    return tryLogin;
+}
+
+-(void)setLogin{
     
 }
 
--(void)didLogOut{
-    
-}
 
 @end

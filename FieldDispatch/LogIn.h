@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LoginViewController.h"
 
 @interface LogIn : NSObject
 
-@property (nonatomic,assign) BOOL login;
-
+@property(nonatomic,assign) BOOL tryLogin;
 +(instancetype) sharedInstance;
--(void)didLogin;
--(void)didLogOut;
+-(BOOL)didLogin;
 
 @end
