@@ -10,6 +10,6 @@
 
 @interface MUIBottonlineTextField : UITextField
 
-
+-(instancetype)initWithPlaseHold:(NSString*)placeHold;
 
 @end

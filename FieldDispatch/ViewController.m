@@ -10,12 +10,14 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "LogIn.h"
+#import "MobileDataBase.h"
 
 
 @interface ViewController ()<MKMapViewDelegate,CLLocationManagerDelegate>
 {
     MKMapView *map;
     CLLocationManager *locManager;
+    MobileDataBase *mobileDataBase;
 }
 @end
 
@@ -23,6 +25,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    mobileDataBase = [MobileDataBase stand];
+    [mobileDataBase
+     setSizeWithWidth:self.view.frame.size.width
+     height:self.view.frame.size.height];
     [self prepare];
 }
 

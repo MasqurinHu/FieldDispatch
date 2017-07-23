@@ -7,16 +7,13 @@
 //
 
 #import "LoginViewController.h"
-#import <FBSDKCoreKit.h>
-#import <FBSDKLoginKit.h>
-#import <GoogleSignIn/GoogleSignIn.h>
-#import "AppDelegate.h"
-#import "MasqurinTool.h"
+#import "LogIn.h"
 
 @interface LoginViewController ()<GIDSignInUIDelegate,GIDSignInDelegate>
 {
     FBSDKLoginButton *loginButton;
     NSLayoutConstraint *constraint;
+    NSMutableArray <NSLayoutConstraint*>*constraints;
 }
 @property(weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 
@@ -26,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    constraints = [NSMutableArray new];
     // Do any additional setup after loading the view.
     [self prepare];
 }
@@ -62,57 +60,97 @@
 //                  ];
 //    [self.view addConstraint:constraint];
 
-    constraint = [NSLayoutConstraint
-                  constraintWithItem:title
-                  attribute:NSLayoutAttributeCenterX
-                  relatedBy:NSLayoutRelationEqual
-                  toItem:self.view
-                  attribute:NSLayoutAttributeCenterX
-                  multiplier:1.0
-                  constant:0.0
-                  ];
-    [self.view addConstraint:constraint];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:title
+                            attribute:NSLayoutAttributeCenterX
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:self.view
+                            attribute:NSLayoutAttributeCenterX
+                            multiplier:1.0
+                            constant:0.0
+                            ]];
+//    [self.view addConstraint:constraint];
 //    constraint.firstAttribute = NSLayoutAttributeCenterY;
-    constraint = [NSLayoutConstraint
-                  constraintWithItem:title
-                  attribute:NSLayoutAttributeCenterY
-                  relatedBy:NSLayoutRelationEqual
-                  toItem:self.view
-                  attribute:NSLayoutAttributeCenterY
-                  multiplier:1/3.0 constant:0.0];
-    [self.view addConstraint:constraint];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:title
+                            attribute:NSLayoutAttributeCenterY
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:self.view
+                            attribute:NSLayoutAttributeCenterY
+                            multiplier:1/3.0 constant:0.0]];
+    
     MUIBottonlineTextField *account = [MUIBottonlineTextField new];
     account.placeholder = @"Please enter the account";//請輸入您要申請的帳戶
     [account setTranslatesAutoresizingMaskIntoConstraints:false];
     [self.view addSubview:account];
-    constraint = [NSLayoutConstraint
-                  constraintWithItem:account
-                  attribute:NSLayoutAttributeWidth
-                  relatedBy:NSLayoutRelationEqual
-                  toItem:self.view
-                  attribute:NSLayoutAttributeWidth
-                  multiplier:.8
-                  constant:0.0
-                  ];
-    [self.view addConstraint:constraint];
-    constraint = [NSLayoutConstraint
-                  constraintWithItem:account
-                  attribute:NSLayoutAttributeTop
-                  relatedBy:NSLayoutRelationEqual
-                  toItem:title
-                  attribute:NSLayoutAttributeBottom
-                  multiplier:1.0
-                  constant:10.0
-                  ];
-    [self.view addConstraint:constraint];
-    constraint = [NSLayoutConstraint
-                  constraintWithItem:account
-                  attribute:NSLayoutAttributeCenterX
-                  relatedBy:NSLayoutRelationEqual
-                  toItem:title
-                  attribute:NSLayoutAttributeCenterX
-                  multiplier:1.0 constant:0.0];
-    [self.view addConstraint:constraint];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:account
+                            attribute:NSLayoutAttributeWidth
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:self.view
+                            attribute:NSLayoutAttributeWidth
+                            multiplier:.8
+                            constant:0.0
+                            ]];
+//    [self.view addConstraint:constraint];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:account
+                            attribute:NSLayoutAttributeTop
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:title
+                            attribute:NSLayoutAttributeBottom
+                            multiplier:1.0
+                            constant:10.0
+                            ]];
+//    [self.view addConstraint:constraint];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:account
+                            attribute:NSLayoutAttributeCenterX
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:title
+                            attribute:NSLayoutAttributeCenterX
+                            multiplier:1.0 constant:0.0]];
+//    [self.view addConstraints:constraints];
+    
+//    [self.view addConstraint:constraint];
+    loginButton.translatesAutoresizingMaskIntoConstraints = false;
+    [self.view addSubview:loginButton];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:loginButton attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+//    [self.view addConstraint:constraint];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:loginButton attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+//    [self.view addConstraint:constraint];
+    
+    GIDSignInButton *googleSingBtn = [GIDSignInButton new];
+    
+    googleSingBtn.translatesAutoresizingMaskIntoConstraints = false;
+    [self.view addSubview:googleSingBtn];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:googleSingBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:loginButton attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+//    [self.view addConstraint:constraint];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:googleSingBtn attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:loginButton attribute:NSLayoutAttributeTop multiplier:1.0 constant:-5.0]];
+//    [self.view addConstraint:constraint];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:googleSingBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:loginButton attribute:NSLayoutAttributeWidth multiplier:1.035 constant:0.0]];
+    UIButton *fieleDispatchLoginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [fieleDispatchLoginBtn addTarget:self action:@selector(gotoFDLogin) forControlEvents:UIControlEventTouchUpInside];
+    [fieleDispatchLoginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    fieleDispatchLoginBtn.backgroundColor = [UIColor brownColor];
+    fieleDispatchLoginBtn.translatesAutoresizingMaskIntoConstraints = false;
+    fieleDispatchLoginBtn.layer.cornerRadius = 3.0;
+    fieleDispatchLoginBtn.layer.borderWidth = 1.0;
+    [fieleDispatchLoginBtn setTitle:@"Field Dispatch Login" forState:UIControlStateNormal];
+    [self.view addSubview:fieleDispatchLoginBtn];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:fieleDispatchLoginBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationLessThanOrEqual toItem:loginButton attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:fieleDispatchLoginBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:loginButton attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0]];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:fieleDispatchLoginBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:loginButton attribute:NSLayoutAttributeBottom multiplier:1.0 constant:5]];
+    
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:loginButton attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:fieleDispatchLoginBtn attribute:NSLayoutAttributeHeight multiplier:1.1 constant:0.0]];
+//
+//    [constraints addObject:[NSLayoutConstraint constraintWithItem:googleSingBtn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:fieleDispatchLoginBtn attribute:NSLayoutAttributeHeight multiplier:1.5 constant:0.0]];
+    
+    
+    
+    
+    [self.view addConstraints:constraints];
+    
 //    UIView *bottomline = [UIView new];
 //    bottomline.backgroundColor = [UIColor blackColor];
 //    [bottomline setTranslatesAutoresizingMaskIntoConstraints:false];
@@ -200,7 +238,10 @@ didSignInForUser:(GIDGoogleUser *)user
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+-(void)gotoFDLogin{
+    FieldDispatchLoginChooseViewController *fDL = [self.storyboard instantiateViewControllerWithIdentifier:@"FieldDispatchLoginChooseViewController"];
+    [self.navigationController pushViewController:fDL animated:true];
+}
 -(void)viewWillAppear:(BOOL)animated{
     
 }

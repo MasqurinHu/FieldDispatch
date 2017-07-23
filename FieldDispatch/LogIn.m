@@ -41,5 +41,13 @@ static LogIn *login = nil;
     
 }
 
+-(NSDictionary *)getLoginInfo{
+    NSDictionary *loginInfo = @{};
+    return loginInfo;
+}
 
+-(NSArray*)getAccountList{
+    NSArray *accountList = @[];
+    return accountList;
+}
 @end

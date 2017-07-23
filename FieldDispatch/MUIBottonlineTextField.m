@@ -86,6 +86,12 @@
 //    });
 }
 
+-(instancetype)initWithPlaseHold:(NSString *)placeHold{
+    self = [super init];
+    self.placeholder = placeHold;
+    return self;
+}
+
 //-(instancetype)initAnima{
 //    self = [super init];
 //    dispatch_async(dispatch_get_main_queue(), ^{
