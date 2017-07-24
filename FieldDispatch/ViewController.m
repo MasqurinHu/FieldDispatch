@@ -18,6 +18,7 @@
     MKMapView *map;
     CLLocationManager *locManager;
     MobileDataBase *mobileDataBase;
+    UIStoryboard * teststory;
 }
 @end
 
@@ -30,6 +31,7 @@
      setSizeWithWidth:self.view.frame.size.width
      height:self.view.frame.size.height];
     [self prepare];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -43,6 +45,7 @@
 -(void)prepare{
     LogIn *login = [LogIn sharedInstance];
     if ([login didLogin] != true) {
+        
         LoginViewController *logVC = [self.storyboard instantiateViewControllerWithIdentifier:@"VC"];
         [self.navigationController pushViewController:logVC animated:true];
         return;
