@@ -11,7 +11,7 @@
 
 @interface MobileDataBase : NSObject
 
-@property (nonatomic,assign) int size;
+@property (readonly,nonatomic,assign) int size;
 
 +(instancetype)stand;
 -(void)setSizeWithWidth:(int)width height:(int)heigh;

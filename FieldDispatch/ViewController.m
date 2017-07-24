@@ -9,12 +9,14 @@
 #import "ViewController.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "LogIn.h"
-#import "MobileDataBase.h"
+#import "FieldDispatchDataBase.h"
+
 
 
 @interface ViewController ()<MKMapViewDelegate,CLLocationManagerDelegate>
 {
+    BOOL singIn;
+    BOOL isprepare;
     MKMapView *map;
     CLLocationManager *locManager;
     MobileDataBase *mobileDataBase;
@@ -30,30 +32,37 @@
     [mobileDataBase
      setSizeWithWidth:self.view.frame.size.width
      height:self.view.frame.size.height];
-    [self prepare];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [self prepare];
+    [self checkLogin];
+    if (singIn != true) {
+        return;
+    }
+    if (isprepare != true) {
+        [self prepare];
+    }
+    
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     
 }
 
--(void)prepare{
+-(void)checkLogin{
     LogIn *login = [LogIn sharedInstance];
+    singIn = [login didLogin];
     if ([login didLogin] != true) {
-        
-        LoginViewController *logVC = [self.storyboard instantiateViewControllerWithIdentifier:@"VC"];
-        [self.navigationController pushViewController:logVC animated:true];
+        LoginViewController *logVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SE"];
+        [self presentViewController:logVC animated:true completion:nil];
         return;
     };
-    
+}
+
+-(void)prepare{
+    isprepare = true;
     locManager = [CLLocationManager new];
     locManager.delegate = self;
-    
     locManager.allowsBackgroundLocationUpdates = true;
     NSLayoutConstraint *cn;
     map = [MKMapView new];

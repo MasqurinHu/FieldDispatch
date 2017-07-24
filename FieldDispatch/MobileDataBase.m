@@ -18,9 +18,9 @@ static MobileDataBase *mobileDataBase = nil;
 
 -(void)setSizeWithWidth:(int)width height:(int)heigt{
     if (width >= heigt) {
-        self.size = heigt;
+        _size = heigt;
     }else{
-        self.size = width;
+        _size = width;
     }
 }
 

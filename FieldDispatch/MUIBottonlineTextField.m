@@ -63,6 +63,7 @@
                 tmp.firstAttribute == NSLayoutAttributeWidth &&
                 tmp.constant == -widht) {
                 tmp.constant = 0.0;
+                
 //                scapegoat = tmp;
 //                scapegoat.constant = 0.0;
                 //            tmp.constant = 0.0;

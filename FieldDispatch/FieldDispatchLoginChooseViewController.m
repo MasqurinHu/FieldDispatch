@@ -7,8 +7,9 @@
 //
 
 #import "FieldDispatchLoginChooseViewController.h"
-#import "LogIn.h"
-#import "MobileDataBase.h"
+#import "FieldDispatchDataBase.h"
+
+
 
 #define LOGIN_OR_CREATE     NSLocalizedString(@"Login or Create",nil)     //登入或建立帳號
 #define ENTER_ACCOUNT       NSLocalizedString(@"please enter your account",nil)
@@ -21,11 +22,13 @@
 
 
 
-@interface FieldDispatchLoginChooseViewController ()
+@interface FieldDispatchLoginChooseViewController ()<UITextFieldDelegate>
 {
     LogIn *login;
     MobileDataBase *mobileDataBase;
     UIView *fram;
+    NSLayoutConstraint *framBotton;
+    CGFloat move;
 }
 @end
 
@@ -33,13 +36,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardNotification:) name:UIKeyboardWillShowNotification object:nil];
     // Do any additional setup after loading the view.
     login = [LogIn sharedInstance];
     mobileDataBase = [MobileDataBase stand];
     [self prepare];
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+}
+
+-(void)keyboardNotification:(NSNotification*)notification {
+    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat kBy = self.view.frame.size.height - keyboardFrame.origin.y;
+    [UIView animateWithDuration:0.6 animations:^{
+        NSLog(@"我多高%f\n鍵盤多高%f\nkBy=%f",move,keyboardFrame.origin.y,kBy);
+        if (move < kBy -90) {
+            return ;
+        }
+        framBotton.constant = kBy - move - 90;
+    }];
+    [self.view layoutIfNeeded];
+}
+
+-(void)framMovesize:(UIView*)sender{
+    framBotton.constant = 0.0;
+    [UIView animateWithDuration:.6 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+    NSLog(@"我多高");
+    move = sender.center.y;
+}
+
 -(void)prepare{
+    
     NSMutableArray <NSLayoutConstraint*>*constraints = [NSMutableArray new];
     fram = [UIView new];
     UILabel *loginOrCreate = [UILabel new];
@@ -59,12 +90,14 @@
     [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:NULL attribute:NSLayoutAttributeWidth multiplier:1.0 constant:mobileDataBase.size*.95]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:NULL attribute:NSLayoutAttributeWidth multiplier:1.0 constant:mobileDataBase.size*.95]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
+    framBotton = [NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0];
+    [constraints addObject:framBotton];
     [self.view addConstraints:constraints];
     [self.view layoutIfNeeded];
     fram.layer.borderWidth = fram.frame.size.height*.01;
     fram.layer.cornerRadius = fram.frame.size.height*.05;
     MUIBottonlineTextField *account = [MUIBottonlineTextField new];
+    [account addTarget:self action:@selector(framMovesize:) forControlEvents:UIControlEventAllEditingEvents];
     account.translatesAutoresizingMaskIntoConstraints = false;
     [fram addSubview:account];
     account.placeholder = ENTER_ACCOUNT;
@@ -74,6 +107,7 @@
     [constraints addObject:[NSLayoutConstraint constraintWithItem:account attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:-15.0]];
     [fram addConstraints:constraints];
     MUIBottonlineTextField *password = [MUIBottonlineTextField new];
+    [password addTarget:self action:@selector(framMovesize:) forControlEvents:UIControlEventAllEditingEvents];
     [self framConstraintMaserWithSelf:password target:account superView:fram];
     password.placeholder = ENTER_PASSWORD;
     UIButton *forgetpassword = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -82,6 +116,23 @@
     [self btnConstraintMakeWithSelf:createAnAccount target:forgetpassword scale:1.0 lort:NSLayoutAttributeLeading title:CREATE_ACCOUNT backgroundCoclr:[UIColor orangeColor] superView:fram func:@selector(create)];
     UIButton *signin = [UIButton buttonWithType:UIButtonTypeSystem];
     [self btnConstraintMakeWithSelf:signin target:password scale:.3 lort:NSLayoutAttributeTrailing title:SIGN_IN backgroundCoclr:[UIColor greenColor] superView:fram func:@selector(login)];
+    
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    framBotton.constant = 0.0;
+    [self.view endEditing:YES];
+    [UIView animateWithDuration:.6 animations:^{
+        [self.view layoutIfNeeded];
+        //        [self resignFirstResponder];
+    }];
+    
+}
+
+//
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    
 }
 
 -(void)forget{
@@ -96,15 +147,42 @@
     NSLog(@"登陸惹");
 }
 
--(void)btnConstraintMakeWithSelf:(UIButton*)uiView target:(UIView*)targetView scale:(CGFloat)scale lort:(NSLayoutAttribute)lort title:(NSString*)title backgroundCoclr:(UIColor*)bgc superView:(UIView*)superView func:(SEL)func {
+-(void)btnConstraintMakeWithSelf:(UIButton*)uiView
+                          target:(UIView*)targetView
+                           scale:(CGFloat)scale
+                            lort:(NSLayoutAttribute)lort
+                           title:(NSString*)title
+                 backgroundCoclr:(UIColor*)bgc
+                       superView:(UIView*)superView
+                            func:(SEL)func {
     uiView.translatesAutoresizingMaskIntoConstraints = false;
     [uiView setTitle:title forState:UIControlStateNormal];
     uiView.backgroundColor = bgc;
     [superView addSubview:uiView];
     NSMutableArray *cs = [NSMutableArray new];
-    [cs addObject:[NSLayoutConstraint constraintWithItem:uiView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:targetView attribute:NSLayoutAttributeWidth multiplier:scale constant:0.0]];
-    [cs addObject:[NSLayoutConstraint constraintWithItem:uiView attribute:lort relatedBy:NSLayoutRelationEqual toItem:targetView attribute:lort multiplier:1.0 constant:0.0]];
-    [cs addObject:[NSLayoutConstraint constraintWithItem:uiView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:targetView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:15]];
+    [cs addObject:[NSLayoutConstraint
+                   constraintWithItem:uiView
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:targetView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:scale
+                   constant:0.0]];
+    [cs addObject:[NSLayoutConstraint
+                   constraintWithItem:uiView
+                   attribute:lort relatedBy:NSLayoutRelationEqual
+                   toItem:targetView
+                   attribute:lort
+                   multiplier:1.0
+                   constant:0.0]];
+    [cs addObject:[NSLayoutConstraint
+                   constraintWithItem:uiView
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:targetView
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:15]];
     [superView addConstraints:cs];
     [superView layoutIfNeeded];
     uiView.layer.cornerRadius = uiView.frame.size.height*.3;
@@ -123,13 +201,36 @@
     [self framConstraintMaserWithSelf:email target:nickname superView:fram];
 }
 
--(void)framConstraintMaserWithSelf:(UIView*)uiView target:(UIView*)targetView superView:(UIView*)superView {
+-(void)framConstraintMaserWithSelf:(UIView*)uiView
+                            target:(UIView*)targetView
+                         superView:(UIView*)superView {
     uiView.translatesAutoresizingMaskIntoConstraints = false;
     [superView addSubview:uiView];
     NSMutableArray *cs = [NSMutableArray new];
-    [cs addObject:[NSLayoutConstraint constraintWithItem:uiView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:targetView attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0]];
-    [cs addObject:[NSLayoutConstraint constraintWithItem:uiView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:targetView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    [cs addObject:[NSLayoutConstraint constraintWithItem:uiView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:targetView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:30]];
+    [cs addObject:[NSLayoutConstraint
+                   constraintWithItem:uiView
+                   attribute:NSLayoutAttributeWidth
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:targetView
+                   attribute:NSLayoutAttributeWidth
+                   multiplier:1.0
+                   constant:0.0]];
+    [cs addObject:[NSLayoutConstraint
+                   constraintWithItem:uiView
+                   attribute:NSLayoutAttributeCenterX
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:targetView
+                   attribute:NSLayoutAttributeCenterX
+                   multiplier:1.0
+                   constant:0.0]];
+    [cs addObject:[NSLayoutConstraint
+                   constraintWithItem:uiView
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:targetView
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:30]];
     [superView addConstraints:cs];
     
 }
