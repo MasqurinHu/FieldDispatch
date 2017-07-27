@@ -124,7 +124,6 @@
     [self.view endEditing:YES];
     [UIView animateWithDuration:.6 animations:^{
         [self.view layoutIfNeeded];
-        //        [self resignFirstResponder];
     }];
     
 }

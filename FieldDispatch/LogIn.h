@@ -24,5 +24,6 @@
 -(BOOL)didLogin;
 -(NSDictionary*)getLoginInfo;
 -(NSArray*)getAccountList;
+-(NSString*) getUserID;
 
 @end

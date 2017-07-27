@@ -23,6 +23,7 @@
     [bottomline setTranslatesAutoresizingMaskIntoConstraints:false];
     CGFloat widht = self.frame.size.width;
     [self addSubview:bottomline];
+    
     constraint = [NSLayoutConstraint
                   constraintWithItem:bottomline
                   attribute:NSLayoutAttributeWidth
@@ -31,6 +32,7 @@
                   attribute:NSLayoutAttributeWidth
                   multiplier:1.0 constant:-widht];
     [self addConstraint:constraint];
+    
     constraint = [NSLayoutConstraint
                   constraintWithItem:bottomline
                   attribute:NSLayoutAttributeHeight
@@ -39,14 +41,16 @@
                   attribute:NSLayoutAttributeHeight
                   multiplier:.02 constant:.0];
     [self addConstraint:constraint];
+    
     constraint = [NSLayoutConstraint
                   constraintWithItem:bottomline
                   attribute:NSLayoutAttributeTop
                   relatedBy:NSLayoutRelationEqual
                   toItem:self
                   attribute:NSLayoutAttributeBottom
-                  multiplier:1.0 constant:.0];
+                  multiplier:1.0 constant:-1.0];
     [self addConstraint:constraint];
+    
     constraint = [NSLayoutConstraint
                   constraintWithItem:bottomline
                   attribute:NSLayoutAttributeCenterX
@@ -55,36 +59,22 @@
                   attribute:NSLayoutAttributeCenterX
                   multiplier:1.0 constant:.0];
     [self addConstraint:constraint];
-//    [self setNeedsLayout];
     [self layoutIfNeeded];
-    [UIView animateWithDuration:.9 animations:^{
-        for (NSLayoutConstraint *tmp in self.constraints) {
-            if (tmp.firstItem == bottomline &&
-                tmp.firstAttribute == NSLayoutAttributeWidth &&
-                tmp.constant == -widht) {
-                tmp.constant = 0.0;
-                
-//                scapegoat = tmp;
-//                scapegoat.constant = 0.0;
-                //            tmp.constant = 0.0;
-                //            scapegoat.constant = 0.0;
-                
-            }
+    
+    for (NSLayoutConstraint *tmp in self.constraints) {
+        if (tmp.firstItem == bottomline &&
+            tmp.firstAttribute == NSLayoutAttributeWidth &&
+            tmp.constant == -widht) {
+            
+            tmp.constant = 0.0;
         }
+    }
+
+    [UIView animateWithDuration:.9 animations:^{
         [self layoutIfNeeded];
     }];
     
-//    scapegoat.constant = 0.0;
-    
-    
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [UIView animateWithDuration:.6 animations:^{
-//            scapegoat.constant = 0.0;
-//        }];
-//        [self setNeedsLayout]; //更新视图
-//        [self layoutIfNeeded];
-//    });
+
 }
 
 -(instancetype)initWithPlaseHold:(NSString *)placeHold{
@@ -93,33 +83,4 @@
     return self;
 }
 
-//-(instancetype)initAnima{
-//    self = [super init];
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        [UIView animateWithDuration:10.6 animations:^{
-//            scapegoat.constant = 0.0;
-//            //            [self setNeedsLayout];
-//            //            [self layoutIfNeeded];
-//        }];
-//    });
-
-//    [self.view layoutIfNeeded];
-//    [UIView animateWithDuration:3.0 animations:^{
-
-//        NSArray *constrains = self.view.constraints;
-//        for (NSLayoutConstraint* constraint in constrains) {
-//            if (constraint.firstAttribute == NSLayoutAttributeHeight) {
-//                constraint.constant = 300;
-//            }
-//        }
-
-//        [self.view layoutIfNeeded];
-//    } completion:^(BOOL finished) {
-//    }];
-    
-    
-    
-    
-//    return self;
-//}
 @end

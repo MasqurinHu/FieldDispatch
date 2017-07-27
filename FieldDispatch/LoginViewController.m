@@ -119,7 +119,13 @@
     
     [self.view addConstraints:constraints];
     
+    
+    //////////
+    
 }
+
+
+
 -(void)singinView{
     //登入準備登出畫面
     loginButton1.center = self.view.center;

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MUIBottonlineTextField.h"
+#import "MUIButtonAutoLayout.h"
 
 @interface MasqurinTool : NSObject
 
