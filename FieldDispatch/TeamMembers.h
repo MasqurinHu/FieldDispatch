@@ -11,6 +11,7 @@
 @interface TeamMembers : NSObject
 @property (nonatomic,strong) NSString *userid;
 @property (nonatomic,strong) NSString *status;
+@property (nonatomic,assign) double schedule;
 
 -(NSDictionary*) onLionTeamMembersWithID:(NSString*)userID;
 

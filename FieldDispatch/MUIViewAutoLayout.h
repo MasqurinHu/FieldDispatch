@@ -57,7 +57,7 @@
 
 +(void) initLeftToTargetRightWithSelf:(UIView*)selfView
                            TargetView:(UIView*)targetView
-                            SuperView:(UIView)superView
+                            SuperView:(UIView*)superView
                                   gap:(CGFloat)gap;
 
 +(void) initTopToTargetBottonWithSelf:(UIView*)selfView

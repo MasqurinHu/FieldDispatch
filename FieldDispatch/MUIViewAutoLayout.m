@@ -225,7 +225,7 @@
 
 +(void)initLeftToTargetRightWithSelf:(UIView *)selfView
                           TargetView:(UIView *)targetView
-                           SuperView:(UIView)superView
+                           SuperView:(UIView*)superView
                                  gap:(CGFloat)gap{
     selfView.translatesAutoresizingMaskIntoConstraints = false;
     [superView addConstraint:[NSLayoutConstraint
