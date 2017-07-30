@@ -44,7 +44,8 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 -(void)keyboardNotification:(NSNotification*)notification {
@@ -84,6 +85,7 @@
     [constraints addObject:[NSLayoutConstraint constraintWithItem:loginOrCreate attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem:loginOrCreate attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeTop multiplier:1.0 constant:-10.0]];
     fram.backgroundColor = [UIColor lightGrayColor];
+    
     fram.translatesAutoresizingMaskIntoConstraints = false;
     [self.view addSubview:fram];
     

@@ -47,6 +47,7 @@
     self.layer.borderWidth = self.frame.size.height*.05;
     self.layer.cornerRadius = self.frame.size.height*.1;
     return self;
+    
 }
 /*
 // Only override drawRect: if you perform custom drawing.
