@@ -12,4 +12,5 @@ pod 'Google/SignIn'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
+pod 'AFNetworking'
 end

@@ -6,10 +6,10 @@
 //  Copyright © 2017年 Ｍasqurin. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "SingInVC.h"
 #import "FieldDispatchDataBase.h"
 
-@interface LoginViewController ()<GIDSignInUIDelegate,GIDSignInDelegate,FBSDKLoginButtonDelegate>
+@interface SingInVC ()<GIDSignInUIDelegate,GIDSignInDelegate,FBSDKLoginButtonDelegate>
 {
     FBSDKLoginButton *loginButton1;
     NSLayoutConstraint *constraint;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation LoginViewController
+@implementation SingInVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];

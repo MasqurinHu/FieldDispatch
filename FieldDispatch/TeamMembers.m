@@ -9,5 +9,7 @@
 #import "TeamMembers.h"
 
 @implementation TeamMembers
-
+-(NSDictionary *)onLionTeamMembersWithID:(NSString *)userID{
+    return @{};
+}
 @end

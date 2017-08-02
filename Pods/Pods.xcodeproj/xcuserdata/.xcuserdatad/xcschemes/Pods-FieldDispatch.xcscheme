@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'EB1AD30A373AE3C55DD23162D68A9DE4'
+               BlueprintIdentifier = '3124054258B542C2A8303C516AAC0D50'
                BlueprintName = 'Pods-FieldDispatch'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libPods-FieldDispatch.a'>

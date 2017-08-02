@@ -24,4 +24,16 @@ static MobileDataBase *mobileDataBase = nil;
     }
 }
 
+-(void)setDeviceToken:(NSString*)deviceToken{
+    _deviceToken = deviceToken;
+}
+
+-(void)setNickName:(NSString *)nickName{
+    _nickName = nickName;
+}
+
+-(void)setTel:(int)tel{
+    _tel = tel;
+}
+
 @end

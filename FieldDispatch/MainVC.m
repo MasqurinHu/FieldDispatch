@@ -6,26 +6,25 @@
 //  Copyright © 2017年 Ｍasqurin. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MainVC.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "FieldDispatchDataBase.h"
 
 
 
-@interface ViewController ()<MKMapViewDelegate,CLLocationManagerDelegate>
+@interface MainVC ()<MKMapViewDelegate,CLLocationManagerDelegate>
 {
+    MobileDataBase *mobileDataBase;
     BOOL singIn;
     BOOL isprepare;
     MKMapView *map;
     CLLocationManager *locManager;
-    MobileDataBase *mobileDataBase;
-    UIStoryboard * teststory;
     UIView *aa;
 }
 @end
 
-@implementation ViewController
+@implementation MainVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,10 +32,26 @@
     [mobileDataBase
      setSizeWithWidth:self.view.frame.size.width
      height:self.view.frame.size.height];
+    [self prepare];
     aa = [UIView new];
 }
 
+-(void)checkLogin{
+    LogIn *login = [LogIn sharedInstance];
+    singIn = [login didLogin];
+    if (singIn != true) {
+        SingInVC *singInVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SE"];
+        [self presentViewController:singInVC animated:true completion:nil];
+        return;
+    };
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    
+}
+
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self checkLogin];
     if (singIn != true) {
         return;
@@ -45,20 +60,6 @@
         [self prepare];
     }
     
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
-    
-}
-
--(void)checkLogin{
-    LogIn *login = [LogIn sharedInstance];
-    singIn = [login didLogin];
-    if ([login didLogin] != true) {
-        LoginViewController *logVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SE"];
-        [self presentViewController:logVC animated:true completion:nil];
-        return;
-    };
 }
 
 -(void)prepare{

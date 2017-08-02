@@ -43,6 +43,11 @@
     [self prepare];
 }
 
+
+
+
+
+
 -(void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter]
      removeObserver:self name:UIKeyboardWillShowNotification object:nil];

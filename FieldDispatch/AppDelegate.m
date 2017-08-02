@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import <FBSDKCoreKit.h>
-
+#import "FieldDispatchDataBase.h"
 
 @interface AppDelegate ()
 
@@ -20,24 +20,34 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    //Fb
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
-    // 在此處加入任何自訂邏輯。
+    
+    //google
     NSError* configureError;
-    //番例更改
     [GIDSignIn sharedInstance].clientID = @"329125333064-i1irpo24q0imgj9gukmuclhfg73fk4mi.apps.googleusercontent.com";
     NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    
     [GIDSignIn sharedInstance].delegate = self;
 
     
+    //設定通知
+    UIUserNotificationType type = UIUserNotificationTypeAlert|UIUserNotificationTypeBadge;
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
+    [application registerUserNotificationSettings:settings];
+    //註冊使用通知
+    [application registerForRemoteNotifications];
+    
     return YES;
 }
-//fb新增
+
+//
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
+    
+    NSLog(@"\n聽說是舊版連線");
     //google登入
     if ([[GIDSignIn sharedInstance] handleURL:url
                             sourceApplication:sourceApplication
@@ -51,18 +61,20 @@
                     sourceApplication:sourceApplication
                     annotation:annotation
                     ];
-    // 在此處加入任何自訂邏輯。
     return handled;
 }
 //
 - (BOOL)application:(UIApplication *)app
             openURL:(NSURL *)url
             options:(NSDictionary *)options {
+    
+    NSLog(@"\n聽說是新版連線");
     if ([[FBSDKApplicationDelegate sharedInstance]
          application:app
          openURL:url
          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
          annotation:options[UIApplicationOpenURLOptionsAnnotationKey]]) {
+        
         return true;
     }
     
@@ -72,27 +84,20 @@
             annotation:options[UIApplicationOpenURLOptionsAnnotationKey]];
 }
 
+//登入
 - (void)signIn:(GIDSignIn *)signIn
-didSignInForUser:(GIDGoogleUser *)user
-     withError:(NSError *)error {
-    
+            didSignInForUser:(GIDGoogleUser *)user
+                withError:(NSError *)error {
+    NSLog(@"\n我在applaction");
 }
 
-//google登出後要幹嘛 假的
-//- (void)signIn:(GIDSignIn *)signIn
-//didDisconnectWithUser:(GIDGoogleUser *)user
-//     withError:(NSError *)error {
-//    // Perform any operations when the user disconnects from app here.
-//    // ...
-//    NSLog(@"我是登出google");
-//    NSString *userId = user.userID;                  // For client-side use only!
-//    NSString *idToken = user.authentication.idToken; // Safe to send to the server
-//    NSString *fullName = user.profile.name;
-//    NSString *givenName = user.profile.givenName;
-//    NSString *familyName = user.profile.familyName;
-//    NSString *email = user.profile.email;
-//    NSLog(@"\n我是id%@\n我是偷捆%@\n我是全名%@\n我是givenName%@\n我是性%@\n我是信箱%@",userId,idToken,fullName,givenName,familyName,email);
-//}
+//google登出後要幹嘛 假的 不知道什麼時候觸發
+- (void)signIn:(GIDSignIn *)signIn
+            didDisconnectWithUser:(GIDGoogleUser *)user
+                        withError:(NSError *)error {
+    // Perform any operations when the user disconnects from app here.
+    NSLog(@"\n我是登出google 真的會觸發嗎");
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -115,7 +120,6 @@ didSignInForUser:(GIDGoogleUser *)user
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     //記錄app被啟動過多少次
     [FBSDKAppEvents activateApp];
-    //記錄..
 }
 
 
@@ -125,7 +129,43 @@ didSignInForUser:(GIDGoogleUser *)user
     [self saveContext];
 }
 
+#pragma mark - deviceToken
+-(void)application:(UIApplication *)application
+    didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    NSLog(@"\n原生DeviceToken:\n%@",deviceToken.description);
+    //將<a71d0f93b9478e70f3e36414cc555992d635fcd825701b9d659f697296d4d864>轉成字串
+    NSString *deviceTokenString = deviceToken.description;
+    //去刮號空白
+    deviceTokenString = [deviceTokenString
+                         stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    deviceTokenString = [deviceTokenString
+                         stringByReplacingOccurrencesOfString:@" " withString:@""];
+    deviceTokenString = [deviceTokenString
+                         stringByReplacingOccurrencesOfString:@">" withString:@""];
+    NSLog(@"\n修正後\n%@",deviceTokenString);
+    
+    [[MobileDataBase stand] setDeviceToken:deviceTokenString];
+}
 
+//獲取失敗
+-(void)application:(UIApplication *)application
+    didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    
+    NSLog(@"\ndidFailToRegisterForRemoteNotificationsWithError:%@",error.description);
+}
+
+#pragma mark - didReceiveRemoteNotification
+-(void)application:(UIApplication *)application
+        didReceiveRemoteNotification:(NSDictionary *)userInfo
+        fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    
+    NSLog(@"\ndidReceiveRemoteNotification:\n%@",userInfo);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"notification" object:nil];//待實作
+    
+    //回報收到新資料newdata或是沒資料nodata
+    completionHandler(UIBackgroundFetchResultNewData);
+}
 
 #pragma mark - Core Data stack
 

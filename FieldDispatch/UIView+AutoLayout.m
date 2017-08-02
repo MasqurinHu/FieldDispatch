@@ -10,6 +10,7 @@
 
 @implementation UIView (AutoLayout)
 
+
 +(void)initWidthFromTargetWithSelf:(UIView*)selfView
                             Target:(UIView*)target
                          SuperView:(UIView*)superView
@@ -52,8 +53,8 @@
                           SuperView:superView
                          AttributeX:NSLayoutAttributeRight
                          AttributeY:NSLayoutAttributeBottom
-                        MultiplierX:0.0
-                        MultiplierY:0.0
+                        MultiplierX:1.0
+                        MultiplierY:1.0
                                GapX:levelGap
                                GapY:verticalGap];
 }
@@ -67,8 +68,8 @@
                           SuperView:superView
                          AttributeX:NSLayoutAttributeRight
                          AttributeY:NSLayoutAttributeCenterY
-                        MultiplierX:0.0
-                        MultiplierY:0.0
+                        MultiplierX:1.0
+                        MultiplierY:1.0
                                GapX:levelGap
                                GapY:verticalGap];
 }
@@ -82,8 +83,8 @@
                           SuperView:superView
                          AttributeX:NSLayoutAttributeRight
                          AttributeY:NSLayoutAttributeTop
-                        MultiplierX:0.0
-                        MultiplierY:0.0
+                        MultiplierX:1.0
+                        MultiplierY:1.0
                                GapX:levelGap
                                GapY:verticalGap];
 }
@@ -97,8 +98,8 @@
                           SuperView:superView
                          AttributeX:NSLayoutAttributeCenterX
                          AttributeY:NSLayoutAttributeTop
-                        MultiplierX:0.0
-                        MultiplierY:0.0
+                        MultiplierX:1.0
+                        MultiplierY:1.0
                                GapX:levelGap
                                GapY:virticalGap];
 }
@@ -112,8 +113,8 @@
                           SuperView:superView
                          AttributeX:NSLayoutAttributeCenterX
                          AttributeY:NSLayoutAttributeCenterY
-                        MultiplierX:0.0
-                        MultiplierY:0.0
+                        MultiplierX:1.0
+                        MultiplierY:1.0
                                GapX:levelGap
                                GapY:virticalGap];
 }
@@ -128,8 +129,8 @@
                           SuperView:superView
                          AttributeX:NSLayoutAttributeCenterX
                          AttributeY:NSLayoutAttributeBottom
-                        MultiplierX:0.0
-                        MultiplierY:0.0
+                        MultiplierX:1.0
+                        MultiplierY:1.0
                                GapX:levelGap
                                GapY:verticalGap];
 }
@@ -143,8 +144,8 @@
                           SuperView:superView
                          AttributeX:NSLayoutAttributeLeft
                          AttributeY:NSLayoutAttributeCenterY
-                        MultiplierX:0.0
-                        MultiplierY:0.0
+                        MultiplierX:1.0
+                        MultiplierY:1.0
                                GapX:levelGap
                                GapY:verticalGap];
 }
@@ -158,8 +159,8 @@
                           SuperView:superView
                          AttributeX:NSLayoutAttributeLeft
                          AttributeY:NSLayoutAttributeCenterY
-                        MultiplierX:0.0
-                        MultiplierY:0.0
+                        MultiplierX:1.0
+                        MultiplierY:1.0
                                GapX:levelGap
                                GapY:verticalGap];
 }
@@ -173,8 +174,8 @@
                           SuperView:superView
                          AttributeX:NSLayoutAttributeLeft
                          AttributeY:NSLayoutAttributeTop
-                        MultiplierX:0.0
-                        MultiplierY:0.0
+                        MultiplierX:1.0
+                        MultiplierY:1.0
                                GapX:levelGap
                                GapY:verticalGap];
 }

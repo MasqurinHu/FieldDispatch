@@ -50,4 +50,30 @@ static LogIn *login = nil;
     NSArray *accountList = @[];
     return accountList;
 }
+
+-(NSString *)getUserID{
+    return @"";
+}
+
+-(void)newDevice{
+    [[HttpConnection stand] newDeviceWithFinish:^(NSError *error, id result) {
+        
+        if (error) {
+            NSLog(@"%@",error.description);
+        }
+//        NSLog(@"%@",result);
+        NSDictionary *resultMemo = (NSDictionary*)result;
+        BOOL server = (BOOL)resultMemo[@"result"];
+        if (server) {
+            int memberId = [resultMemo[@"memberId"] intValue];
+            [[NSUserDefaults standardUserDefaults] setObject:@(memberId) forKey:@"memberId"];
+            int scapegoat = [[[NSUserDefaults standardUserDefaults] objectForKey:@"memberId"] intValue];
+            NSLog(@"\n我是memberId%d",scapegoat);
+        }else{
+            NSString *error = resultMemo[@"errorCode"];
+            NSLog(@"\n我是問題%@",error);
+        }
+    }];
+}
+
 @end
