@@ -87,6 +87,7 @@ static LogIn *login = nil;
 }
 
 -(void)upDateDeviceToken:(NSString *)deviceToken{
+    //測試用xcode做git
     
 }
 
