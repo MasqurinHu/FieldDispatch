@@ -11,11 +11,10 @@
 
 @interface SingInVC ()<GIDSignInUIDelegate,GIDSignInDelegate,FBSDKLoginButtonDelegate>
 {
-    FBSDKLoginButton *loginButton1;
+    FBSDKLoginButton *fbSingIn;
     NSLayoutConstraint *constraint;
     NSMutableArray <NSLayoutConstraint*>*constraints;
 }
-@property(weak, nonatomic) IBOutlet GIDSignInButton *signInButton;
 
 @end
 
@@ -25,119 +24,89 @@
     [super viewDidLoad];
     constraints = [NSMutableArray new];
     // Do any additional setup after loading the view.
+    [GIDSignIn sharedInstance].uiDelegate = self;
+    [GIDSignIn sharedInstance].delegate = self;
+    fbSingIn = [FBSDKLoginButton new];
+    fbSingIn.delegate = self;
     [self prepare];
 }
 -(void)singoutView{
     //登出準備登入畫面
-    UILabel *title = [UILabel new];
-    title.numberOfLines = 0;
-    title.text = @"Welcome to the Field Dispatch system\nPlease select the login method";
     
-    [title setTranslatesAutoresizingMaskIntoConstraints:false];
-
-    [self.view addSubview:title];
-    [constraints addObject:[NSLayoutConstraint
-                            constraintWithItem:title
-                            attribute:NSLayoutAttributeCenterX
-                            relatedBy:NSLayoutRelationEqual
-                            toItem:self.view
-                            attribute:NSLayoutAttributeCenterX
-                            multiplier:1.0
-                            constant:0.0
-                            ]];
-
-    [constraints addObject:[NSLayoutConstraint
-                            constraintWithItem:title
-                            attribute:NSLayoutAttributeCenterY
-                            relatedBy:NSLayoutRelationEqual
-                            toItem:self.view
-                            attribute:NSLayoutAttributeCenterY
-                            multiplier:1/3.0 constant:0.0]];
+    GIDSignInButton *google = [GIDSignInButton new];
+    [self.view addSubview:google];
+    [UIView initAtCenterCenterWithSelf:google
+                             SuperView:self.view
+                              LevelGap:.0
+                           VerticalGap:.0];
     
-    MUIBottonlineTextField *account = [MUIBottonlineTextField new];
-    account.placeholder = @"Please enter the account";//請輸入您要申請的帳戶
-    [account setTranslatesAutoresizingMaskIntoConstraints:false];
-    [self.view addSubview:account];
-    [constraints addObject:[NSLayoutConstraint
-                            constraintWithItem:account
-                            attribute:NSLayoutAttributeWidth
-                            relatedBy:NSLayoutRelationEqual
-                            toItem:self.view
-                            attribute:NSLayoutAttributeWidth
-                            multiplier:.8
-                            constant:0.0
-                            ]];
-
-    [constraints addObject:[NSLayoutConstraint
-                            constraintWithItem:account
-                            attribute:NSLayoutAttributeTop
-                            relatedBy:NSLayoutRelationEqual
-                            toItem:title
-                            attribute:NSLayoutAttributeBottom
-                            multiplier:1.0
-                            constant:10.0
-                            ]];
-
-    [constraints addObject:[NSLayoutConstraint
-                            constraintWithItem:account
-                            attribute:NSLayoutAttributeCenterX
-                            relatedBy:NSLayoutRelationEqual
-                            toItem:title
-                            attribute:NSLayoutAttributeCenterX
-                            multiplier:1.0 constant:0.0]];
-
-    loginButton1.translatesAutoresizingMaskIntoConstraints = false;
-    [self.view addSubview:loginButton1];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:loginButton1 attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:loginButton1 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0]];
-
+    [self.view addSubview:fbSingIn];
+    [UIView initHeightWithSelf:fbSingIn
+                    TargetView:self.view
+                     SuperView:self.view
+                    Multiplier:.001
+                      Constant:google.frame.size.height*.85];
+    [UIView initFromTopWithSelf:fbSingIn
+                     targetView:google
+                      superView:self.view
+                            gap:10.0];
     
-    GIDSignInButton *googleSingBtn = [GIDSignInButton new];
+    [UIView initWidthWithSelf:google
+                   TargetView:fbSingIn
+                    SuperView:self.view
+                   Multiplier:1.02
+                     Constant:.0];
     
-    googleSingBtn.translatesAutoresizingMaskIntoConstraints = false;
-    [self.view addSubview:googleSingBtn];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:googleSingBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:loginButton1 attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-//    [self.view addConstraint:constraint];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:googleSingBtn attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:loginButton1 attribute:NSLayoutAttributeTop multiplier:1.0 constant:-5.0]];
-//    [self.view addConstraint:constraint];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:googleSingBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:loginButton1 attribute:NSLayoutAttributeWidth multiplier:1.035 constant:0.0]];
-    UIButton *fieleDispatchLoginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-    [fieleDispatchLoginBtn addTarget:self action:@selector(gotoFDLogin) forControlEvents:UIControlEventTouchUpInside];
-    [fieleDispatchLoginBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    fieleDispatchLoginBtn.backgroundColor = [UIColor brownColor];
-    fieleDispatchLoginBtn.translatesAutoresizingMaskIntoConstraints = false;
-    fieleDispatchLoginBtn.layer.cornerRadius = 3.0;
-    fieleDispatchLoginBtn.layer.borderWidth = 1.0;
-    [fieleDispatchLoginBtn setTitle:@"Field Dispatch Login" forState:UIControlStateNormal];
-    [self.view addSubview:fieleDispatchLoginBtn];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:fieleDispatchLoginBtn attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationLessThanOrEqual toItem:loginButton1 attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:fieleDispatchLoginBtn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:loginButton1 attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:fieleDispatchLoginBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:loginButton1 attribute:NSLayoutAttributeBottom multiplier:1.0 constant:5]];
+    UIButton *newDevice = [[UIButton alloc]
+                           initWithTitle:@"Field Dispatch Sing In"
+                           backgroundColor:[UIColor brownColor]
+                           addTarget:self func:@selector(singinView)
+                           superView:self.view];
+    [UIView initFromBottonWithSelf:newDevice
+                     targetView:google
+                      superView:self.view
+                            gap:-10];
+    [UIView initSizeWithSelf:newDevice
+                  TargetView:fbSingIn
+                   SuperView:self.view
+                  AttributeX:NSLayoutAttributeWidth
+                  AttributeY:NSLayoutAttributeHeight
+                 MultiplierX:1.0
+                 MultiplierY:1.0
+                        GapX:.0
+                        GapY:.0];
     
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:loginButton1 attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:fieleDispatchLoginBtn attribute:NSLayoutAttributeHeight multiplier:1.1 constant:0.0]];
+    UIButton *googleSingOut = [[UIButton alloc]
+                               initWithTitle:@"Google Sign Out"
+                               backgroundColor:[UIColor greenColor]
+                               addTarget:self
+                               func:@selector(didTapSignOut:)
+                               superView:self.view];
+    [UIView initFromTopWithSelf:googleSingOut
+                        targetView:fbSingIn
+                         superView:self.view
+                               gap:10];
+    [UIView initSizeWithSelf:googleSingOut
+                  TargetView:fbSingIn
+                   SuperView:self.view
+                  AttributeX:NSLayoutAttributeWidth
+                  AttributeY:NSLayoutAttributeHeight
+                 MultiplierX:1.0
+                 MultiplierY:1.0
+                        GapX:.0
+                        GapY:.0];
     
-    [self.view addConstraints:constraints];
-    
-    
-    //////////
     
 }
-
-
 
 -(void)singinView{
     //登入準備登出畫面
-    loginButton1.center = self.view.center;
-    [self.view addSubview:loginButton1];
+    FieldDispatchLoginChooseViewController *fd = [self.storyboard instantiateViewControllerWithIdentifier:@"FieldDispatchLoginChooseViewController"];
+    [self.navigationController pushViewController:fd animated:true];
 }
 
 -(void)prepare{
-    [GIDSignIn sharedInstance].uiDelegate = self;
-    [GIDSignIn sharedInstance].delegate = self;
-    loginButton1 = [FBSDKLoginButton new];
-    loginButton1.delegate = self;
-    // 選擇性：將按鈕置於檢視中央。測試
+    
     [self singoutView];
 }
 
@@ -175,7 +144,8 @@ didSignInForUser:(GIDGoogleUser *)user
     NSString *givenName = user.profile.givenName;
     NSString *familyName = user.profile.familyName;
     NSString *email = user.profile.email;
-    NSLog(@"\n我是id%@\n我是偷捆%@\n我是全名%@\n我是givenName%@\n我是性%@\n我是信箱%@",userId,idToken,fullName,givenName,familyName,email);
+    NSLog(@"\n我是id: %@\n我是全名: %@\n我是givenName: %@\n我是性: %@\n我是信箱: %@",userId,fullName,givenName,familyName,email);
+    NSLog(@"\n我是偷捆: %@\n好像超過log長度不顯示",idToken);
     // ...
     NSLog(@"\n回來確認登入");
     NSString *login = @"Google";
@@ -184,7 +154,7 @@ didSignInForUser:(GIDGoogleUser *)user
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-- (IBAction)didTapSignOut:(id)sender {
+- (void)didTapSignOut:(id)sender {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"login"];
     NSLog(@"登出Google");
     [[GIDSignIn sharedInstance] signOut];
@@ -212,7 +182,6 @@ didSignInForUser:(GIDGoogleUser *)user
     NSString *login = @"Facebook";
     [[NSUserDefaults standardUserDefaults] setObject: login forKey:@"login"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    // 用戶已登入，執行如前往下一個檢視控制器的操作。
     loginButton.readPermissions =
     @[@"public_profile", @"email", @"user_friends"];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]

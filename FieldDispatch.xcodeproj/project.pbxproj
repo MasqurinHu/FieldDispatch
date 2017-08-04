@@ -15,15 +15,17 @@
 		45080E341F1DD73300E6F590 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45080E331F1DD73300E6F590 /* Assets.xcassets */; };
 		45080E371F1DD73300E6F590 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45080E351F1DD73300E6F590 /* LaunchScreen.storyboard */; };
 		45080E3F1F1DDD8700E6F590 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45080E3E1F1DDD8700E6F590 /* GoogleService-Info.plist */; };
+		450A65FE1F31D85700BA96C3 /* UIButton+MButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 450A65FD1F31D85700BA96C3 /* UIButton+MButton.m */; };
+		450A66011F31E29900BA96C3 /* CheckSingInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 450A66001F31E29900BA96C3 /* CheckSingInVC.m */; };
 		4526B6811F23A7BF00FB6035 /* MasqurinTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4526B6801F23A7BF00FB6035 /* MasqurinTool.m */; };
 		4526B6841F23ABBC00FB6035 /* MUIBottonlineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4526B6831F23ABBC00FB6035 /* MUIBottonlineTextField.m */; };
 		4526B6881F244F6100FB6035 /* FieldDispatchLoginChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4526B6871F244F6100FB6035 /* FieldDispatchLoginChooseViewController.m */; };
 		4526B68B1F24550900FB6035 /* MobileDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4526B68A1F24550900FB6035 /* MobileDataBase.m */; };
 		4526B68E1F249A5300FB6035 /* FieldDispatchDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4526B68D1F249A5300FB6035 /* FieldDispatchDataBase.m */; };
+		452D2B991F32079C00ABB68D /* UITextField+BottonLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D2B981F32079C00ABB68D /* UITextField+BottonLine.m */; };
 		4532DBAF1F2F1CDF00375E30 /* HttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4532DBAE1F2F1CDF00375E30 /* HttpConnection.m */; };
 		459630B11F25E8DD004BD775 /* CircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459630B01F25E8DD004BD775 /* CircleViewController.m */; };
 		459630B41F25E9F5004BD775 /* MUIButtonAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 459630B31F25E9F5004BD775 /* MUIButtonAutoLayout.m */; };
-		459C64C31F280F5100A06324 /* MUIViewAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C64C21F280F5100A06324 /* MUIViewAutoLayout.m */; };
 		459C64F81F29AA8400A06324 /* OnLionTeamMembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C64F71F29AA8400A06324 /* OnLionTeamMembersTableViewController.m */; };
 		459C64FE1F29ADBA00A06324 /* TeamMembers.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C64FD1F29ADBA00A06324 /* TeamMembers.m */; };
 		459C65971F2B04B000A06324 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C65961F2B04B000A06324 /* UIView+AutoLayout.m */; };
@@ -49,6 +51,10 @@
 		45080E361F1DD73300E6F590 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45080E381F1DD73300E6F590 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45080E3E1F1DDD8700E6F590 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		450A65FC1F31D85700BA96C3 /* UIButton+MButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+MButton.h"; sourceTree = "<group>"; };
+		450A65FD1F31D85700BA96C3 /* UIButton+MButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MButton.m"; sourceTree = "<group>"; };
+		450A65FF1F31E29900BA96C3 /* CheckSingInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckSingInVC.h; sourceTree = "<group>"; };
+		450A66001F31E29900BA96C3 /* CheckSingInVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckSingInVC.m; sourceTree = "<group>"; };
 		4526B67F1F23A7BF00FB6035 /* MasqurinTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasqurinTool.h; sourceTree = "<group>"; };
 		4526B6801F23A7BF00FB6035 /* MasqurinTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasqurinTool.m; sourceTree = "<group>"; };
 		4526B6821F23ABBC00FB6035 /* MUIBottonlineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIBottonlineTextField.h; sourceTree = "<group>"; };
@@ -59,6 +65,8 @@
 		4526B68A1F24550900FB6035 /* MobileDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobileDataBase.m; sourceTree = "<group>"; };
 		4526B68C1F249A5300FB6035 /* FieldDispatchDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDispatchDataBase.h; sourceTree = "<group>"; };
 		4526B68D1F249A5300FB6035 /* FieldDispatchDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldDispatchDataBase.m; sourceTree = "<group>"; };
+		452D2B971F32079C00ABB68D /* UITextField+BottonLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+BottonLine.h"; sourceTree = "<group>"; };
+		452D2B981F32079C00ABB68D /* UITextField+BottonLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+BottonLine.m"; sourceTree = "<group>"; };
 		4532DBAD1F2F1CDF00375E30 /* HttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpConnection.h; sourceTree = "<group>"; };
 		4532DBAE1F2F1CDF00375E30 /* HttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpConnection.m; sourceTree = "<group>"; };
 		4532DBB31F2F892400375E30 /* FieldDispatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FieldDispatch.entitlements; sourceTree = "<group>"; };
@@ -66,8 +74,6 @@
 		459630B01F25E8DD004BD775 /* CircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleViewController.m; sourceTree = "<group>"; };
 		459630B21F25E9F5004BD775 /* MUIButtonAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIButtonAutoLayout.h; sourceTree = "<group>"; };
 		459630B31F25E9F5004BD775 /* MUIButtonAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIButtonAutoLayout.m; sourceTree = "<group>"; };
-		459C64C11F280F5100A06324 /* MUIViewAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIViewAutoLayout.h; sourceTree = "<group>"; };
-		459C64C21F280F5100A06324 /* MUIViewAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIViewAutoLayout.m; sourceTree = "<group>"; };
 		459C64F61F29AA8400A06324 /* OnLionTeamMembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnLionTeamMembersTableViewController.h; sourceTree = "<group>"; };
 		459C64F71F29AA8400A06324 /* OnLionTeamMembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnLionTeamMembersTableViewController.m; sourceTree = "<group>"; };
 		459C64FC1F29ADBA00A06324 /* TeamMembers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamMembers.h; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 				45080E2D1F1DD73300E6F590 /* Main.storyboard */,
 				45080E2A1F1DD73300E6F590 /* MainVC.h */,
 				45080E2B1F1DD73300E6F590 /* MainVC.m */,
+				450A65FF1F31E29900BA96C3 /* CheckSingInVC.h */,
+				450A66001F31E29900BA96C3 /* CheckSingInVC.m */,
 				45E9FEC31F22137E00025E7F /* SingInVC.h */,
 				45E9FEC41F22137E00025E7F /* SingInVC.m */,
 				4526B6861F244F6100FB6035 /* FieldDispatchLoginChooseViewController.h */,
@@ -157,12 +165,14 @@
 			children = (
 				4526B67F1F23A7BF00FB6035 /* MasqurinTool.h */,
 				4526B6801F23A7BF00FB6035 /* MasqurinTool.m */,
+				450A65FC1F31D85700BA96C3 /* UIButton+MButton.h */,
+				450A65FD1F31D85700BA96C3 /* UIButton+MButton.m */,
+				452D2B971F32079C00ABB68D /* UITextField+BottonLine.h */,
+				452D2B981F32079C00ABB68D /* UITextField+BottonLine.m */,
 				4526B6821F23ABBC00FB6035 /* MUIBottonlineTextField.h */,
 				4526B6831F23ABBC00FB6035 /* MUIBottonlineTextField.m */,
 				459630B21F25E9F5004BD775 /* MUIButtonAutoLayout.h */,
 				459630B31F25E9F5004BD775 /* MUIButtonAutoLayout.m */,
-				459C64C11F280F5100A06324 /* MUIViewAutoLayout.h */,
-				459C64C21F280F5100A06324 /* MUIViewAutoLayout.m */,
 				459C65951F2B04B000A06324 /* UIView+AutoLayout.h */,
 				459C65961F2B04B000A06324 /* UIView+AutoLayout.m */,
 			);
@@ -346,6 +356,7 @@
 				4526B6811F23A7BF00FB6035 /* MasqurinTool.m in Sources */,
 				4526B6881F244F6100FB6035 /* FieldDispatchLoginChooseViewController.m in Sources */,
 				45E9FEBA1F2207A100025E7F /* LogIn.m in Sources */,
+				450A66011F31E29900BA96C3 /* CheckSingInVC.m in Sources */,
 				4526B68E1F249A5300FB6035 /* FieldDispatchDataBase.m in Sources */,
 				459630B11F25E8DD004BD775 /* CircleViewController.m in Sources */,
 				459C64F81F29AA8400A06324 /* OnLionTeamMembersTableViewController.m in Sources */,
@@ -354,9 +365,10 @@
 				459C64FE1F29ADBA00A06324 /* TeamMembers.m in Sources */,
 				45080E291F1DD73300E6F590 /* AppDelegate.m in Sources */,
 				459C65971F2B04B000A06324 /* UIView+AutoLayout.m in Sources */,
+				452D2B991F32079C00ABB68D /* UITextField+BottonLine.m in Sources */,
 				45080E321F1DD73300E6F590 /* FieldDispatch.xcdatamodeld in Sources */,
+				450A65FE1F31D85700BA96C3 /* UIButton+MButton.m in Sources */,
 				459630B41F25E9F5004BD775 /* MUIButtonAutoLayout.m in Sources */,
-				459C64C31F280F5100A06324 /* MUIViewAutoLayout.m in Sources */,
 				45080E261F1DD73300E6F590 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -44,14 +44,7 @@
     aaa.layer.borderWidth = aa*.005;
     self.view.layer.cornerRadius = aa/4;
     self.view.layer.masksToBounds = true;
-    _circle = [[MUIButtonAutoLayout alloc]
-                                   initWithTitle:@"circle"
-                                   backgroundColor:[UIColor brownColor]
-                                   addTarget:self
-                                   func:@selector(bbb)
-                                   targetView:aaa
-                                   multiplier:1.0
-                                   superView:aaa];
+
 //    self.circle.isUserInteractionEnabled = true;
 //    NSLog(@"%@",_circle);
 }

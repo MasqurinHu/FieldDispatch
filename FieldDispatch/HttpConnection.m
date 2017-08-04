@@ -25,9 +25,11 @@ static HttpConnection *http = nil;
 }
 
 -(void) newDeviceWithFinish:(FinishMessage)finish{
+
+    NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     //deviceType    1.iOS   2.Andreod   3.other...
     NSDictionary *par = @{@"deviceType":@"1",
-                          @"deviceToken":[MobileDataBase stand].deviceToken};
+                          @"deviceToken":deviceToken};
     [self doPostWithURLString:NEW_DEVICE
                    parameters:par data:nil
                    finish:finish];

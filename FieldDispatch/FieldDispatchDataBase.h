@@ -17,7 +17,7 @@
 #import "FieldDispatchLoginChooseViewController.h"
 #import "SingInVC.h"
 #import "CircleViewController.h"
-
+#import "CheckSingInVC.h"
 
 @interface FieldDispatchDataBase : NSObject
 

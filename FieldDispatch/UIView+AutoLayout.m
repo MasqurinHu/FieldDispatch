@@ -10,6 +10,56 @@
 
 @implementation UIView (AutoLayout)
 
++(void)initFromBottonWithSelf:(UIView *)selfView
+                   targetView:(UIView *)target
+                    superView:(UIView *)superView
+                          gap:(CGFloat)gap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
+    NSMutableArray <NSLayoutConstraint*>*lo = [NSMutableArray new];
+    [lo addObject:[NSLayoutConstraint
+                   constraintWithItem:selfView
+                   attribute:NSLayoutAttributeBottom
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:target
+                   attribute:NSLayoutAttributeTop
+                   multiplier:1.0
+                   constant:gap]];
+    [lo addObject:[NSLayoutConstraint
+                   constraintWithItem:selfView
+                   attribute:NSLayoutAttributeLeading
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:target
+                   attribute:NSLayoutAttributeLeading
+                   multiplier:1.0
+                   constant:.0]];
+    [superView addConstraints:lo];
+}
+
+
++(void)initFromTopWithSelf:(UIView *)selfView
+                targetView:(UIView *)target
+                 superView:(UIView *)superView
+                       gap:(CGFloat)gap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
+    NSMutableArray <NSLayoutConstraint*>*lo = [NSMutableArray new];
+    [lo addObject:[NSLayoutConstraint
+                   constraintWithItem:selfView
+                   attribute:NSLayoutAttributeTop
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:target
+                   attribute:NSLayoutAttributeBottom
+                   multiplier:1.0
+                   constant:gap]];
+    [lo addObject:[NSLayoutConstraint
+                   constraintWithItem:selfView
+                   attribute:NSLayoutAttributeLeading
+                   relatedBy:NSLayoutRelationEqual
+                   toItem:target
+                   attribute:NSLayoutAttributeLeading
+                   multiplier:1.0
+                   constant:.0]];
+    [superView addConstraints:lo];
+}
 
 +(void)initWidthFromTargetWithSelf:(UIView*)selfView
                             Target:(UIView*)target

@@ -68,7 +68,7 @@
             openURL:(NSURL *)url
             options:(NSDictionary *)options {
     
-    NSLog(@"\n聽說是新版連線");
+    NSLog(@"\n聽說是新版連線 FB,google使用多次");
     if ([[FBSDKApplicationDelegate sharedInstance]
          application:app
          openURL:url
@@ -118,7 +118,16 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    //記錄app被啟動過多少次
+    //記錄app被啟動過多少次以及FB登入過幾次
+    int severalTimes;
+    if ( [[NSUserDefaults standardUserDefaults] objectForKey:@"severalTimes"] == nil) {
+        severalTimes = 0;
+    }else{
+        severalTimes = [[[NSUserDefaults standardUserDefaults] objectForKey:@"severalTimes"] intValue];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:@(++severalTimes) forKey:@"severalTimes"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"APP啟動及fb登入幾次?%d",severalTimes);
     [FBSDKAppEvents activateApp];
 }
 
@@ -145,7 +154,14 @@
                          stringByReplacingOccurrencesOfString:@">" withString:@""];
     NSLog(@"\n修正後\n%@",deviceTokenString);
     
-    [[MobileDataBase stand] setDeviceToken:deviceTokenString];
+    //檢查是否有帳號登入 有登入就回報deviceToken
+    NSString *memberId = [[NSUserDefaults standardUserDefaults] objectForKey:@"memberId"];
+    if (memberId != NULL) {
+        [[LogIn sharedInstance] upDateDeviceToken:memberId];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:deviceTokenString forKey:@"deviceToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 //獲取失敗

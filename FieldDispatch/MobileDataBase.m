@@ -7,8 +7,11 @@
 //
 
 #import "MobileDataBase.h"
+
 static MobileDataBase *mobileDataBase = nil;
+
 @implementation MobileDataBase
+
 +(instancetype)stand{
     if (mobileDataBase == nil) {
         mobileDataBase = [MobileDataBase new];

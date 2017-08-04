@@ -32,7 +32,6 @@
     [mobileDataBase
      setSizeWithWidth:self.view.frame.size.width
      height:self.view.frame.size.height];
-    [self prepare];
     aa = [UIView new];
 }
 
@@ -40,8 +39,8 @@
     LogIn *login = [LogIn sharedInstance];
     singIn = [login didLogin];
     if (singIn != true) {
-        SingInVC *singInVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SE"];
-        [self presentViewController:singInVC animated:true completion:nil];
+        CheckSingInVC *csvc = [self.storyboard instantiateViewControllerWithIdentifier:@"nav"];
+        [self presentViewController:csvc animated:true completion:nil];
         return;
     };
 }
@@ -51,7 +50,6 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     [self checkLogin];
     if (singIn != true) {
         return;
@@ -118,16 +116,7 @@
     [locManager requestAlwaysAuthorization];
     
     
-    
-    MUIButtonAutoLayout *circle = [[MUIButtonAutoLayout alloc]
-                                   initWithTitle:@"circle"
-                                   backgroundColor:[UIColor brownColor]
-                                   addTarget:self
-                                   func:@selector(goToCircleButton)
-                                   targetView:self.view
-                                   multiplier:1.0
-                                   superView:self.view];
-    NSLog(@"%@",circle);
+
     
 }
 

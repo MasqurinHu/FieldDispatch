@@ -12,6 +12,15 @@
 
 #pragma - add subView
 
++(void)initFromBottonWithSelf:(UIView*)selfView
+                targetView:(UIView*)target
+                 superView:(UIView*)superView
+                       gap:(CGFloat)gap;
+
++(void)initFromTopWithSelf:(UIView*)selfView
+                targetView:(UIView*)target
+                 superView:(UIView*)superView
+                       gap:(CGFloat)gap;
 
 +(void) initAtLeftTopWithSelf:(UIView*)selfView
                     SuperView:(UIView*)superView

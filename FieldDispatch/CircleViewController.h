@@ -11,6 +11,5 @@
 
 @interface CircleViewController : UIViewController
 
-@property (nonatomic,strong) MUIButtonAutoLayout *circle;
 
 @end

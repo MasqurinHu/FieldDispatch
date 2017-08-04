@@ -37,7 +37,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear: animated];
-    onLion = [teamMembers onLionTeamMembersWithID:[login getUserID]];
+    
 }
 
 - (void)didReceiveMemoryWarning {

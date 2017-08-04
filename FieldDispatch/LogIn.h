@@ -13,7 +13,7 @@
 #import <GoogleSignIn/GoogleSignIn.h>
 #import "AppDelegate.h"
 
-
+typedef void (^IsOnlion)(NSError *error,BOOL result);
 
 
 @interface LogIn : NSObject
@@ -24,6 +24,7 @@
 -(BOOL)didLogin;
 -(NSDictionary*)getLoginInfo;
 -(NSArray*)getAccountList;
--(NSString*) getUserID;
+-(void)newDevice:(IsOnlion)onlion;
+-(void)upDateDeviceToken:(NSString*)deviceToken;
 
 @end
