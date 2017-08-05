@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 
 typedef void (^IsOnlion)(NSError *error,BOOL result);
+typedef void (^FinishMessage)(NSError *error,id result);
 
 
 @interface LogIn : NSObject
@@ -25,6 +26,8 @@ typedef void (^IsOnlion)(NSError *error,BOOL result);
 -(NSDictionary*)getLoginInfo;
 -(NSArray*)getAccountList;
 -(void)newDevice:(IsOnlion)onlion;
--(void)upDateDeviceToken:(NSString*)deviceToken;
+-(void)upDateDeviceToken:(NSString*)deviceToken
+                memberId:(NSString*)memberId
+     transmissionResults:(FinishMessage)resoult;
 
 @end

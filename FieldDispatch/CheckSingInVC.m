@@ -48,7 +48,7 @@
     [[LogIn sharedInstance] newDevice:^(NSError *error, BOOL result) {
         if (result) {
             NSLog(@"\n幾秒回來");
-//            [self dismissViewControllerAnimated:true completion:nil];
+            [self dismissViewControllerAnimated:true completion:nil];
         }
     }];
     

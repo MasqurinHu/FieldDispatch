@@ -154,10 +154,22 @@
                          stringByReplacingOccurrencesOfString:@">" withString:@""];
     NSLog(@"\n修正後\n%@",deviceTokenString);
     
-    //檢查是否有帳號登入 有登入就回報deviceToken
+    //檢查是否有帳號登入 有登入就回報deviceToken 及memberId
     NSString *memberId = [[NSUserDefaults standardUserDefaults] objectForKey:@"memberId"];
     if (memberId != NULL) {
-        [[LogIn sharedInstance] upDateDeviceToken:memberId];
+        [[LogIn sharedInstance] upDateDeviceToken:deviceTokenString memberId:memberId transmissionResults:^(NSError *error, id result) {
+            
+            if (error) {
+                NSLog(@"\n連線異常，錯誤訊息: %@",error.description);
+                return ;
+            }
+            NSDictionary *severMemo = (NSDictionary*)result;
+            if ([severMemo[@"result"] boolValue] == false) {
+                NSLog(@"\n伺服器資料異常，錯誤訊息： %@",severMemo[@"errorCode"]);
+                return;
+            }
+            NSLog(@"\nDeviceToken更新正常，id為： %@",severMemo[@"deviceTokenId"]);
+        }];
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:deviceTokenString forKey:@"deviceToken"];

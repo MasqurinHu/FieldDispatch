@@ -10,7 +10,8 @@
 #import <AFNetworking.h>
 
 #define BASE_URL @"https://masqurin.000webhostapp.com/FieldDispatch/"
-#define NEW_DEVICE [BASE_URL stringByAppendingPathComponent:@"newDevice.php"]
+//#define NEW_DEVICE [BASE_URL stringByAppendingPathComponent:@"newDevice.php"]
+#define NEW_DEVICE @"newDevice.php"
 
 
 static HttpConnection *http = nil;
@@ -63,7 +64,8 @@ static HttpConnection *http = nil;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-    [manager POST:urlString
+    NSString *url = [BASE_URL stringByAppendingString:urlString];
+    [manager POST:url
        parameters:finalParameters
         constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
     

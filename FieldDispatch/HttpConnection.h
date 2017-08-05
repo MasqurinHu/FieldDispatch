@@ -15,5 +15,8 @@ typedef void (^FinishMessage)(NSError *error,id result);
 
 +(instancetype)stand;
 -(void) newDeviceWithFinish:(FinishMessage)finish;
-
+-(void) doPostWithURLString:(NSString*)     urlString
+                 parameters:(NSDictionary*) parameters
+                       data:(NSData* )      data
+                     finish:(FinishMessage) finish;
 @end

@@ -8,6 +8,8 @@
 
 #import "LogIn.h"
 
+#define UPDATE_DEVICE_TOKEN @"updateDaviceToken.php"
+
 static LogIn *login = nil;
 
 @implementation LogIn
@@ -67,18 +69,22 @@ static LogIn *login = nil;
         
         if (error) {
             NSLog(@"%@",error.description);
+            return ;
         }
         NSDictionary *resultMemo = (NSDictionary*)result;
         BOOL server = [resultMemo[@"result"] boolValue];
         if (server == true) {
             int memberId = [resultMemo[@"memberId"] intValue];
             [[NSUserDefaults standardUserDefaults] setObject:@(memberId) forKey:@"memberId"];
+            int memberType = [resultMemo[@"memberType"] intValue];
+            [[NSUserDefaults standardUserDefaults] setObject:@(memberType) forKey:@"memberType"];
             [[NSUserDefaults standardUserDefaults] synchronize];
             int scapegoat = [[[NSUserDefaults standardUserDefaults] objectForKey:@"memberId"] intValue];
+            int dummy = [[[NSUserDefaults standardUserDefaults] objectForKey:@"memberType"] intValue];
             if (onlion) {
                 onlion(nil,true);
             }
-            NSLog(@"\n我是memberId: %d",scapegoat);
+            NSLog(@"\n我是memberId: %d\n我是memberType: %d",scapegoat,dummy);
         }else{
             NSString *error = resultMemo[@"errorCode"];
             NSLog(@"\n我是問題%@",error);
@@ -86,9 +92,22 @@ static LogIn *login = nil;
     }];
 }
 
--(void)upDateDeviceToken:(NSString *)deviceToken{
-    //測試用xcode做git
+-(void)upDateDeviceToken:(NSString *)deviceToken
+                memberId:(NSString *)memberId
+     transmissionResults:(FinishMessage)resoult{
     
+    //deviceType    1.iOS   2.Andreod   3.other...
+    NSDictionary *par = @{@"memberId":memberId,
+                          @"deviceType":@"1",
+                          @"deviceToken":deviceToken};
+    [[HttpConnection stand]
+     doPostWithURLString:UPDATE_DEVICE_TOKEN
+     parameters:par
+     data:nil
+     finish:resoult];
+    
+
+
 }
 
 @end
