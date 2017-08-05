@@ -138,7 +138,6 @@ didSignInForUser:(GIDGoogleUser *)user
     }
     
     NSString *userId = user.userID;
-    // Safe to send to the server
     NSString *idToken = user.authentication.idToken;
     NSString *fullName = user.profile.name;
     NSString *givenName = user.profile.givenName;
@@ -146,12 +145,26 @@ didSignInForUser:(GIDGoogleUser *)user
     NSString *email = user.profile.email;
     NSLog(@"\n我是id: %@\n我是全名: %@\n我是givenName: %@\n我是性: %@\n我是信箱: %@",userId,fullName,givenName,familyName,email);
     NSLog(@"\n我是偷捆: %@\n好像超過log長度不顯示",idToken);
-    // ...
-    NSLog(@"\n回來確認登入");
-    NSString *login = @"Google";
-    [[NSUserDefaults standardUserDefaults] setObject: login forKey:@"login"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [self dismissViewControllerAnimated:true completion:nil];
+    
+    [[LogIn sharedInstance] signInAccount:userId
+                                 memberId:0         //未登入
+                         memberSingInType:2         //1facebook 2google 3fielddispatch
+                                 nickName:fullName
+                                 password:idToken
+                                    photo:@"none"
+                      transmissionResults:^(NSError *error, id result) {
+                          NSDictionary *severMemo = (NSDictionary*)result;
+                          NSLog(@"我是google登入回來\n%@",severMemo);
+                          if ([severMemo[@"result"] boolValue]) {
+                              
+                              NSString *memberId = severMemo[@"memberId"];
+                              [[NSUserDefaults standardUserDefaults] setObject:memberId forKey:@"memberId"];
+                              [[NSUserDefaults standardUserDefaults] synchronize];
+                              [self dismissViewControllerAnimated:true completion:nil];
+                          }
+    }];
+    
+    
 }
 
 - (void)didTapSignOut:(id)sender {
@@ -178,23 +191,48 @@ didSignInForUser:(GIDGoogleUser *)user
         NSLog(@"登入失敗");
         return;
     }
-    NSLog(@"\n回來確認登入");
-    NSString *login = @"Facebook";
-    [[NSUserDefaults standardUserDefaults] setObject: login forKey:@"login"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     loginButton.readPermissions =
     @[@"public_profile", @"email", @"user_friends"];
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
                                   initWithGraphPath:@"me"
                                   parameters:@{@"fields" : @"gender,picture,email, name, first_name, last_name"}
                                   HTTPMethod:@"GET"];
+    
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
                                           id result,
                                           NSError *error) {
         // Handle the result
         NSLog(@"我是資料%@",result);
+        NSDictionary *fbMemo = (NSDictionary*)result;
+        NSString *fbid = fbMemo[@"id"];
+        NSString *fbname = fbMemo[@"name"];
+        NSString *fbToken = @"none";
+        NSString *fbphoto = fbMemo[@"picture"][@"data"][@"url"];
+        NSLog(@"\n我是id %@\n我是name %@\n我是相片 %@",fbid,fbname,fbphoto);
+        [[LogIn sharedInstance] signInAccount:fbid
+                                     memberId:0
+                             memberSingInType:1
+                                     nickName:fbname
+                                     password:fbToken
+                                        photo:fbphoto
+                          transmissionResults:^(NSError *error, id result) {
+                              
+                              NSDictionary *severMemo = (NSDictionary*)result;
+                              if ([severMemo[@"result"] boolValue]) {
+                                  NSLog(@"我是fb登入回來\n%@",severMemo);
+                                  NSString *memberId = severMemo[@"memberId"];
+                                  [[NSUserDefaults standardUserDefaults] setObject:memberId forKey:@"memberId"];
+                                  [[NSUserDefaults standardUserDefaults] synchronize];
+                                  [self dismissViewControllerAnimated:true completion:nil];
+                              }
+                              
+                              
+                              
+        }];
+        
     }];
-    [self dismissViewControllerAnimated:true completion:nil];
+    
 }
 /*
 #pragma mark - Navigation

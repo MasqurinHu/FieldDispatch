@@ -30,4 +30,13 @@ typedef void (^FinishMessage)(NSError *error,id result);
                 memberId:(NSString*)memberId
      transmissionResults:(FinishMessage)resoult;
 
+-(void)signInAccount:(NSString*)account
+            memberId:(NSInteger)memberId
+    memberSingInType:(NSInteger)memberSingInType
+            nickName:(NSString*)nickName
+            password:(NSString*)password
+               photo:(NSString*)photo
+ transmissionResults:(FinishMessage)result;
+
+
 @end

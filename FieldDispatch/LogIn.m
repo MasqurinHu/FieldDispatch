@@ -9,6 +9,7 @@
 #import "LogIn.h"
 
 #define UPDATE_DEVICE_TOKEN @"updateDaviceToken.php"
+#define CREATE_ACCOUNT @"createAccount.php"
 
 static LogIn *login = nil;
 
@@ -33,20 +34,6 @@ static LogIn *login = nil;
         tryLogin = true;
         NSLog(@"已登入");
     }
-//    id scapegoat = [[NSUserDefaults standardUserDefaults] objectForKey:@"login"];
-//    BOOL tryLogin;
-//    if (scapegoat == nil) {
-//        tryLogin = false;
-//    }else{
-//        if ([(NSString*)scapegoat isEqualToString:@"Google"])
-//            tryLogin = true;
-//        else if ([(NSString*)scapegoat isEqualToString:@"Facebook"])
-//            tryLogin = true;
-//        else if ([(NSString*)scapegoat isEqualToString:@"FieldDispatch"])
-//            tryLogin = true;
-//        else
-//            tryLogin = false;
-//    }
     return tryLogin;
 }
 
@@ -105,9 +92,36 @@ static LogIn *login = nil;
      parameters:par
      data:nil
      finish:resoult];
+}
+
+-(void)signInAccount:(NSString *)account
+            memberId:(NSInteger)memberId
+    memberSingInType:(NSInteger)memberSingInType
+            nickName:(NSString *)nickName
+            password:(NSString *)password
+               photo:(NSString *)photo
+ transmissionResults:(FinishMessage)result{
     
-
-
+    NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    if (deviceToken == nil) {
+        NSLog(@"抓不到deviceToken");
+        return;
+    }
+    
+    NSDictionary *par = @{@"memberAccount":account,
+                          @"memberSingInType":@(memberSingInType),
+                          @"nickName":nickName,
+                          @"password":password,
+                          @"photo":photo,
+                          @"memberId":@(memberId),
+                          @"deviceType":@(1),
+                          @"deviceToken":deviceToken
+                          };
+    
+    [[HttpConnection stand] doPostWithURLString:CREATE_ACCOUNT
+                                     parameters:par
+                                           data:nil
+                                         finish:result];
 }
 
 @end
