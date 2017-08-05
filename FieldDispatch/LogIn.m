@@ -100,6 +100,7 @@ static LogIn *login = nil;
             nickName:(NSString *)nickName
             password:(NSString *)password
                photo:(NSString *)photo
+                mail:(NSString *)mail
  transmissionResults:(FinishMessage)result{
     
     NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
@@ -115,6 +116,7 @@ static LogIn *login = nil;
                           @"photo":photo,
                           @"memberId":@(memberId),
                           @"deviceType":@(1),
+                          @"memberMail":mail,
                           @"deviceToken":deviceToken
                           };
     

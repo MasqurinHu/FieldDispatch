@@ -152,6 +152,7 @@ didSignInForUser:(GIDGoogleUser *)user
                                  nickName:fullName
                                  password:idToken
                                     photo:@"none"
+                                     mail:email
                       transmissionResults:^(NSError *error, id result) {
                           NSDictionary *severMemo = (NSDictionary*)result;
                           NSLog(@"我是google登入回來\n%@",severMemo);
@@ -209,13 +210,15 @@ didSignInForUser:(GIDGoogleUser *)user
         NSString *fbname = fbMemo[@"name"];
         NSString *fbToken = @"none";
         NSString *fbphoto = fbMemo[@"picture"][@"data"][@"url"];
-        NSLog(@"\n我是id %@\n我是name %@\n我是相片 %@",fbid,fbname,fbphoto);
+        NSString *mail = fbMemo[@"email"];
+        NSLog(@"\n我是id %@\n我是name %@\n我是相片 %@\n我是信箱 %@",fbid,fbname,fbphoto,mail);
         [[LogIn sharedInstance] signInAccount:fbid
                                      memberId:0
                              memberSingInType:1
                                      nickName:fbname
                                      password:fbToken
                                         photo:fbphoto
+                                         mail:mail
                           transmissionResults:^(NSError *error, id result) {
                               
                               NSDictionary *severMemo = (NSDictionary*)result;

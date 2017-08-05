@@ -36,6 +36,7 @@ typedef void (^FinishMessage)(NSError *error,id result);
             nickName:(NSString*)nickName
             password:(NSString*)password
                photo:(NSString*)photo
+                mail:(NSString*)mail
  transmissionResults:(FinishMessage)result;
 
 
