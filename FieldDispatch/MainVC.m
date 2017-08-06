@@ -115,15 +115,33 @@
     [self.view addConstraint:cn];
     [locManager requestAlwaysAuthorization];
     
-    
+    UISwitch *onLionSW = [UISwitch new];
+    onLionSW.on = false;
+    UIBarButtonItem *aaa = [[UIBarButtonItem alloc] initWithCustomView:onLionSW];
+    [self.navigationItem setRightBarButtonItem:aaa];
+    [onLionSW addTarget:self action:@selector(onLion:) forControlEvents:UIControlEventValueChanged];
 
     
+}
+
+-(void)onLion:(UISwitch*)sender{
+    if ([sender isOn]) {
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
 }
+
+
+#pragma - CLLoction
+-(void)locationManager:(CLLocationManager *)manager
+    didUpdateLocations:(NSArray<CLLocation *> *)locations{
+}
+
+
 
 -(void)goToCircleButton{
     NSLog(@"我要去右下角按鈕");

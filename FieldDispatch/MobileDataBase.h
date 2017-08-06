@@ -11,10 +11,12 @@
 
 @interface MobileDataBase : NSObject
 
-@property (readonly,nonatomic,weak) NSString *deviceToken;
-@property (readonly,nonatomic,weak) NSString *nickName;
+@property (readonly,nonatomic,strong) NSString *deviceToken;
+@property (readonly,nonatomic,strong) NSString *nickName;
 @property (readonly,nonatomic,assign) int tel;
 @property (readonly,nonatomic,assign) int size;
+
+
 
 
 +(instancetype)stand;
