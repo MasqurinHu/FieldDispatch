@@ -10,6 +10,7 @@
 
 #define UPDATE_DEVICE_TOKEN @"updateDaviceToken.php"
 #define CREATE_ACCOUNT @"createAccount.php"
+#define REPORT_STATUS @""
 
 static LogIn *login = nil;
 
@@ -125,5 +126,35 @@ static LogIn *login = nil;
                                            data:nil
                                          finish:result];
 }
+
+-(void)reportStatus:(Res)responser{
+    
+    NSDictionary *par = @{
+                          @"memberId":[NSString stringWithFormat:@"%d",[MemberDatabase stand].memberId],
+                          @"memberStatus":[NSString stringWithFormat:@"%d",[MemberDatabase stand].status],
+                          @"memberLat":[NSString stringWithFormat:@"%f",[MemberDatabase stand].coordinate.latitude],
+                          @"memberLon":[NSString stringWithFormat:@"%f",[MemberDatabase stand].coordinate.longitude]};
+    [[HttpConnection stand]
+     doPostWithURLString:REPORT_STATUS
+     parameters:par data:nil
+     finish:^(NSError *error, id result) {
+         
+         NSMutableDictionary *res = [NSMutableDictionary new];
+         if (error) {
+             res[@"result"] = @"fales";
+             res[@"error"] = error.description;
+             responser(res);
+         }
+         if (result) {
+             res[@"result"] = @"true";
+             res[@"responser"] = result;
+             responser(res);
+         }
+         
+    }];
+
+}
+
+
 
 @end

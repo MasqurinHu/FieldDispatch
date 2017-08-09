@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MainVC : UIViewController
+@property (nonatomic,strong) UISwitch *onLionSW;
 
 
 @end

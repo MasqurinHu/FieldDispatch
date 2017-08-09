@@ -21,22 +21,16 @@ static MobileDataBase *mobileDataBase = nil;
 
 -(void)setSizeWithWidth:(int)width height:(int)heigt{
     if (width >= heigt) {
-        _size = heigt;
+        _rectangle = width*9/16;
+        _square = heigt;
     }else{
-        _size = width;
+        _square = width;
+        
     }
 }
 
--(void)setDeviceToken:(NSString*)deviceToken{
-    _deviceToken = deviceToken;
-}
 
--(void)setNickName:(NSString *)nickName{
-    _nickName = nickName;
-}
 
--(void)setTel:(int)tel{
-    _tel = tel;
-}
+
 
 @end

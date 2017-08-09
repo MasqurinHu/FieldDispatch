@@ -47,7 +47,12 @@
 
 //    self.circle.isUserInteractionEnabled = true;
 //    NSLog(@"%@",_circle);
+    
+    
+    
 }
+
+
 -(void)bbb{
     NSLog(@"我被按到惹");
     [self.navigationController popViewControllerAnimated:true];

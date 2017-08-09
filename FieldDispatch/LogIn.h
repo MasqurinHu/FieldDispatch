@@ -15,12 +15,15 @@
 
 typedef void (^IsOnlion)(NSError *error,BOOL result);
 typedef void (^FinishMessage)(NSError *error,id result);
+typedef void (^Res)(NSDictionary* res);
 
 
 @interface LogIn : NSObject
 
 @property(nonatomic,assign) BOOL tryLogin;
-@property(readonly,nonatomic,weak) NSDictionary *loginInfo;
+@property(readonly,nonatomic,strong) NSDictionary *loginInfo;
+
+
 +(instancetype) sharedInstance;
 -(BOOL)didLogin;
 -(NSDictionary*)getLoginInfo;
@@ -38,6 +41,8 @@ typedef void (^FinishMessage)(NSError *error,id result);
                photo:(NSString*)photo
                 mail:(NSString*)mail
  transmissionResults:(FinishMessage)result;
+
+-(void)reportStatus:(Res)responser;
 
 
 @end

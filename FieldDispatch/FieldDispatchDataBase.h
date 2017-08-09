@@ -11,6 +11,7 @@
 #import "TeamMembers.h"
 #import "LogIn.h"
 #import "MobileDataBase.h"
+#import "MemberDatabase.h"
 #import "HttpConnection.h"
 
 //import Controller
@@ -18,6 +19,8 @@
 #import "SingInVC.h"
 #import "CircleViewController.h"
 #import "CheckSingInVC.h"
+#import "MapVC.h"
+#import "UserInfoVC.h"
 
 
 @interface FieldDispatchDataBase : NSObject

@@ -44,18 +44,16 @@
 }
 
 
-
-
-
-
 -(void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter]
      removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 -(void)keyboardNotification:(NSNotification*)notification {
-    CGRect keyboardFrame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect keyboardFrame = [[[notification userInfo]
+                             objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGFloat kBy = self.view.frame.size.height - keyboardFrame.origin.y;
+    
     [UIView animateWithDuration:0.6 animations:^{
         NSLog(@"我多高%f\n鍵盤多高%f\nkBy=%f",move,keyboardFrame.origin.y,kBy);
         if (move < kBy -90) {
@@ -86,7 +84,14 @@
     loginOrCreate.font = [UIFont systemFontOfSize:30];
     [self.view addSubview:loginOrCreate];
     
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:loginOrCreate attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeWidth multiplier:1.0 constant:0.0]];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:loginOrCreate
+                            attribute:NSLayoutAttributeWidth
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:fram
+                            attribute:NSLayoutAttributeWidth
+                            multiplier:1.0
+                            constant:0.0]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem:loginOrCreate attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem:loginOrCreate attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeTop multiplier:1.0 constant:-10.0]];
     fram.backgroundColor = [UIColor lightGrayColor];
@@ -94,8 +99,8 @@
     fram.translatesAutoresizingMaskIntoConstraints = false;
     [self.view addSubview:fram];
     
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:NULL attribute:NSLayoutAttributeWidth multiplier:1.0 constant:mobileDataBase.size*.95]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:NULL attribute:NSLayoutAttributeWidth multiplier:1.0 constant:mobileDataBase.size*.95]];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:NULL attribute:NSLayoutAttributeWidth multiplier:1.0 constant:mobileDataBase.square*.95]];
+    [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:NULL attribute:NSLayoutAttributeWidth multiplier:1.0 constant:mobileDataBase.square*.95]];
     [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
     framBotton = [NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0];
     [constraints addObject:framBotton];
@@ -199,12 +204,20 @@
 
 -(void)creat{
     MUIBottonlineTextField *tel = [MUIBottonlineTextField new];
-    [self framConstraintMaserWithSelf:tel target:tel superView:fram];//待修改
+    [self framConstraintMaserWithSelf:tel
+                               target:tel
+                            superView:fram];//待修改
     tel.placeholder = @"請輸入電話";
-    MUIBottonlineTextField *nickname = [[MUIBottonlineTextField alloc] initWithPlaseHold:@"請輸入暱稱"];
-    [self framConstraintMaserWithSelf:nickname target:tel superView:fram];
-    MUIBottonlineTextField *email = [[MUIBottonlineTextField alloc] initWithPlaseHold:@"請輸入信箱"];
-    [self framConstraintMaserWithSelf:email target:nickname superView:fram];
+    MUIBottonlineTextField *nickname = [[MUIBottonlineTextField alloc]
+                                        initWithPlaseHold:@"請輸入暱稱"];
+    [self framConstraintMaserWithSelf:nickname
+                               target:tel
+                            superView:fram];
+    MUIBottonlineTextField *email = [[MUIBottonlineTextField alloc]
+                                     initWithPlaseHold:@"請輸入信箱"];
+    [self framConstraintMaserWithSelf:email
+                               target:nickname
+                            superView:fram];
 }
 
 -(void)framConstraintMaserWithSelf:(UIView*)uiView

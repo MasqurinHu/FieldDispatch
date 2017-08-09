@@ -17,6 +17,10 @@
 		45080E3F1F1DDD8700E6F590 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 45080E3E1F1DDD8700E6F590 /* GoogleService-Info.plist */; };
 		450A65FE1F31D85700BA96C3 /* UIButton+MButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 450A65FD1F31D85700BA96C3 /* UIButton+MButton.m */; };
 		450A66011F31E29900BA96C3 /* CheckSingInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 450A66001F31E29900BA96C3 /* CheckSingInVC.m */; };
+		450F7EBA1F38141A00DEF66D /* MemberDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F7EB91F38141A00DEF66D /* MemberDatabase.m */; };
+		450F7EC01F38C7CB00DEF66D /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F7EBF1F38C7CB00DEF66D /* MapVC.m */; };
+		450F7EC31F38CE2700DEF66D /* UserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 450F7EC21F38CE2700DEF66D /* UserInfoVC.m */; };
+		450F7EC81F38D70B00DEF66D /* UserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450F7EC61F38D70B00DEF66D /* UserInfo.storyboard */; };
 		4526B6811F23A7BF00FB6035 /* MasqurinTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4526B6801F23A7BF00FB6035 /* MasqurinTool.m */; };
 		4526B6841F23ABBC00FB6035 /* MUIBottonlineTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4526B6831F23ABBC00FB6035 /* MUIBottonlineTextField.m */; };
 		4526B6881F244F6100FB6035 /* FieldDispatchLoginChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4526B6871F244F6100FB6035 /* FieldDispatchLoginChooseViewController.m */; };
@@ -55,6 +59,13 @@
 		450A65FD1F31D85700BA96C3 /* UIButton+MButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+MButton.m"; sourceTree = "<group>"; };
 		450A65FF1F31E29900BA96C3 /* CheckSingInVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckSingInVC.h; sourceTree = "<group>"; };
 		450A66001F31E29900BA96C3 /* CheckSingInVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckSingInVC.m; sourceTree = "<group>"; };
+		450F7EB81F38141A00DEF66D /* MemberDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberDatabase.h; sourceTree = "<group>"; };
+		450F7EB91F38141A00DEF66D /* MemberDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberDatabase.m; sourceTree = "<group>"; };
+		450F7EBE1F38C7CB00DEF66D /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapVC.h; sourceTree = "<group>"; };
+		450F7EBF1F38C7CB00DEF66D /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapVC.m; sourceTree = "<group>"; };
+		450F7EC11F38CE2700DEF66D /* UserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoVC.h; sourceTree = "<group>"; };
+		450F7EC21F38CE2700DEF66D /* UserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoVC.m; sourceTree = "<group>"; };
+		450F7EC71F38D70B00DEF66D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UserInfo.storyboard; sourceTree = "<group>"; };
 		4526B67F1F23A7BF00FB6035 /* MasqurinTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasqurinTool.h; sourceTree = "<group>"; };
 		4526B6801F23A7BF00FB6035 /* MasqurinTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasqurinTool.m; sourceTree = "<group>"; };
 		4526B6821F23ABBC00FB6035 /* MUIBottonlineTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIBottonlineTextField.h; sourceTree = "<group>"; };
@@ -132,6 +143,11 @@
 				45080E2D1F1DD73300E6F590 /* Main.storyboard */,
 				45080E2A1F1DD73300E6F590 /* MainVC.h */,
 				45080E2B1F1DD73300E6F590 /* MainVC.m */,
+				450F7EBE1F38C7CB00DEF66D /* MapVC.h */,
+				450F7EBF1F38C7CB00DEF66D /* MapVC.m */,
+				450F7EC61F38D70B00DEF66D /* UserInfo.storyboard */,
+				450F7EC11F38CE2700DEF66D /* UserInfoVC.h */,
+				450F7EC21F38CE2700DEF66D /* UserInfoVC.m */,
 				450A65FF1F31E29900BA96C3 /* CheckSingInVC.h */,
 				450A66001F31E29900BA96C3 /* CheckSingInVC.m */,
 				45E9FEC31F22137E00025E7F /* SingInVC.h */,
@@ -190,6 +206,8 @@
 				45E9FEB91F2207A100025E7F /* LogIn.m */,
 				4526B6891F24550900FB6035 /* MobileDataBase.h */,
 				4526B68A1F24550900FB6035 /* MobileDataBase.m */,
+				450F7EB81F38141A00DEF66D /* MemberDatabase.h */,
+				450F7EB91F38141A00DEF66D /* MemberDatabase.m */,
 				4532DBAD1F2F1CDF00375E30 /* HttpConnection.h */,
 				4532DBAE1F2F1CDF00375E30 /* HttpConnection.m */,
 			);
@@ -289,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45080E371F1DD73300E6F590 /* LaunchScreen.storyboard in Resources */,
+				450F7EC81F38D70B00DEF66D /* UserInfo.storyboard in Resources */,
 				45080E3F1F1DDD8700E6F590 /* GoogleService-Info.plist in Resources */,
 				45080E341F1DD73300E6F590 /* Assets.xcassets in Resources */,
 				45080E2F1F1DD73300E6F590 /* Main.storyboard in Resources */,
@@ -361,13 +380,16 @@
 				459630B11F25E8DD004BD775 /* CircleViewController.m in Sources */,
 				459C64F81F29AA8400A06324 /* OnLionTeamMembersTableViewController.m in Sources */,
 				4532DBAF1F2F1CDF00375E30 /* HttpConnection.m in Sources */,
+				450F7EBA1F38141A00DEF66D /* MemberDatabase.m in Sources */,
 				45E9FEC51F22137E00025E7F /* SingInVC.m in Sources */,
 				459C64FE1F29ADBA00A06324 /* TeamMembers.m in Sources */,
 				45080E291F1DD73300E6F590 /* AppDelegate.m in Sources */,
+				450F7EC31F38CE2700DEF66D /* UserInfoVC.m in Sources */,
 				459C65971F2B04B000A06324 /* UIView+AutoLayout.m in Sources */,
 				452D2B991F32079C00ABB68D /* UITextField+BottonLine.m in Sources */,
 				45080E321F1DD73300E6F590 /* FieldDispatch.xcdatamodeld in Sources */,
 				450A65FE1F31D85700BA96C3 /* UIButton+MButton.m in Sources */,
+				450F7EC01F38C7CB00DEF66D /* MapVC.m in Sources */,
 				459630B41F25E9F5004BD775 /* MUIButtonAutoLayout.m in Sources */,
 				45080E261F1DD73300E6F590 /* main.m in Sources */,
 			);
@@ -390,6 +412,14 @@
 				45080E361F1DD73300E6F590 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		450F7EC61F38D70B00DEF66D /* UserInfo.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				450F7EC71F38D70B00DEF66D /* Base */,
+			);
+			name = UserInfo.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
