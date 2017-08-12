@@ -26,6 +26,10 @@
     // Do any additional setup after loading the view.
     [GIDSignIn sharedInstance].uiDelegate = self;
     [GIDSignIn sharedInstance].delegate = self;
+    [GIDSignIn sharedInstance].shouldFetchBasicProfile = true;
+    
+    
+    
     fbSingIn = [FBSDKLoginButton new];
     fbSingIn.delegate = self;
     [self prepare];
@@ -136,23 +140,29 @@ didSignInForUser:(GIDGoogleUser *)user
         NSLog(@"登入失敗");
         return;
     }
+    NSInteger  a = 64;
+    if ([GIDSignIn sharedInstance].currentUser.profile.hasImage) {
+        [MemberDatabase stand].photoURL = [[user.profile imageURLWithDimension:a] absoluteString];
+    }
     
-    NSString *userId = user.userID;
-    NSString *idToken = user.authentication.idToken;
-    NSString *fullName = user.profile.name;
+    [MemberDatabase stand].memberAccound = user.userID;
+    [MemberDatabase stand].password = user.authentication.idToken;
+    [MemberDatabase stand].nickName = user.profile.name;
     NSString *givenName = user.profile.givenName;
     NSString *familyName = user.profile.familyName;
-    NSString *email = user.profile.email;
-    NSLog(@"\n我是id: %@\n我是全名: %@\n我是givenName: %@\n我是性: %@\n我是信箱: %@",userId,fullName,givenName,familyName,email);
-    NSLog(@"\n我是偷捆: %@\n好像超過log長度不顯示",idToken);
+    [MemberDatabase stand].mali = user.profile.email;
+    [MemberDatabase stand].signInType = 2;
+    [MemberDatabase stand].memberType = 2;
+    NSLog(@"\n我是id: %@\n我是全名: %@\n我是givenName: %@\n我是性: %@\n我是信箱: %@",[MemberDatabase stand].memberAccound,[MemberDatabase stand].nickName,givenName,familyName,[MemberDatabase stand].mali);
+    NSLog(@"\n我是偷捆: %@\n好像超過log長度不顯示",[MemberDatabase stand].password);
     
-    [[LogIn sharedInstance] signInAccount:userId
+    [[LogIn sharedInstance] signInAccount:[MemberDatabase stand].memberAccound
                                  memberId:0         //未登入
                          memberSingInType:2         //1facebook 2google 3fielddispatch
-                                 nickName:fullName
-                                 password:idToken
-                                    photo:@"none"
-                                     mail:email
+                                 nickName:[MemberDatabase stand].nickName
+                                 password:[MemberDatabase stand].password
+                                    photo:[MemberDatabase stand].photoURL
+                                     mail:[MemberDatabase stand].mali
                       transmissionResults:^(NSError *error, id result) {
                           NSDictionary *severMemo = (NSDictionary*)result;
                           NSLog(@"我是google登入回來\n%@",severMemo);
@@ -206,19 +216,26 @@ didSignInForUser:(GIDGoogleUser *)user
         // Handle the result
         NSLog(@"我是資料%@",result);
         NSDictionary *fbMemo = (NSDictionary*)result;
-        NSString *fbid = fbMemo[@"id"];
-        NSString *fbname = fbMemo[@"name"];
+        [MemberDatabase stand].memberAccound = fbMemo[@"id"];
+        [MemberDatabase stand].nickName = fbMemo[@"name"];
         NSString *fbToken = @"none";
-        NSString *fbphoto = fbMemo[@"picture"][@"data"][@"url"];
-        NSString *mail = fbMemo[@"email"];
-        NSLog(@"\n我是id %@\n我是name %@\n我是相片 %@\n我是信箱 %@",fbid,fbname,fbphoto,mail);
-        [[LogIn sharedInstance] signInAccount:fbid
+        [MemberDatabase stand].photoURL = fbMemo[@"picture"][@"data"][@"url"];
+        [MemberDatabase stand].mali = fbMemo[@"email"];
+        [MemberDatabase stand].signInType = 1;
+        [MemberDatabase stand].memberType = 2;
+        NSLog(@"\n我是id %d\n我是name %@\n我是相片 %@\n我是信箱 %@",
+              [[MemberDatabase stand].memberAccound intValue],
+              [MemberDatabase stand].nickName,
+              [MemberDatabase stand].photoURL,
+              [MemberDatabase stand].mali);
+        
+        [[LogIn sharedInstance] signInAccount:[NSString stringWithFormat:@"%d",[MemberDatabase stand].memberId]
                                      memberId:0
                              memberSingInType:1
-                                     nickName:fbname
+                                     nickName:[MemberDatabase stand].nickName
                                      password:fbToken
-                                        photo:fbphoto
-                                         mail:mail
+                                        photo:[MemberDatabase stand].photoURL
+                                         mail:[MemberDatabase stand].mali
                           transmissionResults:^(NSError *error, id result) {
                               
                               NSDictionary *severMemo = (NSDictionary*)result;

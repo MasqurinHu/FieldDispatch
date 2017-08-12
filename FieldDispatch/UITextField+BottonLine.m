@@ -10,9 +10,8 @@
 
 @implementation UITextField (BottonLine)
 
-
--(instancetype)initWithPlaseHold:(NSString *)placeHold{
-    self = [super init];
+-(void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
     NSLayoutConstraint *constraint;
     UIView *bottomline = [UIView new];
     bottomline.backgroundColor = [UIColor blackColor];
@@ -69,8 +68,10 @@
     [UIView animateWithDuration:.9 animations:^{
         [self layoutIfNeeded];
     }];
-    
+}
 
+-(instancetype)initWithPlaseHold:(NSString *)placeHold{
+    self = [super init];
     self.placeholder = placeHold;
     return self;
 }

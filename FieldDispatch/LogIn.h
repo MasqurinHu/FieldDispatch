@@ -26,8 +26,6 @@ typedef void (^Res)(NSDictionary* res);
 
 +(instancetype) sharedInstance;
 -(BOOL)didLogin;
--(NSDictionary*)getLoginInfo;
--(NSArray*)getAccountList;
 -(void)newDevice:(IsOnlion)onlion;
 -(void)upDateDeviceToken:(NSString*)deviceToken
                 memberId:(NSString*)memberId

@@ -92,42 +92,133 @@
                             attribute:NSLayoutAttributeWidth
                             multiplier:1.0
                             constant:0.0]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:loginOrCreate attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:loginOrCreate attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeTop multiplier:1.0 constant:-10.0]];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:loginOrCreate
+                            attribute:NSLayoutAttributeCenterX
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:fram
+                            attribute:NSLayoutAttributeCenterX
+                            multiplier:1.0
+                            constant:0.0]];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:loginOrCreate
+                            attribute:NSLayoutAttributeBottom
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:fram
+                            attribute:NSLayoutAttributeTop
+                            multiplier:1.0
+                            constant:-10.0]];
     fram.backgroundColor = [UIColor lightGrayColor];
-    
     fram.translatesAutoresizingMaskIntoConstraints = false;
     [self.view addSubview:fram];
     
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:NULL attribute:NSLayoutAttributeWidth multiplier:1.0 constant:mobileDataBase.square*.95]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:NULL attribute:NSLayoutAttributeWidth multiplier:1.0 constant:mobileDataBase.square*.95]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    framBotton = [NSLayoutConstraint constraintWithItem:fram attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:fram
+                            attribute:NSLayoutAttributeWidth
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:NULL
+                            attribute:NSLayoutAttributeWidth
+                            multiplier:1.0
+                            constant:mobileDataBase.square*.95]];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:fram
+                            attribute:NSLayoutAttributeHeight
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:NULL
+                            attribute:NSLayoutAttributeWidth
+                            multiplier:1.0
+                            constant:mobileDataBase.square*.95]];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:fram
+                            attribute:NSLayoutAttributeCenterX
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:self.view
+                            attribute:NSLayoutAttributeCenterX
+                            multiplier:1.0
+                            constant:0.0]];
+    
+    framBotton = [NSLayoutConstraint
+                  constraintWithItem:fram
+                  attribute:NSLayoutAttributeCenterY
+                  relatedBy:NSLayoutRelationEqual
+                  toItem:self.view
+                  attribute:NSLayoutAttributeCenterY
+                  multiplier:1.0
+                  constant:0.0];
     [constraints addObject:framBotton];
     [self.view addConstraints:constraints];
     [self.view layoutIfNeeded];
     fram.layer.borderWidth = fram.frame.size.height*.01;
     fram.layer.cornerRadius = fram.frame.size.height*.05;
     MUIBottonlineTextField *account = [MUIBottonlineTextField new];
-    [account addTarget:self action:@selector(framMovesize:) forControlEvents:UIControlEventAllEditingEvents];
+    [account addTarget:self
+                action:@selector(framMovesize:)
+      forControlEvents:UIControlEventAllEditingEvents];
     account.translatesAutoresizingMaskIntoConstraints = false;
     [fram addSubview:account];
+    
     account.placeholder = ENTER_ACCOUNT;
     constraints = [NSMutableArray new];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:account attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeWidth multiplier:.8 constant:0.0]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:account attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-    [constraints addObject:[NSLayoutConstraint constraintWithItem:account attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:fram attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:-15.0]];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:account
+                            attribute:NSLayoutAttributeWidth
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:fram
+                            attribute:NSLayoutAttributeWidth
+                            multiplier:.8
+                            constant:0.0]];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:account
+                            attribute:NSLayoutAttributeCenterX
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:fram
+                            attribute:NSLayoutAttributeCenterX
+                            multiplier:1.0
+                            constant:0.0]];
+    [constraints addObject:[NSLayoutConstraint
+                            constraintWithItem:account
+                            attribute:NSLayoutAttributeBottom
+                            relatedBy:NSLayoutRelationEqual
+                            toItem:fram
+                            attribute:NSLayoutAttributeCenterY
+                            multiplier:1.0
+                            constant:-15.0]];
     [fram addConstraints:constraints];
+    
     MUIBottonlineTextField *password = [MUIBottonlineTextField new];
-    [password addTarget:self action:@selector(framMovesize:) forControlEvents:UIControlEventAllEditingEvents];
-    [self framConstraintMaserWithSelf:password target:account superView:fram];
+    [password addTarget:self
+                 action:@selector(framMovesize:)
+       forControlEvents:UIControlEventAllEditingEvents];
+    [self framConstraintMaserWithSelf:password
+                               target:account
+                            superView:fram];
     password.placeholder = ENTER_PASSWORD;
+    
     UIButton *forgetpassword = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self btnConstraintMakeWithSelf:forgetpassword target:password scale:.6 lort:NSLayoutAttributeLeading title:FORGET_PASSWORD backgroundCoclr:[UIColor orangeColor] superView:fram func:@selector(forget)];
+    [self btnConstraintMakeWithSelf:forgetpassword
+                             target:password scale:.6
+                               lort:NSLayoutAttributeLeading
+                              title:FORGET_PASSWORD
+                    backgroundCoclr:[UIColor orangeColor]
+                          superView:fram func:@selector(forget)];
+    
     UIButton *createAnAccount = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self btnConstraintMakeWithSelf:createAnAccount target:forgetpassword scale:1.0 lort:NSLayoutAttributeLeading title:CREATE_ACCOUNT backgroundCoclr:[UIColor orangeColor] superView:fram func:@selector(create)];
+    [self btnConstraintMakeWithSelf:createAnAccount
+                             target:forgetpassword scale:1.0
+                               lort:NSLayoutAttributeLeading
+                              title:CREATE_ACCOUNT
+                    backgroundCoclr:[UIColor orangeColor]
+                          superView:fram func:@selector(create)];
+    
     UIButton *signin = [UIButton buttonWithType:UIButtonTypeSystem];
-    [self btnConstraintMakeWithSelf:signin target:password scale:.3 lort:NSLayoutAttributeTrailing title:SIGN_IN backgroundCoclr:[UIColor greenColor] superView:fram func:@selector(login)];
+    [self btnConstraintMakeWithSelf:signin
+                             target:password
+                              scale:.3
+                               lort:NSLayoutAttributeTrailing
+                              title:SIGN_IN
+                    backgroundCoclr:[UIColor greenColor]
+                          superView:fram
+                               func:@selector(login)];
     
 }
 

@@ -12,7 +12,7 @@
 @interface MemberDatabase : NSObject
 
 @property (nonatomic,assign) int memberId;
-@property (nonatomic,strong) NSString *accound;
+@property (nonatomic,strong) NSString *memberAccound;
 @property (nonatomic,assign) int signInType;
 @property (nonatomic,assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic,assign) CLLocationCoordinate2D previousCoordinate;
@@ -24,6 +24,7 @@
 @property (nonatomic,strong) NSString *photoURL;
 @property (nonatomic,strong) NSString *tel;
 @property (nonatomic,assign) int memberType;
+
 
 
 +(instancetype)stand;

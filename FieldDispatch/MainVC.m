@@ -19,7 +19,7 @@
     
     NSTimer *buttonTimer;
     UIScrollView *mainS;
-    CircleViewController *fvc;
+    
     NSLayoutConstraint *bottonFramConstraint;
     
 }
@@ -38,6 +38,8 @@
     mainS.delegate = self;
     _onLionSW = [UISwitch new];
     _onLionSW.on = false;
+    
+    
     
 }
 
@@ -150,7 +152,7 @@
     mapVC.view.translatesAutoresizingMaskIntoConstraints = false;
     [mapVC didMoveToParentViewController:self];
     
-    fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"CircleViewController"];
+    UserInfoVC *fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserInfoVC"];
     [self addChildViewController:fvc];
     [main addSubview:fvc.view];
     fvc.view.translatesAutoresizingMaskIntoConstraints = false;

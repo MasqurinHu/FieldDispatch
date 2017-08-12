@@ -24,32 +24,17 @@ static LogIn *login = nil;
 }
 
 -(BOOL)didLogin{
-    id scapegoat = [[NSUserDefaults standardUserDefaults] objectForKey:@"memberId"];
     BOOL tryLogin;
-    if (scapegoat == nil) {
+    if ([MemberDatabase stand].memberId == 0) {
         tryLogin = false;
         NSLog(@"沒有登入");
     }else{
-        int aaa = [scapegoat intValue];
-        NSLog(@"我是memberId: %d",aaa);
+        NSLog(@"我是memberId: %d",[MemberDatabase stand].memberId);
         tryLogin = true;
         NSLog(@"已登入");
+        
     }
     return tryLogin;
-}
-
--(void)setLogin{
-    
-}
-
--(NSDictionary *)getLoginInfo{
-    NSDictionary *loginInfo = @{};
-    return loginInfo;
-}
-
--(NSArray*)getAccountList{
-    NSArray *accountList = @[];
-    return accountList;
 }
 
 -(void)newDevice:(IsOnlion)onlion{
@@ -62,17 +47,12 @@ static LogIn *login = nil;
         NSDictionary *resultMemo = (NSDictionary*)result;
         BOOL server = [resultMemo[@"result"] boolValue];
         if (server == true) {
-            int memberId = [resultMemo[@"memberId"] intValue];
-            [[NSUserDefaults standardUserDefaults] setObject:@(memberId) forKey:@"memberId"];
-            int memberType = [resultMemo[@"memberType"] intValue];
-            [[NSUserDefaults standardUserDefaults] setObject:@(memberType) forKey:@"memberType"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            int scapegoat = [[[NSUserDefaults standardUserDefaults] objectForKey:@"memberId"] intValue];
-            int dummy = [[[NSUserDefaults standardUserDefaults] objectForKey:@"memberType"] intValue];
+            [MemberDatabase stand].memberId = [resultMemo[@"memberId"] intValue];
+            [MemberDatabase stand].memberType = [resultMemo[@"memberType"] intValue];
             if (onlion) {
                 onlion(nil,true);
             }
-            NSLog(@"\n我是memberId: %d\n我是memberType: %d",scapegoat,dummy);
+            NSLog(@"\n我是memberId: %d\n我是memberType: %d",[MemberDatabase stand].memberId,[MemberDatabase stand].memberType);
         }else{
             NSString *error = resultMemo[@"errorCode"];
             NSLog(@"\n我是問題%@",error);
@@ -107,7 +87,8 @@ static LogIn *login = nil;
     NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
     if (deviceToken == nil) {
         NSLog(@"抓不到deviceToken");
-        return;
+        deviceToken = @"測試用DeviceToken";
+//        return;
     }
     
     NSDictionary *par = @{@"memberAccount":account,

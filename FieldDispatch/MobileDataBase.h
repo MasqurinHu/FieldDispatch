@@ -12,7 +12,7 @@
 @interface MobileDataBase : NSObject
 
 @property (readonly,nonatomic,assign) int square;
-@property (readonly,nonatomic,assign) double rectangle;
+@property (readonly,nonatomic,assign) double rectangleWidth;
 
 
 

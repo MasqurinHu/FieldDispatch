@@ -21,10 +21,11 @@ static MobileDataBase *mobileDataBase = nil;
 
 -(void)setSizeWithWidth:(int)width height:(int)heigt{
     if (width >= heigt) {
-        _rectangle = width*9/16;
+        _rectangleWidth = width*9/16;
         _square = heigt;
     }else{
         _square = width;
+        _rectangleWidth = heigt*9/16;
         
     }
 }
