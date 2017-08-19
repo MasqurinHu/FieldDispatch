@@ -1,13 +1,13 @@
 //
-//  UserinfoTVC.h
+//  MissionTVC.h
 //  FieldDispatch
 //
-//  Created by Ｍasqurin on 2017/8/9.
+//  Created by Ｍasqurin on 2017/8/12.
 //  Copyright © 2017年 Ｍasqurin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface UserinfoTVC : UITableViewController
+@interface MissionTVC : UITableViewController
 
 @end

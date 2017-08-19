@@ -1,21 +1,22 @@
 //
-//  UserinfoTVC.m
+//  MissionTVC.m
 //  FieldDispatch
 //
-//  Created by Ｍasqurin on 2017/8/9.
+//  Created by Ｍasqurin on 2017/8/12.
 //  Copyright © 2017年 Ｍasqurin. All rights reserved.
 //
 
-#import "UserinfoTVC.h"
+#import "MissionTVC.h"
 
-@interface UserinfoTVC ()
+@interface MissionTVC ()
 
 @end
 
-@implementation UserinfoTVC
+@implementation MissionTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -33,30 +34,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    int rowNumber;
-    if (section == 0) {
-        rowNumber = 1;
-    }else {
-        rowNumber = 1;
-    }
-    return rowNumber;
+
+    return 5;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MissionTVCell" forIndexPath:indexPath];
     
     // Configure the cell...
     
     return cell;
 }
 
-
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //設定最高不超過多少
+    tableView.estimatedRowHeight = 400;
+    //會報自動此吋
+//    return UITableViewAutomaticDimension;
+    return 230;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

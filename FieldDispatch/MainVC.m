@@ -152,7 +152,7 @@
     mapVC.view.translatesAutoresizingMaskIntoConstraints = false;
     [mapVC didMoveToParentViewController:self];
     
-    UserInfoVC *fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"UserInfoVC"];
+    MissionTVC *fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"MissionTVC"];
     [self addChildViewController:fvc];
     [main addSubview:fvc.view];
     fvc.view.translatesAutoresizingMaskIntoConstraints = false;

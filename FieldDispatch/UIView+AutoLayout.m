@@ -82,6 +82,7 @@
                           SuperView:(UIView*)superView
                          Multiplier:(CGFloat)multiplier
                            Constant:(CGFloat)constant{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
     [superView addConstraint:[NSLayoutConstraint
                               constraintWithItem:selfView
                               attribute:NSLayoutAttributeHeight
@@ -98,6 +99,7 @@
                       SuperView:(UIView *)superView
                        LevelGap:(CGFloat)levelGap
                     VerticalGap:(CGFloat)verticalGap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
     [self initLocConstraintSelfView:selfView
                          targetView:superView
                           SuperView:superView
@@ -113,6 +115,7 @@
                        SuperView:(UIView *)superView
                         LevelGap:(CGFloat)levelGap
                      VerticalGap:(CGFloat)verticalGap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
     [self initLocConstraintSelfView:selfView
                          targetView:superView
                           SuperView:superView
@@ -128,6 +131,7 @@
                     SuperView:(UIView *)superView
                      LevelGap:(CGFloat)levelGap
                   VerticalGap:(CGFloat)verticalGap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
     [self initLocConstraintSelfView:selfView
                          targetView:superView
                           SuperView:superView
@@ -143,6 +147,7 @@
                      SuperView:(UIView *)superView
                       LevelGap:(CGFloat)levelGap
                    VerticalGap:(CGFloat)virticalGap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
     [self initLocConstraintSelfView:selfView
                          targetView:superView
                           SuperView:superView
@@ -158,6 +163,7 @@
                         SuperView:(UIView *)superView
                          LevelGap:(CGFloat)levelGap
                       VerticalGap:(CGFloat)virticalGap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
     [self initLocConstraintSelfView:selfView
                          targetView:superView
                           SuperView:superView
@@ -174,6 +180,7 @@
                         SuperView:(UIView *)superView
                          LevelGap:(CGFloat)levelGap
                       VerticalGap:(CGFloat)verticalGap{
+    selfViel.translatesAutoresizingMaskIntoConstraints = false;
     [self initLocConstraintSelfView:selfViel
                          targetView:superView
                           SuperView:superView
@@ -189,6 +196,7 @@
                       SuperView:(UIView *)superView
                        LevelGap:(CGFloat)levelGap
                     verticalGap:(CGFloat)verticalGap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
     [self initLocConstraintSelfView:selfView
                          targetView:superView
                           SuperView:superView
@@ -204,6 +212,7 @@
                       SuperView:(UIView *)superView
                        LevelGap:(CGFloat)levelGap
                     VerticalGap:(CGFloat)verticalGap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
     [self initLocConstraintSelfView:selfView
                          targetView:superView
                           SuperView:superView
@@ -219,6 +228,7 @@
                    SuperView:(UIView *)superView
                     Levelgap:(CGFloat)levelGap
                  VerticalGap:(CGFloat)verticalGap{
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
     [self initLocConstraintSelfView:selfView
                          targetView:superView
                           SuperView:superView

@@ -1,15 +1,16 @@
 //
-//  CircleViewController.h
+//  MissionTVCell.h
 //  FieldDispatch
 //
-//  Created by Ｍasqurin on 2017/7/24.
+//  Created by Ｍasqurin on 2017/8/12.
 //  Copyright © 2017年 Ｍasqurin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "FieldDispatchDataBase.h"
 
-@interface CircleViewController : UIViewController
+@interface MissionTVCell : UITableViewCell
 
+@property (nonatomic,weak) MissionVO *mission;
 
 @end

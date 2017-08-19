@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Check Sing InVC-->
+        <scene sceneID="3JY-Bw-iCJ">
+            <objects>
+                <viewController storyboardIdentifier="CheckSingInVC" id="VXK-yn-snL" customClass="CheckSingInVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IZA-XQ-Hvn"/>
+                        <viewControllerLayoutGuide type="bottom" id="JNK-wO-HaL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EpG-0H-8Id">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="neY-3D-IuW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tnn-FR-cgh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3671.25" y="68.661971830985919"/>
+        </scene>
+        <!--SingInVC-->
+        <scene sceneID="MDw-IW-UGb">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SingInVC" storyboardName="SignInVC" referencedIdentifier="SingInVC" id="DtL-sq-aub" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LBr-GF-OnM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4234" y="-218"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cs4-Go-NTl">
+            <objects>
+                <navigationController storyboardIdentifier="nav" automaticallyAdjustsScrollViewInsets="NO" id="emI-Oe-N5k" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Fus-Qz-Ysc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VXK-yn-snL" kind="relationship" relationship="rootViewController" id="9Xa-nL-OMC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wqv-bw-MKR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2733.5999999999999" y="69.715142428785612"/>
+        </scene>
+    </scenes>
+</document>

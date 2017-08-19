@@ -24,7 +24,8 @@
 @property (nonatomic,strong) NSString *photoURL;
 @property (nonatomic,strong) NSString *tel;
 @property (nonatomic,assign) int memberType;
-
+@property (nonatomic,assign) int onLionGroupId;
+@property (nonatomic,strong) NSString *onLionGroupName;
 
 
 +(instancetype)stand;
