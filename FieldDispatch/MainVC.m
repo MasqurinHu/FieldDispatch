@@ -69,7 +69,7 @@
 }
 
 -(void)viewDidLayoutSubviews{
-    mainS.contentSize = CGSizeMake(self.view.frame.size.width*3, mainS.frame.size.height);
+    mainS.contentSize = CGSizeMake(mainS.frame.size.width*3, mainS.frame.size.height);
 }
 
 -(void)prepare{

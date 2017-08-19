@@ -7,47 +7,97 @@
 //
 
 #import "CreateMissionVC.h"
+#import <MapKit/MapKit.h>
 
-
-@interface CreateMissionVC ()
+@interface CreateMissionVC () <MKMapViewDelegate>
 {
-    UIScrollView *background;
+    UIScrollView *bgS;
+    MKMapView *map;
+    MLoctionVO *loc;
 }
 @end
 
 @implementation CreateMissionVC
 
 -(void)viewDidLayoutSubviews{
-    background.contentSize = CGSizeMake(background.frame.size.width, background.frame.size.height*3);
+    bgS.contentSize = CGSizeMake(bgS.frame.size.width, bgS.frame.size.height*3);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    background = [UIScrollView new];
-    [self.view addSubview:background];
-    background.translatesAutoresizingMaskIntoConstraints = false;
-    [UIView initSizeWithSelf:background
+    loc = [MLoctionVO stand];
+    
+    map = [MKMapView new];
+    map.delegate = self;
+    map.mapType = MKMapTypeStandard;
+    map.userTrackingMode = MKUserTrackingModeNone;
+    [self.view addSubview:map];
+    [UIView initSizeWithSelf:map
                   TargetView:self.view
                    SuperView:self.view
                   AttributeX:NSLayoutAttributeWidth
                   AttributeY:NSLayoutAttributeHeight
-                 MultiplierX:1.0
-                 MultiplierY:1.0
+                 MultiplierX:.95
+                 MultiplierY:.25
                         GapX:.0
                         GapY:.0];
-    [UIView initAtCenterCenterWithSelf:background
-                             SuperView:self.view
-                              LevelGap:.0
-                           VerticalGap:.0];
+    [UIView initAtCenterTopWithSelf:map
+                          SuperView:self.view
+                           LevelGap:.0
+                        VerticalGap:8.0];
     
+    bgS = [UIScrollView new];
+    [self.view addSubview:bgS];
+    bgS.translatesAutoresizingMaskIntoConstraints = false;
+    [self.view addConstraint:[NSLayoutConstraint
+                              constraintWithItem:bgS
+                              attribute:NSLayoutAttributeTop
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:map
+                              attribute:NSLayoutAttributeBottom
+                              multiplier:1.0
+                              constant:8.0]];
+    [self.view addConstraint:[NSLayoutConstraint
+                              constraintWithItem:bgS
+                              attribute:NSLayoutAttributeBottom
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:self.view
+                              attribute:NSLayoutAttributeBottom
+                              multiplier:1.0
+                              constant:8.0]];
+    [self.view addConstraint:[NSLayoutConstraint
+                              constraintWithItem:bgS
+                              attribute:NSLayoutAttributeLeading
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:self.view
+                              attribute:NSLayoutAttributeLeading
+                              multiplier:1.0
+                              constant:8.0]];
+    [self.view addConstraint:[NSLayoutConstraint
+                              constraintWithItem:bgS
+                              attribute:NSLayoutAttributeTrailing
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:self.view
+                              attribute:NSLayoutAttributeTrailing
+                              multiplier:1.0
+                              constant:8.0]];
+    [self.view layoutIfNeeded];
+    
+    UIView *background = [UIView new];
+    background.frame = CGRectMake(0, 0, bgS.frame.size.width, bgS.frame.size.height * 3);
+    [bgS addSubview:background];
+    background.backgroundColor = [[UIColor alloc]
+                                  initWithRed:22/255.0f
+                                  green:149/225.0f
+                                  blue:163/225.0f
+                                  alpha:.5];
     
     UILabel *onLionGroupName = [UILabel new];
-    onLionGroupName.text = _mission.groupName;
     if (_mission.groupName == NULL) {
-        onLionGroupName.text = [MemberDatabase stand].onLionGroupName;
+        _mission.groupName = [MemberDatabase stand].onLionGroupName;
     }
+    onLionGroupName.text = _mission.groupName;
     [onLionGroupName sizeToFit];
     [self.view addSubview:onLionGroupName];
     [UIView initAtCenterTopWithSelf:onLionGroupName

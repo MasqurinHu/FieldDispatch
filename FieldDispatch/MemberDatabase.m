@@ -129,4 +129,16 @@ static MemberDatabase *member = nil;
 }
 
 
+-(NSString *)getGroupNameWith:(int)GroupId{
+    
+    NSString *groupName = @"找不到群組";
+    for (MemberGroupVO *scapegoat in _groupList) {
+        if (scapegoat.groupId == GroupId) {
+            groupName = scapegoat.groupName;
+        }
+    }
+    return groupName;
+}
+
+
 @end

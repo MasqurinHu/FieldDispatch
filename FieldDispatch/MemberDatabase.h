@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MemberGroupVO.h"
 #import <CoreLocation/CoreLocation.h>
 
 @interface MemberDatabase : NSObject
@@ -26,8 +27,10 @@
 @property (nonatomic,assign) int memberType;
 @property (nonatomic,assign) int onLionGroupId;
 @property (nonatomic,strong) NSString *onLionGroupName;
-
+@property (nonatomic,strong) NSMutableArray <MemberGroupVO*>*groupList;
 
 +(instancetype)stand;
+-(NSString*)getGroupNameWith:(int)GroupId;
+
 
 @end

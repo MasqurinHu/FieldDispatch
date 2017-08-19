@@ -19,6 +19,13 @@ static MLoctionVO *loc = nil;
 +(instancetype)stand{
     if (loc == nil) {
         loc = [MLoctionVO new];
+        loc.manager = [CLLocationManager new];
+        [loc.manager requestAlwaysAuthorization];
+        loc.manager.desiredAccuracy = kCLLocationAccuracyBest;
+        loc.manager.allowsBackgroundLocationUpdates = YES;
+        loc.manager.activityType = CLActivityTypeAutomotiveNavigation;
+        loc.manager.delegate = loc;
+        [loc.manager startUpdatingHeading];
     }
     return loc;
 }

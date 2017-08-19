@@ -13,6 +13,8 @@ typedef void (^GetAddress) (NSString* address);
 
 @interface MLoctionVO : NSObject
 
+@property (nonatomic,strong) CLLocationManager *manager;
+
 +(instancetype)stand;
 
 -(void)getAddressWithCoordinate:(CLLocationCoordinate2D)coordinate address:(GetAddress)addres;

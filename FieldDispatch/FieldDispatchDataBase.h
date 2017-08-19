@@ -15,6 +15,7 @@
 #import "HttpConnection.h"
 #import "MissionVO.h"
 #import "MissionWorkPointVO.h"
+#import "MemberGroupVO.h"
 
 //import Controller
 #import "FieldDispatchLoginChooseViewController.h"

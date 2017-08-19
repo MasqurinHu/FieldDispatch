@@ -41,6 +41,9 @@
 		4563B8031F3DE1D000FCE61E /* AdvanceImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4563B8021F3DE1D000FCE61E /* AdvanceImageView.m */; };
 		4586F2631F45613400EEBFE1 /* MissionWorkPointVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2621F45613400EEBFE1 /* MissionWorkPointVO.m */; };
 		4586F2DD1F4717F100EEBFE1 /* MLoctionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2DC1F4717F100EEBFE1 /* MLoctionVO.m */; };
+		4586F2E31F48131400EEBFE1 /* MemberGroupVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2E21F48131400EEBFE1 /* MemberGroupVO.m */; };
+		4586F2E91F481ED900EEBFE1 /* MemberGroupMemberVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2E81F481ED900EEBFE1 /* MemberGroupMemberVO.m */; };
+		4586F2EC1F48227C00EEBFE1 /* MemberGroupManagerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2EB1F48227C00EEBFE1 /* MemberGroupManagerVO.m */; };
 		459630B41F25E9F5004BD775 /* MUIButtonAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 459630B31F25E9F5004BD775 /* MUIButtonAutoLayout.m */; };
 		459C64FE1F29ADBA00A06324 /* TeamMembers.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C64FD1F29ADBA00A06324 /* TeamMembers.m */; };
 		459C65971F2B04B000A06324 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C65961F2B04B000A06324 /* UIView+AutoLayout.m */; };
@@ -113,6 +116,12 @@
 		4586F2621F45613400EEBFE1 /* MissionWorkPointVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionWorkPointVO.m; sourceTree = "<group>"; };
 		4586F2DB1F4717F100EEBFE1 /* MLoctionVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLoctionVO.h; sourceTree = "<group>"; };
 		4586F2DC1F4717F100EEBFE1 /* MLoctionVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLoctionVO.m; sourceTree = "<group>"; };
+		4586F2E11F48131400EEBFE1 /* MemberGroupVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberGroupVO.h; sourceTree = "<group>"; };
+		4586F2E21F48131400EEBFE1 /* MemberGroupVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberGroupVO.m; sourceTree = "<group>"; };
+		4586F2E71F481ED900EEBFE1 /* MemberGroupMemberVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberGroupMemberVO.h; sourceTree = "<group>"; };
+		4586F2E81F481ED900EEBFE1 /* MemberGroupMemberVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberGroupMemberVO.m; sourceTree = "<group>"; };
+		4586F2EA1F48227C00EEBFE1 /* MemberGroupManagerVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberGroupManagerVO.h; sourceTree = "<group>"; };
+		4586F2EB1F48227C00EEBFE1 /* MemberGroupManagerVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberGroupManagerVO.m; sourceTree = "<group>"; };
 		459630B21F25E9F5004BD775 /* MUIButtonAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIButtonAutoLayout.h; sourceTree = "<group>"; };
 		459630B31F25E9F5004BD775 /* MUIButtonAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIButtonAutoLayout.m; sourceTree = "<group>"; };
 		459C64FC1F29ADBA00A06324 /* TeamMembers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamMembers.h; sourceTree = "<group>"; };
@@ -241,22 +250,52 @@
 			children = (
 				4526B68C1F249A5300FB6035 /* FieldDispatchDataBase.h */,
 				4526B68D1F249A5300FB6035 /* FieldDispatchDataBase.m */,
-				459C64FC1F29ADBA00A06324 /* TeamMembers.h */,
-				459C64FD1F29ADBA00A06324 /* TeamMembers.m */,
-				45E9FEB81F2207A100025E7F /* LogIn.h */,
-				45E9FEB91F2207A100025E7F /* LogIn.m */,
-				4586F2611F45613400EEBFE1 /* MissionWorkPointVO.h */,
-				4586F2621F45613400EEBFE1 /* MissionWorkPointVO.m */,
-				450B73891F3F22EC008A2458 /* MissionVO.h */,
-				450B738A1F3F22EC008A2458 /* MissionVO.m */,
 				4526B6891F24550900FB6035 /* MobileDataBase.h */,
 				4526B68A1F24550900FB6035 /* MobileDataBase.m */,
-				450F7EB81F38141A00DEF66D /* MemberDatabase.h */,
-				450F7EB91F38141A00DEF66D /* MemberDatabase.m */,
+				45E9FEB81F2207A100025E7F /* LogIn.h */,
+				45E9FEB91F2207A100025E7F /* LogIn.m */,
+				459C64FC1F29ADBA00A06324 /* TeamMembers.h */,
+				459C64FD1F29ADBA00A06324 /* TeamMembers.m */,
+				4586F2EE1F48251700EEBFE1 /* Member */,
+				4586F2EF1F482F1200EEBFE1 /* Mission */,
 				4532DBAD1F2F1CDF00375E30 /* HttpConnection.h */,
 				4532DBAE1F2F1CDF00375E30 /* HttpConnection.m */,
 			);
 			name = FieldDispatchDataBase;
+			sourceTree = "<group>";
+		};
+		4586F2ED1F4824B500EEBFE1 /* MemberGroup */ = {
+			isa = PBXGroup;
+			children = (
+				4586F2E11F48131400EEBFE1 /* MemberGroupVO.h */,
+				4586F2E21F48131400EEBFE1 /* MemberGroupVO.m */,
+				4586F2EA1F48227C00EEBFE1 /* MemberGroupManagerVO.h */,
+				4586F2EB1F48227C00EEBFE1 /* MemberGroupManagerVO.m */,
+				4586F2E71F481ED900EEBFE1 /* MemberGroupMemberVO.h */,
+				4586F2E81F481ED900EEBFE1 /* MemberGroupMemberVO.m */,
+			);
+			name = MemberGroup;
+			sourceTree = "<group>";
+		};
+		4586F2EE1F48251700EEBFE1 /* Member */ = {
+			isa = PBXGroup;
+			children = (
+				450F7EB81F38141A00DEF66D /* MemberDatabase.h */,
+				450F7EB91F38141A00DEF66D /* MemberDatabase.m */,
+				4586F2ED1F4824B500EEBFE1 /* MemberGroup */,
+			);
+			name = Member;
+			sourceTree = "<group>";
+		};
+		4586F2EF1F482F1200EEBFE1 /* Mission */ = {
+			isa = PBXGroup;
+			children = (
+				450B73891F3F22EC008A2458 /* MissionVO.h */,
+				450B738A1F3F22EC008A2458 /* MissionVO.m */,
+				4586F2611F45613400EEBFE1 /* MissionWorkPointVO.h */,
+				4586F2621F45613400EEBFE1 /* MissionWorkPointVO.m */,
+			);
+			name = Mission;
 			sourceTree = "<group>";
 		};
 		52201AEDDB11F094209D7B6A /* Pods */ = {
@@ -430,12 +469,14 @@
 				4586F2DD1F4717F100EEBFE1 /* MLoctionVO.m in Sources */,
 				4526B68E1F249A5300FB6035 /* FieldDispatchDataBase.m in Sources */,
 				4532DBAF1F2F1CDF00375E30 /* HttpConnection.m in Sources */,
+				4586F2E91F481ED900EEBFE1 /* MemberGroupMemberVO.m in Sources */,
 				450F7EBA1F38141A00DEF66D /* MemberDatabase.m in Sources */,
 				45E9FEC51F22137E00025E7F /* SingInVC.m in Sources */,
 				459C64FE1F29ADBA00A06324 /* TeamMembers.m in Sources */,
 				45080E291F1DD73300E6F590 /* AppDelegate.m in Sources */,
 				450B738B1F3F22EC008A2458 /* MissionVO.m in Sources */,
 				4586F2631F45613400EEBFE1 /* MissionWorkPointVO.m in Sources */,
+				4586F2EC1F48227C00EEBFE1 /* MemberGroupManagerVO.m in Sources */,
 				450B73801F3EE5C2008A2458 /* MissionTVC.m in Sources */,
 				450F7EC31F38CE2700DEF66D /* UserInfoVC.m in Sources */,
 				459C65971F2B04B000A06324 /* UIView+AutoLayout.m in Sources */,
@@ -447,6 +488,7 @@
 				450B73941F41C06C008A2458 /* CreateMissionVC.m in Sources */,
 				450B73911F400AE8008A2458 /* UIColor+MColor.m in Sources */,
 				459630B41F25E9F5004BD775 /* MUIButtonAutoLayout.m in Sources */,
+				4586F2E31F48131400EEBFE1 /* MemberGroupVO.m in Sources */,
 				45080E261F1DD73300E6F590 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
