@@ -38,12 +38,20 @@
 		4526B68E1F249A5300FB6035 /* FieldDispatchDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4526B68D1F249A5300FB6035 /* FieldDispatchDataBase.m */; };
 		452D2B991F32079C00ABB68D /* UITextField+BottonLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 452D2B981F32079C00ABB68D /* UITextField+BottonLine.m */; };
 		4532DBAF1F2F1CDF00375E30 /* HttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4532DBAE1F2F1CDF00375E30 /* HttpConnection.m */; };
+		4545229B1F55A74200CB59D2 /* MemberTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4545229A1F55A74200CB59D2 /* MemberTVC.m */; };
+		4545229E1F55A78300CB59D2 /* MemberTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4545229D1F55A78300CB59D2 /* MemberTVCell.m */; };
+		454522A11F55A7D600CB59D2 /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4545229F1F55A7D600CB59D2 /* Member.storyboard */; };
 		4563B8031F3DE1D000FCE61E /* AdvanceImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4563B8021F3DE1D000FCE61E /* AdvanceImageView.m */; };
 		4586F2631F45613400EEBFE1 /* MissionWorkPointVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2621F45613400EEBFE1 /* MissionWorkPointVO.m */; };
 		4586F2DD1F4717F100EEBFE1 /* MLoctionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2DC1F4717F100EEBFE1 /* MLoctionVO.m */; };
 		4586F2E31F48131400EEBFE1 /* MemberGroupVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2E21F48131400EEBFE1 /* MemberGroupVO.m */; };
 		4586F2E91F481ED900EEBFE1 /* MemberGroupMemberVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2E81F481ED900EEBFE1 /* MemberGroupMemberVO.m */; };
-		4586F2EC1F48227C00EEBFE1 /* MemberGroupManagerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2EB1F48227C00EEBFE1 /* MemberGroupManagerVO.m */; };
+		4586F2F21F483DFD00EEBFE1 /* CreateMissionVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4586F2F01F483DFD00EEBFE1 /* CreateMissionVC.storyboard */; };
+		4586F2F51F48492F00EEBFE1 /* Mpop.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2F41F48492F00EEBFE1 /* Mpop.m */; };
+		4586F2FC1F4A905400EEBFE1 /* PeopleInfoVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2FB1F4A905400EEBFE1 /* PeopleInfoVO.m */; };
+		4586F3031F5408F400EEBFE1 /* PeopleVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F3021F5408F400EEBFE1 /* PeopleVO.m */; };
+		4586F3061F553B8500EEBFE1 /* CurrentLocVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F3051F553B8500EEBFE1 /* CurrentLocVO.m */; };
+		4586F3091F55578500EEBFE1 /* MissionDatabaseVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F3081F55578500EEBFE1 /* MissionDatabaseVO.m */; };
 		459630B41F25E9F5004BD775 /* MUIButtonAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 459630B31F25E9F5004BD775 /* MUIButtonAutoLayout.m */; };
 		459C64FE1F29ADBA00A06324 /* TeamMembers.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C64FD1F29ADBA00A06324 /* TeamMembers.m */; };
 		459C65971F2B04B000A06324 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 459C65961F2B04B000A06324 /* UIView+AutoLayout.m */; };
@@ -110,6 +118,12 @@
 		4532DBAD1F2F1CDF00375E30 /* HttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpConnection.h; sourceTree = "<group>"; };
 		4532DBAE1F2F1CDF00375E30 /* HttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpConnection.m; sourceTree = "<group>"; };
 		4532DBB31F2F892400375E30 /* FieldDispatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FieldDispatch.entitlements; sourceTree = "<group>"; };
+		454522991F55A74200CB59D2 /* MemberTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberTVC.h; sourceTree = "<group>"; };
+		4545229A1F55A74200CB59D2 /* MemberTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberTVC.m; sourceTree = "<group>"; };
+		4545229C1F55A78300CB59D2 /* MemberTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberTVCell.h; sourceTree = "<group>"; };
+		4545229D1F55A78300CB59D2 /* MemberTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberTVCell.m; sourceTree = "<group>"; };
+		454522A01F55A7D600CB59D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Member.storyboard; sourceTree = "<group>"; };
+		454522A71F56F1FB00CB59D2 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		4563B8011F3DE1D000FCE61E /* AdvanceImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceImageView.h; sourceTree = "<group>"; };
 		4563B8021F3DE1D000FCE61E /* AdvanceImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceImageView.m; sourceTree = "<group>"; };
 		4586F2611F45613400EEBFE1 /* MissionWorkPointVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionWorkPointVO.h; sourceTree = "<group>"; };
@@ -120,8 +134,17 @@
 		4586F2E21F48131400EEBFE1 /* MemberGroupVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberGroupVO.m; sourceTree = "<group>"; };
 		4586F2E71F481ED900EEBFE1 /* MemberGroupMemberVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberGroupMemberVO.h; sourceTree = "<group>"; };
 		4586F2E81F481ED900EEBFE1 /* MemberGroupMemberVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberGroupMemberVO.m; sourceTree = "<group>"; };
-		4586F2EA1F48227C00EEBFE1 /* MemberGroupManagerVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemberGroupManagerVO.h; sourceTree = "<group>"; };
-		4586F2EB1F48227C00EEBFE1 /* MemberGroupManagerVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemberGroupManagerVO.m; sourceTree = "<group>"; };
+		4586F2F11F483DFD00EEBFE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CreateMissionVC.storyboard; sourceTree = "<group>"; };
+		4586F2F31F48492F00EEBFE1 /* Mpop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mpop.h; sourceTree = "<group>"; };
+		4586F2F41F48492F00EEBFE1 /* Mpop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mpop.m; sourceTree = "<group>"; };
+		4586F2FA1F4A905400EEBFE1 /* PeopleInfoVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleInfoVO.h; sourceTree = "<group>"; };
+		4586F2FB1F4A905400EEBFE1 /* PeopleInfoVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleInfoVO.m; sourceTree = "<group>"; };
+		4586F3011F5408F400EEBFE1 /* PeopleVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleVO.h; sourceTree = "<group>"; };
+		4586F3021F5408F400EEBFE1 /* PeopleVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleVO.m; sourceTree = "<group>"; };
+		4586F3041F553B8500EEBFE1 /* CurrentLocVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentLocVO.h; sourceTree = "<group>"; };
+		4586F3051F553B8500EEBFE1 /* CurrentLocVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentLocVO.m; sourceTree = "<group>"; };
+		4586F3071F55578500EEBFE1 /* MissionDatabaseVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionDatabaseVO.h; sourceTree = "<group>"; };
+		4586F3081F55578500EEBFE1 /* MissionDatabaseVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionDatabaseVO.m; sourceTree = "<group>"; };
 		459630B21F25E9F5004BD775 /* MUIButtonAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIButtonAutoLayout.h; sourceTree = "<group>"; };
 		459630B31F25E9F5004BD775 /* MUIButtonAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIButtonAutoLayout.m; sourceTree = "<group>"; };
 		459C64FC1F29ADBA00A06324 /* TeamMembers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamMembers.h; sourceTree = "<group>"; };
@@ -192,6 +215,7 @@
 				450F7EC61F38D70B00DEF66D /* UserInfo.storyboard */,
 				450F7EC11F38CE2700DEF66D /* UserInfoVC.h */,
 				450F7EC21F38CE2700DEF66D /* UserInfoVC.m */,
+				4586F2F01F483DFD00EEBFE1 /* CreateMissionVC.storyboard */,
 				450B73921F41C06C008A2458 /* CreateMissionVC.h */,
 				450B73931F41C06C008A2458 /* CreateMissionVC.m */,
 				450B73831F3EE7EA008A2458 /* Mission.storyboard */,
@@ -199,6 +223,11 @@
 				450B737F1F3EE5C2008A2458 /* MissionTVC.m */,
 				450B73861F3EE8D7008A2458 /* MissionTVCell.h */,
 				450B73871F3EE8D8008A2458 /* MissionTVCell.m */,
+				4545229F1F55A7D600CB59D2 /* Member.storyboard */,
+				454522991F55A74200CB59D2 /* MemberTVC.h */,
+				4545229A1F55A74200CB59D2 /* MemberTVC.m */,
+				4545229C1F55A78300CB59D2 /* MemberTVCell.h */,
+				4545229D1F55A78300CB59D2 /* MemberTVCell.m */,
 				450B738C1F4004E7008A2458 /* FieldDispatchLoginVC.storyboard */,
 				4526B6861F244F6100FB6035 /* FieldDispatchLoginChooseViewController.h */,
 				4526B6871F244F6100FB6035 /* FieldDispatchLoginChooseViewController.m */,
@@ -225,6 +254,8 @@
 			children = (
 				4526B67F1F23A7BF00FB6035 /* MasqurinTool.h */,
 				4526B6801F23A7BF00FB6035 /* MasqurinTool.m */,
+				4586F2F31F48492F00EEBFE1 /* Mpop.h */,
+				4586F2F41F48492F00EEBFE1 /* Mpop.m */,
 				4586F2DB1F4717F100EEBFE1 /* MLoctionVO.h */,
 				4586F2DC1F4717F100EEBFE1 /* MLoctionVO.m */,
 				450B738F1F400AE8008A2458 /* UIColor+MColor.h */,
@@ -250,6 +281,7 @@
 			children = (
 				4526B68C1F249A5300FB6035 /* FieldDispatchDataBase.h */,
 				4526B68D1F249A5300FB6035 /* FieldDispatchDataBase.m */,
+				454522A71F56F1FB00CB59D2 /* Define.h */,
 				4526B6891F24550900FB6035 /* MobileDataBase.h */,
 				4526B68A1F24550900FB6035 /* MobileDataBase.m */,
 				45E9FEB81F2207A100025E7F /* LogIn.h */,
@@ -269,8 +301,6 @@
 			children = (
 				4586F2E11F48131400EEBFE1 /* MemberGroupVO.h */,
 				4586F2E21F48131400EEBFE1 /* MemberGroupVO.m */,
-				4586F2EA1F48227C00EEBFE1 /* MemberGroupManagerVO.h */,
-				4586F2EB1F48227C00EEBFE1 /* MemberGroupManagerVO.m */,
 				4586F2E71F481ED900EEBFE1 /* MemberGroupMemberVO.h */,
 				4586F2E81F481ED900EEBFE1 /* MemberGroupMemberVO.m */,
 			);
@@ -282,7 +312,7 @@
 			children = (
 				450F7EB81F38141A00DEF66D /* MemberDatabase.h */,
 				450F7EB91F38141A00DEF66D /* MemberDatabase.m */,
-				4586F2ED1F4824B500EEBFE1 /* MemberGroup */,
+				4586F2FD1F54015C00EEBFE1 /* PeopleInfo */,
 			);
 			name = Member;
 			sourceTree = "<group>";
@@ -290,12 +320,28 @@
 		4586F2EF1F482F1200EEBFE1 /* Mission */ = {
 			isa = PBXGroup;
 			children = (
+				4586F3071F55578500EEBFE1 /* MissionDatabaseVO.h */,
+				4586F3081F55578500EEBFE1 /* MissionDatabaseVO.m */,
 				450B73891F3F22EC008A2458 /* MissionVO.h */,
 				450B738A1F3F22EC008A2458 /* MissionVO.m */,
 				4586F2611F45613400EEBFE1 /* MissionWorkPointVO.h */,
 				4586F2621F45613400EEBFE1 /* MissionWorkPointVO.m */,
+				4586F3041F553B8500EEBFE1 /* CurrentLocVO.h */,
+				4586F3051F553B8500EEBFE1 /* CurrentLocVO.m */,
 			);
 			name = Mission;
+			sourceTree = "<group>";
+		};
+		4586F2FD1F54015C00EEBFE1 /* PeopleInfo */ = {
+			isa = PBXGroup;
+			children = (
+				4586F2FA1F4A905400EEBFE1 /* PeopleInfoVO.h */,
+				4586F2FB1F4A905400EEBFE1 /* PeopleInfoVO.m */,
+				4586F2ED1F4824B500EEBFE1 /* MemberGroup */,
+				4586F3011F5408F400EEBFE1 /* PeopleVO.h */,
+				4586F3021F5408F400EEBFE1 /* PeopleVO.m */,
+			);
+			name = PeopleInfo;
 			sourceTree = "<group>";
 		};
 		52201AEDDB11F094209D7B6A /* Pods */ = {
@@ -398,7 +444,9 @@
 				450B737D1F3EDDA2008A2458 /* SignInVC.storyboard in Resources */,
 				45080E341F1DD73300E6F590 /* Assets.xcassets in Resources */,
 				450B737A1F3EDCF6008A2458 /* CheckSignIn.storyboard in Resources */,
+				454522A11F55A7D600CB59D2 /* Member.storyboard in Resources */,
 				45080E2F1F1DD73300E6F590 /* Main.storyboard in Resources */,
+				4586F2F21F483DFD00EEBFE1 /* CreateMissionVC.storyboard in Resources */,
 				450B73781F3EDC2A008A2458 /* Map.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,25 +515,31 @@
 				450B73881F3EE8D8008A2458 /* MissionTVCell.m in Sources */,
 				450A66011F31E29900BA96C3 /* CheckSingInVC.m in Sources */,
 				4586F2DD1F4717F100EEBFE1 /* MLoctionVO.m in Sources */,
+				4586F2F51F48492F00EEBFE1 /* Mpop.m in Sources */,
+				4586F3091F55578500EEBFE1 /* MissionDatabaseVO.m in Sources */,
 				4526B68E1F249A5300FB6035 /* FieldDispatchDataBase.m in Sources */,
+				4586F3031F5408F400EEBFE1 /* PeopleVO.m in Sources */,
 				4532DBAF1F2F1CDF00375E30 /* HttpConnection.m in Sources */,
 				4586F2E91F481ED900EEBFE1 /* MemberGroupMemberVO.m in Sources */,
+				4586F3061F553B8500EEBFE1 /* CurrentLocVO.m in Sources */,
 				450F7EBA1F38141A00DEF66D /* MemberDatabase.m in Sources */,
 				45E9FEC51F22137E00025E7F /* SingInVC.m in Sources */,
 				459C64FE1F29ADBA00A06324 /* TeamMembers.m in Sources */,
 				45080E291F1DD73300E6F590 /* AppDelegate.m in Sources */,
 				450B738B1F3F22EC008A2458 /* MissionVO.m in Sources */,
 				4586F2631F45613400EEBFE1 /* MissionWorkPointVO.m in Sources */,
-				4586F2EC1F48227C00EEBFE1 /* MemberGroupManagerVO.m in Sources */,
 				450B73801F3EE5C2008A2458 /* MissionTVC.m in Sources */,
 				450F7EC31F38CE2700DEF66D /* UserInfoVC.m in Sources */,
 				459C65971F2B04B000A06324 /* UIView+AutoLayout.m in Sources */,
+				4545229B1F55A74200CB59D2 /* MemberTVC.m in Sources */,
 				452D2B991F32079C00ABB68D /* UITextField+BottonLine.m in Sources */,
 				45080E321F1DD73300E6F590 /* FieldDispatch.xcdatamodeld in Sources */,
 				4563B8031F3DE1D000FCE61E /* AdvanceImageView.m in Sources */,
 				450A65FE1F31D85700BA96C3 /* UIButton+MButton.m in Sources */,
+				4586F2FC1F4A905400EEBFE1 /* PeopleInfoVO.m in Sources */,
 				450F7EC01F38C7CB00DEF66D /* MapVC.m in Sources */,
 				450B73941F41C06C008A2458 /* CreateMissionVC.m in Sources */,
+				4545229E1F55A78300CB59D2 /* MemberTVCell.m in Sources */,
 				450B73911F400AE8008A2458 /* UIColor+MColor.m in Sources */,
 				459630B41F25E9F5004BD775 /* MUIButtonAutoLayout.m in Sources */,
 				4586F2E31F48131400EEBFE1 /* MemberGroupVO.m in Sources */,
@@ -550,6 +604,22 @@
 				450F7EC71F38D70B00DEF66D /* Base */,
 			);
 			name = UserInfo.storyboard;
+			sourceTree = "<group>";
+		};
+		4545229F1F55A7D600CB59D2 /* Member.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				454522A01F55A7D600CB59D2 /* Base */,
+			);
+			name = Member.storyboard;
+			sourceTree = "<group>";
+		};
+		4586F2F01F483DFD00EEBFE1 /* CreateMissionVC.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4586F2F11F483DFD00EEBFE1 /* Base */,
+			);
+			name = CreateMissionVC.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

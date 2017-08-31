@@ -64,6 +64,11 @@
 		<string>MKDirectionsModeCar</string>
 		<string>MKDirectionsModeTaxi</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>為了將位置告訴同伴，所以需要取得定位資訊</string>
 	<key>UIBackgroundModes</key>

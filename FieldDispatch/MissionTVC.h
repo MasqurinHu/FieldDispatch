@@ -10,4 +10,6 @@
 
 @interface MissionTVC : UITableViewController
 
+-(void)reloadTV;
+
 @end

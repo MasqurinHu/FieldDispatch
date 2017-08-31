@@ -17,11 +17,15 @@
     int buttonMoveTimes;
     CGFloat buttonMoveDistance;
     
+    int pageNubber;
+    
     NSTimer *buttonTimer;
     UIScrollView *mainS;
     
     NSLayoutConstraint *bottonFramConstraint;
     
+    MissionTVC *fvc;
+    MemberTVC *userInfo;
 }
 @end
 
@@ -39,8 +43,11 @@
     _onLionSW = [UISwitch new];
     _onLionSW.on = false;
     
+    pageNubber = 5;
     
+    //假資料
     
+    [MemberDatabase stand].status = 1;
 }
 
 -(void)checkLogin{
@@ -69,7 +76,11 @@
 }
 
 -(void)viewDidLayoutSubviews{
-    mainS.contentSize = CGSizeMake(mainS.frame.size.width*3, mainS.frame.size.height);
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    mainS.contentSize = CGSizeMake(mainS.frame.size.width*pageNubber, mainS.frame.size.height);
 }
 
 -(void)prepare{
@@ -143,7 +154,7 @@
     [mainS addSubview: main];
     main.frame = CGRectMake(0,
                             0,
-                            self.view.frame.size.width*3,
+                            self.view.frame.size.width*pageNubber,
                             self.view.frame.size.height-self.navigationController.navigationBar.frame.size.height-50);
     
     MapVC *mapVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MapVC"];
@@ -152,17 +163,31 @@
     mapVC.view.translatesAutoresizingMaskIntoConstraints = false;
     [mapVC didMoveToParentViewController:self];
     
-    MissionTVC *fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"MissionTVC"];
+    fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"MissionTVC"];
     [self addChildViewController:fvc];
     [main addSubview:fvc.view];
     fvc.view.translatesAutoresizingMaskIntoConstraints = false;
     [fvc didMoveToParentViewController:self];
     
-    UserInfoVC *userInfo = [self.storyboard instantiateViewControllerWithIdentifier:@"UserInfoVC"];//
+    
+    userInfo = [self.storyboard instantiateViewControllerWithIdentifier:@"MemberTVC"];//
     [self addChildViewController:userInfo];
     [main addSubview:userInfo.view];
     userInfo.view.translatesAutoresizingMaskIntoConstraints = false;
     [userInfo didMoveToParentViewController:self];
+    
+    CreateMissionVC *fourVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateMissionVC"];
+    [self addChildViewController:fourVC];
+    [main addSubview:fourVC.view];
+    fourVC.view.translatesAutoresizingMaskIntoConstraints = false;
+    [fourVC didMoveToParentViewController:self];
+    
+    
+    UserInfoVC *fiveVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UserInfoVC"];
+    [self addChildViewController:fiveVC];
+    [main addSubview:fiveVC.view];
+    fiveVC.view.translatesAutoresizingMaskIntoConstraints = false;
+    [fiveVC didMoveToParentViewController:self];
     
 //    main.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
@@ -294,6 +319,59 @@
     
     [main addConstraints:layout];
     
+    [UIView initSizeWithSelf:fourVC.view
+                  TargetView:userInfo.view
+                   SuperView:main
+                  AttributeX:NSLayoutAttributeWidth
+                  AttributeY:NSLayoutAttributeHeight
+                 MultiplierX:1.0
+                 MultiplierY:1.0
+                        GapX:.0
+                        GapY:.0];
+    [main addConstraint:[NSLayoutConstraint
+                         constraintWithItem:fourVC.view
+                         attribute:NSLayoutAttributeLeading
+                         relatedBy:NSLayoutRelationEqual
+                         toItem:userInfo.view
+                         attribute:NSLayoutAttributeTrailing
+                         multiplier:1.0
+                         constant:.0]];
+    [main addConstraint:[NSLayoutConstraint
+                         constraintWithItem:fourVC.view
+                         attribute:NSLayoutAttributeCenterY
+                         relatedBy:NSLayoutRelationEqual
+                         toItem:userInfo.view attribute:NSLayoutAttributeCenterY
+                         multiplier:1.0
+                         constant:.0]];
+    
+    [UIView initSizeWithSelf:fiveVC.view
+                  TargetView:fourVC.view
+                   SuperView:main
+                  AttributeX:NSLayoutAttributeWidth
+                  AttributeY:NSLayoutAttributeHeight
+                 MultiplierX:1.0
+                 MultiplierY:1.0
+                        GapX:.0
+                        GapY:.0];
+    [main addConstraint:[NSLayoutConstraint
+                         constraintWithItem:fiveVC.view
+                         attribute:NSLayoutAttributeLeading
+                         relatedBy:NSLayoutRelationEqual
+                         toItem:fourVC.view
+                         attribute:NSLayoutAttributeTrailing
+                         multiplier:1.0
+                         constant:.0]];
+    [UIView initSizeWithSelf:fiveVC.view
+                  TargetView:main
+                   SuperView:main
+                  AttributeX:NSLayoutAttributeTrailing
+                  AttributeY:NSLayoutAttributeCenterY
+                 MultiplierX:1.0
+                 MultiplierY:1.0
+                        GapX:.0
+                        GapY:.0];
+    
+    
     UIBarButtonItem *barBtn = [[UIBarButtonItem alloc]
                                initWithCustomView:_onLionSW];
     [self.navigationItem setRightBarButtonItem:barBtn];
@@ -313,7 +391,7 @@
                        SuperView:bottonBar
                       AttributeX:NSLayoutAttributeWidth
                       AttributeY:NSLayoutAttributeHeight
-                     MultiplierX:1/3.0
+                     MultiplierX:1.0/pageNubber
                      MultiplierY:.8
                             GapX:.0
                             GapY:.0];
@@ -340,7 +418,7 @@
     bottonFram.layer.borderWidth = bottonFram.frame.size.height*.05;
     
     UIButton *leftVCBtn = [[UIButton alloc]
-                           initWithTitle:@"夥伴位置"
+                           initWithTitle:@"位置"
                            backgroundColor:[UIColor clearColor]
                            addTarget:self
                            func:@selector(bottonBarButton:)
@@ -350,24 +428,14 @@
                             SuperView:bottonBar
                            AttributeX:NSLayoutAttributeCenterX
                            AttributeY:NSLayoutAttributeCenterY
-                          MultiplierX:1/3.0
+                          MultiplierX:1.0/pageNubber
                           MultiplierY:1.0
                                  GapX:.0
                                  GapY:.0];
     leftVCBtn.tag = 1;
     
-    UIButton *centerVCBtn = [[UIButton alloc]
-                             initWithTitle:@"任務列表"
-                             backgroundColor:[UIColor clearColor]
-                             addTarget:self
-                             func:@selector(bottonBarButton:)
-                             targetView:bottonBar
-                             multiplier:1.0
-                             superView:bottonBar];
-    centerVCBtn.tag = 2;
-    
     UIButton *rightVCBtn = [[UIButton alloc]
-                            initWithTitle:@"會員資訊"
+                            initWithTitle:@"資訊"
                             backgroundColor:[UIColor clearColor]
                             addTarget:self
                             func:@selector(bottonBarButton:)
@@ -377,15 +445,62 @@
                             SuperView:bottonBar
                            AttributeX:NSLayoutAttributeCenterX
                            AttributeY:NSLayoutAttributeCenterY
-                          MultiplierX:5/3.0
+                          MultiplierX:3.0/pageNubber
                           MultiplierY:1.0
                                  GapX:.0
                                  GapY:.0];
-    rightVCBtn.tag = 3;
+    rightVCBtn.tag = 2;
+    
+    UIButton *centerVCBtn = [[UIButton alloc]
+                             initWithTitle:@"列表"
+                             backgroundColor:[UIColor clearColor]
+                             addTarget:self
+                             func:@selector(bottonBarButton:)
+                             targetView:bottonBar
+                             multiplier:1.0
+                             superView:bottonBar];
+    centerVCBtn.tag = 3;
+    
+    UIButton *foreVCBtn = [[UIButton alloc]
+                            initWithTitle:@"任務"
+                            backgroundColor:[UIColor clearColor]
+                            addTarget:self
+                            func:@selector(bottonBarButton:)
+                            superView:bottonBar];
+    [UIView initLocConstraintSelfView:foreVCBtn
+                           targetView:bottonBar
+                            SuperView:bottonBar
+                           AttributeX:NSLayoutAttributeCenterX
+                           AttributeY:NSLayoutAttributeCenterY
+                          MultiplierX:7.0/pageNubber
+                          MultiplierY:1.0
+                                 GapX:.0
+                                 GapY:.0];
+    foreVCBtn.tag = 4;
+
+    UIButton *fiveVCBtn = [[UIButton alloc]
+                            initWithTitle:@"會員"
+                            backgroundColor:[UIColor clearColor]
+                            addTarget:self
+                            func:@selector(bottonBarButton:)
+                            superView:bottonBar];
+    [UIView initLocConstraintSelfView:fiveVCBtn
+                           targetView:bottonBar
+                            SuperView:bottonBar
+                           AttributeX:NSLayoutAttributeCenterX
+                           AttributeY:NSLayoutAttributeCenterY
+                          MultiplierX:9.0/pageNubber
+                          MultiplierY:1.0
+                                 GapX:.0
+                                 GapY:.0];
+    fiveVCBtn.tag = 5;
+
     
 }
 
 -(void)onLion:(UISwitch*)sender{
+    [fvc.tableView reloadData];
+    [userInfo.tableView reloadData];
     [self.navigationItem setTitle: @"準備中～～～"];
     if ([sender isOn] == true) {
         [MemberDatabase stand].status = 1;
@@ -415,20 +530,13 @@
 }
 
 -(void)bottonBarButton:(UIView*)sender{
-    
+
     mainS.userInteractionEnabled = false;
     if (buttonMoveTimes != 0) {
         [buttonTimer invalidate];
     }
     double movex = .0;
-    if (sender.tag == 1) {
-        movex = .0;
-    }else if (sender.tag == 2) {
-        movex = 1.0;
-    }else if (sender.tag == 3) {
-        movex = 2.0;
-    }
-    
+    movex = sender.tag - 1.0;
     buttonMoveDistance = self.view.frame.size.width*movex-mainXset;
     buttonMoveTimes = 0;
     //
@@ -463,7 +571,7 @@
 }
 
 -(void)moveBottonFrame{
-    bottonFramConstraint.constant = mainXset/3;
+    bottonFramConstraint.constant = mainXset/pageNubber;
     
 }
 

@@ -13,4 +13,7 @@
 
 @property (nonatomic,strong) MissionVO *mission;
 
+@property (nonatomic,strong) NSString *pleaseSelectAGroup;
+
+
 @end

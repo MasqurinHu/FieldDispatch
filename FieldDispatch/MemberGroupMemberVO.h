@@ -10,9 +10,9 @@
 
 @interface MemberGroupMemberVO : NSObject
 
-@property (nonatomic,assign) int groupId;
+
 @property (nonatomic,assign) int memberId;
-@property (nonatomic,assign) int status;
-@property (nonatomic,strong) NSDate *statusTime;
+@property (nonatomic,assign) int memberAuthority;
+
 
 @end

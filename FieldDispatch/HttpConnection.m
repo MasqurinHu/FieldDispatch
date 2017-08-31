@@ -9,7 +9,8 @@
 #import "HttpConnection.h"
 #import <AFNetworking.h>
 
-#define BASE_URL @"https://masqurin.000webhostapp.com/FieldDispatch/"
+//#define BASE_URL @"https://masqurin.000webhostapp.com/FieldDispatch/"
+#define BASE_URL @"http://35.194.156.9/FieldDispatch/"
 //#define NEW_DEVICE [BASE_URL stringByAppendingPathComponent:@"newDevice.php"]
 #define NEW_DEVICE @"newDevice.php"
 
@@ -17,7 +18,9 @@
 static HttpConnection *http = nil;
 
 @implementation HttpConnection
-
+{
+    
+}
 +(instancetype)stand{
     if (http == nil) {
         http = [HttpConnection new];
@@ -27,12 +30,12 @@ static HttpConnection *http = nil;
 
 -(void) newDeviceWithFinish:(FinishMessage)finish{
 
-    NSString *deviceToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceToken"];
+    NSString *deviceToken = [MemberDatabase stand].deviceToken;
     if (deviceToken == nil) {
         deviceToken = @"測試DeviceToken";
     }
     //deviceType    1.iOS   2.Andreod   3.other...
-    NSDictionary *par = @{@"deviceType":@"1",
+    NSDictionary *par = @{@"deviceType":@([MemberDatabase stand].deviceType),
                           @"deviceToken":deviceToken};
     [self doPostWithURLString:NEW_DEVICE
                    parameters:par data:nil
@@ -47,6 +50,9 @@ static HttpConnection *http = nil;
                      finish:(FinishMessage) finish{
     
     NSError *error = nil;
+    NSMutableDictionary *par = [NSMutableDictionary new];
+    [par addEntriesFromDictionary:parameters];
+    [par addEntriesFromDictionary:[MemberDatabase stand].signInData];
     NSData *jsonData = [NSJSONSerialization
                         dataWithJSONObject:parameters
                         options:NSJSONWritingPrettyPrinted
@@ -87,6 +93,21 @@ static HttpConnection *http = nil;
               NSLog(@"doPOST OK:%@",responseObject);
               if (finish) {
                   finish(nil,responseObject);
+                  
+                  NSDictionary *peopleInfo = responseObject[@"peopleInfo"];
+                  if (peopleInfo) {
+                      [MemberDatabase stand].people = [[PeopleInfoVO alloc] initFromData:peopleInfo];
+                  }
+                  
+                  NSDictionary *missionInfo = responseObject[@"missionInfo"];
+                  if (missionInfo) {
+                      [MemberDatabase stand].mission = [[MissionDatabaseVO alloc] initWithData:missionInfo];
+                  }
+                  NSDictionary *memberInfo = responseObject[@"memberInfo"];
+                  if (memberInfo) {
+                      [MemberDatabase stand].signInData = (NSMutableDictionary*)memberInfo;
+                  }
+                  
               }
           }
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

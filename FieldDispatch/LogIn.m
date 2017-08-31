@@ -15,11 +15,22 @@
 static LogIn *login = nil;
 
 @implementation LogIn
+{
+    MemberDatabase *mdb;
+}
 
 +(instancetype)sharedInstance{
     if (login == nil) {
         login = [LogIn new];
     }
+//    [[MemberDatabase stand].signInData setValue:@([MemberDatabase stand].memberId) forKey:@"memberId"];
+//    [[MemberDatabase stand].signInData setValue:@([MemberDatabase stand].memberType) forKey:@"memberType"];
+//    [[MemberDatabase stand].signInData setValue:@([MemberDatabase stand].deviceType) forKey:@"deviceType"];
+//    [[MemberDatabase stand].signInData setObject:[MemberDatabase stand].deviceToken forKey:@"deviceToken"];
+//    [[MemberDatabase stand].signInData setValue:@([MemberDatabase stand].signInType) forKey:@"memberSingInType"];
+//    [[MemberDatabase stand].signInData setValue:[MemberDatabase stand].memberAccount forKey:@"memberAccount"];
+//    [[MemberDatabase stand].signInData setValue:[MemberDatabase stand].password forKey:@"password"];
+//    [[MemberDatabase stand].signInData setValue:@([MemberDatabase stand].status) forKey:@"memberStatus"];
     return login;
 }
 
@@ -65,9 +76,10 @@ static LogIn *login = nil;
      transmissionResults:(FinishMessage)resoult{
     
     //deviceType    1.iOS   2.Andreod   3.other...
-    NSDictionary *par = @{@"memberId":memberId,
-                          @"deviceType":@"1",
-                          @"deviceToken":deviceToken};
+    NSMutableDictionary *par = [NSMutableDictionary new];
+    [par addEntriesFromDictionary:@{@"memberId":memberId,
+                                    @"deviceType":@"1",
+                                    @"deviceToken":deviceToken}];
     [[HttpConnection stand]
      doPostWithURLString:UPDATE_DEVICE_TOKEN
      parameters:par
@@ -91,14 +103,14 @@ static LogIn *login = nil;
 //        return;
     }
     
-    NSDictionary *par = @{@"memberAccount":account,
-                          @"memberSingInType":@(memberSingInType),
+    NSDictionary *par = @{@"account":account,
+                          @"signInType":@(memberSingInType),
                           @"nickName":nickName,
                           @"password":password,
                           @"photo":photo,
                           @"memberId":@(memberId),
                           @"deviceType":@(1),
-                          @"memberMail":mail,
+                          @"mail":mail,
                           @"deviceToken":deviceToken
                           };
     
@@ -110,29 +122,51 @@ static LogIn *login = nil;
 
 -(void)reportStatus:(Res)responser{
     
-    NSDictionary *par = @{
-                          @"memberId":[NSString stringWithFormat:@"%d",[MemberDatabase stand].memberId],
-                          @"memberStatus":[NSString stringWithFormat:@"%d",[MemberDatabase stand].status],
-                          @"memberLat":[NSString stringWithFormat:@"%f",[MemberDatabase stand].coordinate.latitude],
-                          @"memberLon":[NSString stringWithFormat:@"%f",[MemberDatabase stand].coordinate.longitude]};
-    [[HttpConnection stand]
-     doPostWithURLString:REPORT_STATUS
-     parameters:par data:nil
-     finish:^(NSError *error, id result) {
-         
-         NSMutableDictionary *res = [NSMutableDictionary new];
-         if (error) {
-             res[@"result"] = @"fales";
-             res[@"error"] = error.description;
-             responser(res);
-         }
-         if (result) {
-             res[@"result"] = @"true";
-             res[@"responser"] = result;
-             responser(res);
-         }
-         
+    NSMutableDictionary *aa = [NSMutableDictionary new];
+    [aa addEntriesFromDictionary:[MemberDatabase stand].signInData];
+    [aa setValue:@([MemberDatabase stand].location.coordinate.latitude) forKey:@"lat"];
+    [aa setValue:@([MemberDatabase stand].location.coordinate.longitude) forKey:@"lon"];
+    [[HttpConnection stand] doPostWithURLString:@"ReportStatus.php" parameters:aa data:nil finish:^(NSError *error, id result) {
+        NSMutableDictionary *res = [NSMutableDictionary new];
+        if (error) {
+            res[@"result"] = @"fales";
+            res[@"error"] = error.description;
+            responser(res);
+        }
+        if (result) {
+            res[@"result"] = @"true";
+            res[@"responser"] = result;
+            responser(res);
+        }
+
     }];
+    
+    
+    
+//    
+//    NSDictionary *par = @{
+//                          @"memberId":[NSString stringWithFormat:@"%d",[MemberDatabase stand].memberId],
+//                          @"memberStatus":[NSString stringWithFormat:@"%d",[MemberDatabase stand].status],
+//                          @"memberLat":[NSString stringWithFormat:@"%f",[MemberDatabase stand].location.coordinate.latitude],
+//                          @"memberLon":[NSString stringWithFormat:@"%f",[MemberDatabase stand].location.coordinate.longitude]};
+//    [[HttpConnection stand]
+//     doPostWithURLString:REPORT_STATUS
+//     parameters:par data:nil
+//     finish:^(NSError *error, id result) {
+//         
+//         NSMutableDictionary *res = [NSMutableDictionary new];
+//         if (error) {
+//             res[@"result"] = @"fales";
+//             res[@"error"] = error.description;
+//             responser(res);
+//         }
+//         if (result) {
+//             res[@"result"] = @"true";
+//             res[@"responser"] = result;
+//             responser(res);
+//         }
+//         
+//    }];
 
 }
 

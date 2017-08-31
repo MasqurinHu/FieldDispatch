@@ -10,6 +10,37 @@
 
 @implementation UIView (AutoLayout)
 
++(void)initArrangementWithSelf:(UIView *)selfView
+                    targetView:(UIView *)target
+                     superView:(UIView *)superViev
+                   x1Attribute:(NSLayoutAttribute)x1Attribute
+                   x2Attribute:(NSLayoutAttribute)x2Attribute
+                   y1Attribute:(NSLayoutAttribute)y1Attribute
+                   y2Attribute:(NSLayoutAttribute)y2Attribute
+                   multiplierX:(CGFloat)multiplierX
+                   multiplierY:(CGFloat)multiplierY
+                          xGap:(CGFloat)xGap
+                          yGap:(CGFloat)yGap{
+    
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
+    [superViev addConstraint:[NSLayoutConstraint
+                              constraintWithItem:selfView
+                              attribute:x1Attribute
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:target
+                              attribute:x2Attribute
+                              multiplier:multiplierX
+                              constant:xGap]];
+    [superViev addConstraint:[NSLayoutConstraint
+                              constraintWithItem:selfView
+                              attribute:y1Attribute
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:target
+                              attribute:y2Attribute
+                              multiplier:multiplierY
+                              constant:yGap]];
+}
+
 +(void)initFromBottonWithSelf:(UIView *)selfView
                    targetView:(UIView *)target
                     superView:(UIView *)superView

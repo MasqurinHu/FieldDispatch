@@ -8,29 +8,43 @@
 
 #import <Foundation/Foundation.h>
 #import "MemberGroupVO.h"
+#import "PeopleInfoVO.h"
 #import <CoreLocation/CoreLocation.h>
+#import "MissionDatabaseVO.h"
 
 @interface MemberDatabase : NSObject
 
 @property (nonatomic,assign) int memberId;
-@property (nonatomic,strong) NSString *memberAccound;
 @property (nonatomic,assign) int signInType;
-@property (nonatomic,assign) CLLocationCoordinate2D coordinate;
-@property (nonatomic,assign) CLLocationCoordinate2D previousCoordinate;
-@property (nonatomic,strong) NSString *area;
-@property (nonatomic,assign) int status;
-@property (nonatomic,strong) NSString *mali;
+@property (nonatomic,strong) NSString *memberAccount;
 @property (nonatomic,strong) NSString *password;
-@property (nonatomic,strong) NSString *nickName;
-@property (nonatomic,strong) NSString *photoURL;
-@property (nonatomic,strong) NSString *tel;
 @property (nonatomic,assign) int memberType;
-@property (nonatomic,assign) int onLionGroupId;
+
+@property (nonatomic,strong) NSString *tel;
+
+@property (nonatomic,strong) NSString *photoURL;
+@property (nonatomic,strong) NSString *mali;
+@property (nonatomic,strong) NSString *nickName;
+@property (nonatomic,strong) NSString *deviceToken;
+@property (nonatomic,assign) int deviceType;
+
+@property (nonatomic,assign) int status;
+@property (nonatomic,assign) CLLocation *location;
+@property (nonatomic,strong) NSString *area;
+
+@property (nonatomic,strong) PeopleInfoVO *people;
+@property (nonatomic,strong) MissionDatabaseVO *mission;
+
+@property (nonatomic,strong) NSMutableDictionary *signInData;
+
+
 @property (nonatomic,strong) NSString *onLionGroupName;
-@property (nonatomic,strong) NSMutableArray <MemberGroupVO*>*groupList;
+@property (nonatomic,assign) int onLionGroupId;
 
 +(instancetype)stand;
 -(NSString*)getGroupNameWith:(int)GroupId;
+
+
 
 
 @end

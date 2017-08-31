@@ -1,33 +1,28 @@
 //
-//  MissionTVC.m
+//  MemberTVC.m
 //  FieldDispatch
 //
-//  Created by Ｍasqurin on 2017/8/12.
+//  Created by Ｍasqurin on 2017/8/29.
 //  Copyright © 2017年 Ｍasqurin. All rights reserved.
 //
 
-#import "MissionTVC.h"
+#import "MemberTVC.h"
 #import "FieldDispatchDataBase.h"
 
-@interface MissionTVC ()
+@interface MemberTVC ()
 
 @end
 
-@implementation MissionTVC
+@implementation MemberTVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
--(void)reloadTV {
-    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,13 +39,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return [MemberDatabase stand].mission.acceptableList.count;
+    return [MemberDatabase stand].people.groupList.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MissionTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MissionTVCell" forIndexPath:indexPath];
-    cell.mission = [MemberDatabase stand].mission.acceptableList[indexPath.row];
+    MemberTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MemberTVCell" forIndexPath:indexPath];
+    cell.group = [MemberDatabase stand].people.groupList[indexPath.row];
     [cell reload];
     
     // Configure the cell...
@@ -62,9 +57,10 @@
     //設定最高不超過多少
     tableView.estimatedRowHeight = 400;
     //會報自動此吋
-//    return UITableViewAutomaticDimension;
-    return 230;
+    //    return UITableViewAutomaticDimension;
+    return 80;
 }
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

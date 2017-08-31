@@ -15,22 +15,20 @@
 @property (nonatomic,strong) UIImage *map;
 
 @property (nonatomic,assign) int missionId;
+@property (nonatomic,assign) CLLocationCoordinate2D loc;
 @property (nonatomic,assign) int groupId;
-@property (nonatomic,assign) int createMemberId;
+@property (nonatomic,assign) int missionCreateMemberId;
 @property (nonatomic,strong) NSString *missionName;
-@property (nonatomic,assign) int messionTel;
+@property (nonatomic,strong) NSString *messionTel;
+@property (nonatomic,strong) NSString *address;
 @property (nonatomic,strong) NSMutableArray <MissionWorkPointVO*>*workPointList;
 @property (nonatomic,strong) NSString *missionMemo;
-@property (nonatomic,strong) NSDate *createTime;                        //建立時間
-@property (nonatomic,strong) NSDate *appointment;                       //預約時間
-@property (nonatomic,strong) NSDate *arrivalTime;                       //抵達時間
-@property (nonatomic,strong) NSDate *completeTime;                      //完成時間
+@property (nonatomic,strong) NSString *createTime;                        //建立時間
+
 @property (nonatomic,assign) int missionStatus;
-
-
 @property (nonatomic,strong) NSString *missionExecutor;                 //任務執行者
 
-
+-(instancetype) initWithData:(NSDictionary*)data;
 
 
 @end

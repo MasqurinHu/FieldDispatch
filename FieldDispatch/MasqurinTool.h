@@ -15,6 +15,7 @@
 #import "UIColor+MColor.h"
 #import "AdvanceImageView.h"
 #import "MLoctionVO.h"
+#import "Mpop.h"
 
 @interface MasqurinTool : NSObject
 

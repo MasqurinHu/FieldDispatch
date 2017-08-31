@@ -10,7 +10,15 @@
 #import <MapKit/MapKit.h>
 
 @interface MissionTVCell()<MKMapViewDelegate>
-
+{
+    AdvanceImageView *photo;
+    MKMapView *map;
+    UILabel *missionName;
+    UILabel *name;
+    UILabel *missionType;
+    UILabel *creatTime;
+    UILabel *memo;
+}
 @end
 
 @implementation MissionTVCell
@@ -18,7 +26,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    AdvanceImageView *photo = [AdvanceImageView new];
+    photo = [AdvanceImageView new];
     [self addSubview:photo];
     photo.translatesAutoresizingMaskIntoConstraints = false;
     [self addConstraint:[NSLayoutConstraint
@@ -44,7 +52,7 @@
     NSURL *url = [NSURL URLWithString:[MemberDatabase stand].photoURL];
     [photo loadImageWithURL:url];
     
-    MKMapView *map = [MKMapView new];
+    map = [MKMapView new];
     map.backgroundColor = [UIColor blueColor];
     map.userInteractionEnabled = false;
     [self addSubview:map];
@@ -82,10 +90,10 @@
                          multiplier:1.0
                          constant:-30.0]];
     
-    UILabel *missionName = [UILabel new];
+    missionName = [UILabel new];
     missionName.numberOfLines = 0;
     missionName.translatesAutoresizingMaskIntoConstraints = false;
-    missionName.text = [NSString stringWithFormat:@"任務名稱：\n阻止魔人普烏%@",_mission.missionName];
+    missionName.text = [NSString stringWithFormat:@"任務名稱：\n%@",_mission.missionName];
     [self addSubview:missionName];
     [missionName sizeToFit];
     [self addConstraint:[NSLayoutConstraint
@@ -105,11 +113,11 @@
                          multiplier:1.0
                          constant:4.0]];
     
-    UILabel *name = [UILabel new];
+    name = [UILabel new];
     [self addSubview:name];
     name.numberOfLines = 0;
     name.translatesAutoresizingMaskIntoConstraints = false;
-    name.text = [NSString stringWithFormat:@"執行者：\n紫金，弗利沙%@",_mission.missionExecutor];
+    name.text = [NSString stringWithFormat:@"執行者：\n%@",_mission.missionExecutor];
     [name sizeToFit];
     [self addConstraint:[NSLayoutConstraint
                          constraintWithItem: name
@@ -128,7 +136,7 @@
                          multiplier:1.0
                          constant:2.0]];
     
-    UILabel *missionType = [UILabel new];
+    missionType = [UILabel new];
     missionType.numberOfLines = 0;
     switch (_mission.missionStatus) {
         case 1:
@@ -168,10 +176,11 @@
                          multiplier:1.0
                          constant:4.0]];
     
-    UILabel *creatTime = [UILabel new];
+    creatTime = [UILabel new];
     creatTime.numberOfLines = 0;
+    
     creatTime.text = [NSString
-                      stringWithFormat:@"預約時間：23:45%@",_mission.createTime];
+                      stringWithFormat:@"預約時間：%@",_mission.workPointList[0].expectedArrivalTime];
     creatTime.translatesAutoresizingMaskIntoConstraints = false;
     [creatTime sizeToFit];
     [self addSubview:creatTime];
@@ -192,8 +201,9 @@
                          multiplier:1.0
                          constant:.0]];
     
-    UILabel *memo = [UILabel new];
-    memo.text = @"備註：在五分鐘，娜美克星就要爆炸了";
+    memo = [UILabel new];
+    
+    memo.text = [NSString stringWithFormat:@"備註:%@",_mission.missionMemo];
     memo.translatesAutoresizingMaskIntoConstraints = false;
     [memo sizeToFit];
     [self addSubview:memo];
@@ -214,13 +224,48 @@
                          multiplier:1.0
                          constant:.0]];
 
-    
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     
 }
+
+-(void)reload {
+    NSURL *url = [NSURL URLWithString:[MemberDatabase stand].photoURL];
+    [photo loadImageWithURL:url];
+    
+    missionName.text = [NSString stringWithFormat:@"任務名稱：\n%@",_mission.missionName];
+    NSString *aa = [[MemberDatabase stand].people getNameWithId:_mission.missionCreateMemberId];
+    name.text = [NSString stringWithFormat:@"執行者：\n%@",aa];
+    
+    missionType.numberOfLines = 0;
+    switch (_mission.missionStatus) {
+        case 1:
+            missionType.text = @"狀態：待接送";
+            break;
+        case 2:
+            missionType.text = @"狀態：前往中";
+            break;
+        case 3:
+            missionType.text = @"狀態：工作中";
+            break;
+        case 4:
+            missionType.text = @"狀態：已完成";
+            break;
+        default:
+            missionType.text = @"狀態：異常～";
+            break;
+    }
+    
+    creatTime.text = [NSString
+                      stringWithFormat:@"預約時間：%@",_mission.workPointList[0].expectedArrivalTime];
+    
+    memo.text = [NSString stringWithFormat:@"備註:%@",_mission.missionMemo];
+    
+}
+
+
+
 
 @end

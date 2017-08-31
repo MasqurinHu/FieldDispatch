@@ -26,5 +26,13 @@
             </objects>
             <point key="canvasLocation" x="2734" y="-1269"/>
         </scene>
+        <!--CreateMissionVC-->
+        <scene sceneID="vfe-sG-eg1">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="CreateMissionVC" storyboardName="CreateMissionVC" referencedIdentifier="CreateMissionVC" id="32p-Qv-Iqk" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Xo-Vj-mUi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3386" y="-1261"/>
+        </scene>
     </scenes>
 </document>

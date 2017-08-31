@@ -145,18 +145,19 @@ didSignInForUser:(GIDGoogleUser *)user
         [MemberDatabase stand].photoURL = [[user.profile imageURLWithDimension:a] absoluteString];
     }
     
-    [MemberDatabase stand].memberAccound = user.userID;
-    [MemberDatabase stand].password = user.authentication.idToken;
+    [MemberDatabase stand].memberAccount = user.userID;
+//    [MemberDatabase stand].password = user.authentication.idToken;
+    [MemberDatabase stand].password = @"none";
     [MemberDatabase stand].nickName = user.profile.name;
     NSString *givenName = user.profile.givenName;
     NSString *familyName = user.profile.familyName;
     [MemberDatabase stand].mali = user.profile.email;
     [MemberDatabase stand].signInType = 2;
     [MemberDatabase stand].memberType = 2;
-    NSLog(@"\n我是id: %@\n我是全名: %@\n我是givenName: %@\n我是性: %@\n我是信箱: %@",[MemberDatabase stand].memberAccound,[MemberDatabase stand].nickName,givenName,familyName,[MemberDatabase stand].mali);
+    NSLog(@"\n我是id: %@\n我是全名: %@\n我是givenName: %@\n我是性: %@\n我是信箱: %@",[MemberDatabase stand].memberAccount,[MemberDatabase stand].nickName,givenName,familyName,[MemberDatabase stand].mali);
     NSLog(@"\n我是偷捆: %@\n好像超過log長度不顯示",[MemberDatabase stand].password);
     
-    [[LogIn sharedInstance] signInAccount:[MemberDatabase stand].memberAccound
+    [[LogIn sharedInstance] signInAccount:[MemberDatabase stand].memberAccount
                                  memberId:0         //未登入
                          memberSingInType:2         //1facebook 2google 3fielddispatch
                                  nickName:[MemberDatabase stand].nickName
@@ -216,24 +217,24 @@ didSignInForUser:(GIDGoogleUser *)user
         // Handle the result
         NSLog(@"我是資料%@",result);
         NSDictionary *fbMemo = (NSDictionary*)result;
-        [MemberDatabase stand].memberAccound = fbMemo[@"id"];
+        [MemberDatabase stand].memberAccount = fbMemo[@"id"];
         [MemberDatabase stand].nickName = fbMemo[@"name"];
-        NSString *fbToken = @"none";
+        [MemberDatabase stand].password = @"none";
         [MemberDatabase stand].photoURL = fbMemo[@"picture"][@"data"][@"url"];
         [MemberDatabase stand].mali = fbMemo[@"email"];
         [MemberDatabase stand].signInType = 1;
         [MemberDatabase stand].memberType = 2;
         NSLog(@"\n我是id %d\n我是name %@\n我是相片 %@\n我是信箱 %@",
-              [[MemberDatabase stand].memberAccound intValue],
+              [[MemberDatabase stand].memberAccount intValue],
               [MemberDatabase stand].nickName,
               [MemberDatabase stand].photoURL,
               [MemberDatabase stand].mali);
         
-        [[LogIn sharedInstance] signInAccount:[NSString stringWithFormat:@"%d",[MemberDatabase stand].memberId]
+        [[LogIn sharedInstance] signInAccount:[MemberDatabase stand].memberAccount
                                      memberId:0
                              memberSingInType:1
                                      nickName:[MemberDatabase stand].nickName
-                                     password:fbToken
+                                     password:[MemberDatabase stand].password
                                         photo:[MemberDatabase stand].photoURL
                                          mail:[MemberDatabase stand].mali
                           transmissionResults:^(NSError *error, id result) {
@@ -244,6 +245,7 @@ didSignInForUser:(GIDGoogleUser *)user
                                   NSString *memberId = severMemo[@"memberId"];
                                   [[NSUserDefaults standardUserDefaults] setObject:memberId forKey:@"memberId"];
                                   [[NSUserDefaults standardUserDefaults] synchronize];
+//                                  [[MemberDatabase stand] setPeopleInfo:result[@""]];
                                   [self dismissViewControllerAnimated:true completion:nil];
                               }
                               

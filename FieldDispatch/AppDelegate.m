@@ -154,6 +154,10 @@
                          stringByReplacingOccurrencesOfString:@">" withString:@""];
     NSLog(@"\n修正後\n%@",deviceTokenString);
     
+    [[NSUserDefaults standardUserDefaults] setObject:deviceTokenString forKey:@"deviceToken"];
+    [MemberDatabase stand].deviceToken = deviceTokenString;
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     //檢查是否有帳號登入 有登入就回報deviceToken 及memberId
     NSString *memberId = [[NSUserDefaults standardUserDefaults] objectForKey:@"memberId"];
     if (memberId != NULL) {
@@ -168,12 +172,12 @@
                 NSLog(@"\n伺服器資料異常，錯誤訊息： %@",severMemo[@"errorCode"]);
                 return;
             }
+            
             NSLog(@"\nDeviceToken更新正常，id為： %@",severMemo[@"deviceTokenId"]);
         }];
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:deviceTokenString forKey:@"deviceToken"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 }
 
 //獲取失敗

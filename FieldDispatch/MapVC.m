@@ -27,6 +27,14 @@
     MissionVO *createMission;
     UIButton *dissmissBTN;
     
+    CLLocation *oldLoc;
+    NSDate *oldTime;
+    
+    MUIBottonlineTextField *missionName;
+    MUIBottonlineTextField *missionTel;
+    MUIBottonlineTextField *missionMemo;
+    
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -135,7 +143,7 @@
 
 #pragma - Mission
 -(void)createMission{
-    NSLog(@"準備建立任務,%f,%f",map.centerCoordinate.latitude,map.centerCoordinate.longitude);
+//    NSLog(@"準備建立任務,%f,%f",map.centerCoordinate.latitude,map.centerCoordinate.longitude);
     createMission = [MissionVO new];
     
     dissmissBTN = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -160,10 +168,10 @@
     UIView *createBackground = [UIView new];
     [dissmissBTN addSubview:createBackground];
     createBackground.backgroundColor = [[UIColor alloc]
-                                        initWithRed:.5f
-                                        green:.5f
-                                        blue:.5f
-                                        alpha:.3];
+                                        initWithRed:.2f
+                                        green:.2f
+                                        blue:.43f
+                                        alpha:.8];
     [UIView initSizeWithSelf:createBackground
                   TargetView:dissmissBTN
                    SuperView:dissmissBTN
@@ -206,9 +214,137 @@
                                      constant:10.0]];
     
     
+//    MKUserTrackingBarButtonItem *aaa = [[MKUserTrackingBarButtonItem alloc] initWithMapView:map];
     
+    missionName = [MUIBottonlineTextField new];
+    missionName.translatesAutoresizingMaskIntoConstraints = false;
+    [createBackground addSubview:missionName];
+    [UIView initAtCenterTopWithSelf:missionName
+                          SuperView:createBackground
+                           LevelGap:.0
+                        VerticalGap:20.0];
+    [UIView initSizeWithSelf:missionName
+                  TargetView:createBackground
+                   SuperView:createBackground
+                  AttributeX:NSLayoutAttributeWidth
+                  AttributeY:NSLayoutAttributeHeight
+                 MultiplierX:.7
+                 MultiplierY:.00001
+                        GapX:.0
+                        GapY:16.0];
+    missionName.placeholder = @"請輸入任務名稱";
+    
+    missionTel = [MUIBottonlineTextField new];
+    [createBackground addSubview:missionTel];
+    missionTel.translatesAutoresizingMaskIntoConstraints = false;
+    [UIView initSizeWithSelf:missionTel
+                  TargetView:missionName
+                   SuperView:createBackground
+                  AttributeX:NSLayoutAttributeWidth
+                  AttributeY:NSLayoutAttributeHeight
+                 MultiplierX:1.0
+                 MultiplierY:1.0
+                        GapX:.0
+                        GapY:.0];
+    [UIView initFromTopWithSelf:missionTel
+                     targetView:missionName
+                      superView:createBackground
+                            gap:16.0];
+    missionTel.placeholder = @"請輸入聯絡電話";
+    missionTel.keyboardType = UIKeyboardTypeNumberPad;
+    
+    missionMemo = [MUIBottonlineTextField new];
+    [createBackground addSubview: missionMemo];
+    missionMemo.translatesAutoresizingMaskIntoConstraints = false;
+    [UIView initSizeWithSelf:missionMemo
+                  TargetView:missionName
+                   SuperView:createBackground
+                  AttributeX:NSLayoutAttributeWidth
+                  AttributeY:NSLayoutAttributeHeight
+                 MultiplierX:1.0
+                 MultiplierY:1.0
+                        GapX:.0
+                        GapY:.0];
+    [UIView initFromTopWithSelf:missionMemo
+                     targetView:missionTel
+                      superView:createBackground
+                            gap:16.0];
+    missionMemo.placeholder = @"請輸入任務其他資訊";
+    
+    
+    UIButton *mi = [[UIButton alloc]
+                    initWithTitle:@"快速建立"
+                    backgroundColor:[UIColor yellowColor]
+                    addTarget:self func:@selector(cMissiom)
+                    targetView:createBackground multiplier:1.0 superView:createBackground];
+    
+    [mi setTintColor:[UIColor blackColor]];
     
 }
+
+-(void) cMissiom {
+    if (missionName.text.length < 1) {
+        missionLoc.text = @"任務名稱空白";
+        return;
+    }
+    if (missionTel.text.length < 1) {
+        missionLoc.text = @"聯絡電話空白";
+        return;
+    }
+    
+    //測試
+    MissionVO *mission = [MissionVO new];
+    mission.groupId = 1;
+    mission.missionCreateMemberId = [MemberDatabase stand].memberId;
+    mission.missionName = missionName.text;
+    mission.messionTel = missionTel.text;
+    mission.missionMemo = missionMemo.text;
+    
+    MissionWorkPointVO *aa = [MissionWorkPointVO new];
+    aa.order = 1;
+    aa.address = missionLoc.text;
+    aa.loc = map.centerCoordinate;
+    
+    NSDateFormatter *ndf = [NSDateFormatter new];
+    [ndf setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    
+    aa.expectedArrivalTime = [ndf stringFromDate:[NSDate new]];
+    
+    
+    [mission.workPointList addObject:aa];
+    
+    NSMutableDictionary *createMission1 = [NSMutableDictionary new];
+    [createMission1 setValue:@(mission.groupId) forKey:@"groupId"];
+    [createMission1 setValue:@(mission.missionCreateMemberId) forKey:@"createMemberid"];
+    [createMission1 setValue:mission.missionName forKey:@"missionName"];
+    [createMission1 setValue:mission.messionTel forKey:@"missionTel"];
+    [createMission1 setValue:mission.missionMemo forKey:@"missionMemo"];
+    
+    
+    NSMutableArray *wpl = [NSMutableArray new];
+    for (MissionWorkPointVO *wp in mission.workPointList) {
+        NSMutableDictionary *wpd = [NSMutableDictionary new];
+        
+        [wpd setValue:@(wp.order) forKey:@"order"];
+        [wpd setValue:wp.address forKey:@"WPadd"];
+        [wpd setValue:@(wp.loc.latitude) forKey:@"WPlat"];
+        [wpd setValue:@(wp.loc.longitude) forKey:@"WPlon"];
+        [wpd setValue:wp.expectedArrivalTime forKey:@"expectedArrivalTime"];
+        [wpl addObject:wpd];
+    }
+    
+    [createMission1 setObject:wpl forKey:@"missionWorkPoint"];
+    
+    NSMutableDictionary *para = [NSMutableDictionary new];
+    [para addEntriesFromDictionary:@{@"createMission" : createMission1}];
+    [para addEntriesFromDictionary:[MemberDatabase stand].signInData];
+    
+    
+    [[HttpConnection stand] doPostWithURLString:@"CreateMission.php" parameters:para data:nil finish:^(NSError *error, id result) {
+        
+    }];
+}
+
 
 #pragma - clearTextField
 -(void)cleartetxField{
@@ -222,7 +358,7 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     [[CLGeocoder new] geocodeAddressString:textField.text completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-        NSLog(@"地址查詢%@\n地址查詢結束",placemarks);
+//        NSLog(@"地址查詢%@\n地址查詢結束",placemarks);
         if (placemarks[0]) {
             [map setCenterCoordinate:placemarks[0].location.coordinate animated:true];
         }else {
@@ -289,12 +425,57 @@
     region.span = MKCoordinateSpanMake(.01, .01);
     [map setRegion:region animated:true];
     backRegion.hidden = true;
+    
+    //    NSLog(@"\n我是 ＝ %@",[MemberDatabase stand].signInData);
+    NSMutableDictionary *aa = [NSMutableDictionary new];
+    [aa addEntriesFromDictionary:[MemberDatabase stand].signInData];
+    [aa setValue:@(userLoc.coordinate.latitude) forKey:@"lat"];
+    [aa setValue:@(userLoc.coordinate.longitude) forKey:@"lon"];
+    [[HttpConnection stand] doPostWithURLString:@"ReportStatus.php" parameters:aa data:nil finish:^(NSError *error, id result) {
+        
+    }];
+    
 }
 
 #pragma - CLLoction
 -(void)locationManager:(CLLocationManager *)manager
     didUpdateLocations:(NSArray<CLLocation *> *)locations{
     userLoc = locations.lastObject;
+    [MemberDatabase stand].location = userLoc;
+    
+    
+    
+    
+}
+
+-(void) report {
+    if (oldLoc == nil) {
+        oldLoc = userLoc;
+    }
+    
+    if (oldTime == nil) {
+        oldTime = [NSDate new];
+    }
+    
+    //    NSTimeInterval after = [oldTime timeIntervalSinceNow];
+    //    NSLog(@"\n我是時間%f",after);
+    
+    [MemberDatabase stand].location = userLoc;
+    CLLocationDistance distance = [oldLoc distanceFromLocation:userLoc];
+    
+    if (distance > 10.0) {
+        
+        oldLoc = userLoc;
+        
+        NSMutableDictionary *aa = [NSMutableDictionary new];
+        [aa addEntriesFromDictionary:[MemberDatabase stand].signInData];
+        [aa setValue:@(userLoc.coordinate.latitude) forKey:@"lat"];
+        [aa setValue:@(userLoc.coordinate.longitude) forKey:@"lon"];
+        [[HttpConnection stand] doPostWithURLString:@"ReportStatus.php" parameters:aa data:nil finish:^(NSError *error, id result) {
+
+        }];
+    }
+
 }
 
 -(void)changeAddressBarWithLocation:(CLLocation*)location {
@@ -305,22 +486,22 @@
          
          CLPlacemark *placemark = [placemarks objectAtIndex:0];
          if (placemark) {
-             NSLog(@"\n資訊placemark\n %@",placemark);
+//             NSLog(@"\n資訊placemark\n %@",placemark);
              //String to hold address
              NSString *locatedAt = [[placemark.addressDictionary valueForKey:@"FormattedAddressLines"] componentsJoinedByString:@", "];
-             NSLog(@"\n字典addressDictionary \n%@", placemark.addressDictionary);
-             NSLog(@"placemark\n範圍 %@",placemark.region);
-             NSLog(@"placemark\n國家 %@",placemark.country);
+//             NSLog(@"\n字典addressDictionary \n%@", placemark.addressDictionary);
+//             NSLog(@"placemark\n範圍 %@",placemark.region);
+//             NSLog(@"placemark\n國家 %@",placemark.country);
              // Give Country Name
-             NSLog(@"placemark\n鄉鎮市區 %@",placemark.locality);
+//             NSLog(@"placemark\n鄉鎮市區 %@",placemark.locality);
              // Extract the city name
-             NSLog(@"location \n地標名字 %@",placemark.name);
-             NSLog(@"location \n我是%@",placemark.ocean);
-             NSLog(@"location \n我是2%@",placemark.postalCode);
-             NSLog(@"location \n我是3%@",placemark.subLocality);
-             NSLog(@"location \n位置資訊，緯經度，精確範圍，秒速，時間%@",placemark.location);
+//             NSLog(@"location \n地標名字 %@",placemark.name);
+//             NSLog(@"location \n我是%@",placemark.ocean);
+//             NSLog(@"location \n我是2%@",placemark.postalCode);
+//             NSLog(@"location \n我是3%@",placemark.subLocality);
+//             NSLog(@"location \n位置資訊，緯經度，精確範圍，秒速，時間%@",placemark.location);
              //Print the location to console
-             NSLog(@"I am currently at %@",locatedAt);
+//             NSLog(@"I am currently at %@",locatedAt);
              
              missionLoc.text = locatedAt;
              [map removeAnnotation:missionLocAnn];

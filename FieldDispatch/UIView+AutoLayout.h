@@ -12,6 +12,19 @@
 
 #pragma - add subView
 
+//arrangement排列
++(void)initArrangementWithSelf:(UIView*)selfView
+                         targetView:(UIView*)target
+                         superView:(UIView*)superViev
+                         x1Attribute:(NSLayoutAttribute)x1Attribute
+                         x2Attribute:(NSLayoutAttribute)x2Attribute
+                         y1Attribute:(NSLayoutAttribute)y1Attribute
+                         y2Attribute:(NSLayoutAttribute)y2Attribute
+                  multiplierX:(CGFloat)multiplierX
+                   multiplierY:(CGFloat)multiplierY
+                         xGap:(CGFloat)xGap
+                         yGap:(CGFloat)yGap;
+
 +(void)initFromBottonWithSelf:(UIView*)selfView
                 targetView:(UIView*)target
                  superView:(UIView*)superView
