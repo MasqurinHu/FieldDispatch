@@ -147,6 +147,15 @@ static MemberDatabase *member = nil;
 
 -(void)setLocation:(CLLocation *)location {
     _location = location;
+    
+    if ([member.signInData isKindOfClass:[NSMutableDictionary class]]) {
+        NSLog(@"是md");
+    }
+    
+    if ([member.signInData isKindOfClass:[NSDictionary class]]) {
+        NSLog(@"是普通字典");
+    }
+    
     [member.signInData setObject:@(location.coordinate.latitude) forKey:@"Lat"];
     [member.signInData setObject:@(location.coordinate.longitude) forKey:@"Lon"];
 }

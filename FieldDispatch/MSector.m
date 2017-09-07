@@ -28,6 +28,11 @@
     self = [super init];
     self.translatesAutoresizingMaskIntoConstraints = false;
     size = [MobileDataBase stand].square * .85;
+    
+    if (size > 350) {
+        size = 350;
+    }
+    
     [superView addSubview:self];
     [UIView initSizeWithSelf:self
                   TargetView:superView

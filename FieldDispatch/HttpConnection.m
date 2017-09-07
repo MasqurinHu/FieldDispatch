@@ -115,9 +115,15 @@ static HttpConnection *http = nil;
                       //array內 的uiviewcontroller 告訴編譯器 它是uiviewcontroller 使用屬性 tableView 做reloadData
                       [((UITableViewController*)[MobileDataBase stand].uiViewcontrollerList[2]).tableView reloadData];
                   }
-                  NSDictionary *memberInfo = responseObject[@"memberInfo"];
+                  NSMutableDictionary *memberInfo = [NSMutableDictionary new];
+                  NSDictionary *scapegoat = responseObject[@"memberInfo"];
+                  NSArray *keys = scapegoat.allKeys;
+                  for (int i = 0; i < scapegoat.count; i ++) {
+                      [memberInfo setObject:scapegoat[keys[i]] forKey:keys[i]];
+                  }
+                  
                   if (memberInfo) {
-                      [MemberDatabase stand].signInData = (NSMutableDictionary*)memberInfo;
+                      [MemberDatabase stand].signInData = memberInfo;
                   }
                   
               }

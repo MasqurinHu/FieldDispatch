@@ -15,11 +15,10 @@
 
 -(instancetype)init {
     self = [super init];
-    
-    _acceptableList = [NSArray new];
-    _completeList = [NSArray new];
     _delegate = [NSArray new];
-    
+    _acceptableList = [NSArray new];
+    _acceptedList = [NSArray new];
+    _completeList = [NSArray new];
     return self;
 }
 
@@ -27,28 +26,28 @@
     self = [super init];
     
     NSArray *acceptable = data[@"missionAcceptableList"];
-    NSMutableArray <MissionVO*>*pro = [NSMutableArray new];
+    NSMutableArray <MissionVO*>*scapegoat = [NSMutableArray new];
     if (acceptable.count > 0) {
         for (NSDictionary *data in acceptable) {
             
             MissionVO *mission = [[MissionVO alloc] initWithData:data];
             mission.type = MISSION_TYPE_ACCEPTABLE;
-            [pro addObject:mission];
+            [scapegoat addObject:mission];
         }
-        _acceptableList = pro;
+        _acceptableList = scapegoat;
     }
     
     
     NSArray *accept = data[@"missionAcceptedList"];
-    NSMutableArray <MissionVO*>*pror = [NSMutableArray new];
+    scapegoat = [NSMutableArray new];
     if (accept.count > 0) {
         for (NSDictionary *data in accept) {
             
             MissionVO *mission = [[MissionVO alloc] initWithData:data];
             mission.type = MISSION_TYPE_ACCEPTED;
-            [pror addObject:mission];
+            [scapegoat addObject:mission];
         }
-        _acceptedList = pror;
+        _acceptedList = scapegoat;
     }
     
     NSArray *complet = data[@"missionCompleteList"];
@@ -110,32 +109,10 @@
                   done(true);
               }
               
-              
-              
-              
          }];
-         
      }];
-    
-    
     
 }
 
-//沒用
-//-(void) makeProperty:(NSArray<MissionVO*>*)property array:(NSArray*)array{
-//    
-//    NSMutableArray <MissionVO*>*pro = [NSMutableArray new];
-//    if (array.count > 0) {
-//        for (NSDictionary *data in array) {
-//            
-//            MissionVO *mission = [[MissionVO alloc] initWithData:data];
-//            [pro addObject:mission];
-//        }
-//        property = pro;
-//        
-//        
-//    }
-//}
-//
 
 @end
