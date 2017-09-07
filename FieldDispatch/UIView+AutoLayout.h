@@ -10,8 +10,25 @@
 
 @interface UIView (AutoLayout)
 
+
+
 #pragma - add subView
 
++(void) atTargetCT_Withself:(UIView*)selfView
+                     target:(UIView*)target
+                  superView:(UIView*)superView
+                multiplierX:(CGFloat)multiplierX
+                multiplierY:(CGFloat)multiplierY
+                       gapX:(CGFloat)gapX
+                       gapY:(CGFloat)gapY;
+
++(void) atTargetLB_WithSelf:(UIView*)selfView
+                     target:(UIView*)target
+                  superView:(UIView*)superView
+                multiplierX:(CGFloat)multiplierX
+                multiplierY:(CGFloat)multiplierY
+                       gapX:(CGFloat)gapX
+                       gapY:(CGFloat)gapY;
 //arrangement排列
 +(void)initArrangementWithSelf:(UIView*)selfView
                          targetView:(UIView*)target
@@ -122,6 +139,8 @@
             MultiplierY:(CGFloat)multiplierY
                    GapX:(CGFloat)gapX
                    GapY:(CGFloat)gapY;
+
+
 
 
 @end

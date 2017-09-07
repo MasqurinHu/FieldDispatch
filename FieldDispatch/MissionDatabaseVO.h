@@ -9,12 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "MissionVO.h"
 
+typedef void (^MissionAccept)(BOOL accept) ;
+
 @interface MissionDatabaseVO : NSObject
 
 @property (nonatomic,strong) NSArray <MissionVO*>*acceptableList;
+@property (nonatomic,strong) NSArray <MissionVO*>*acceptedList;
 @property (nonatomic,strong) NSArray <MissionVO*>*completeList;
 @property (nonatomic,strong) NSArray <MissionVO*>*delegate;
 
 -(instancetype) initWithData:(NSDictionary*)data;
++(void) acceptMission:(MissionVO*)mission done:(MissionAccept)done;
+
 
 @end

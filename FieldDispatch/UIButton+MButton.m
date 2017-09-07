@@ -16,6 +16,8 @@
                         func:(SEL)func
                    superView:(UIView *)superView{
     self = [super init];
+//    self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    self.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
     [superView addSubview:self];
     self.backgroundColor = bgc;
     [self addTarget:class action:func forControlEvents:UIControlEventTouchUpInside];
@@ -37,6 +39,8 @@
                   multiplier:(CGFloat)multiplier
                    superView:(UIView*)superView{
     self = [super init];
+//    self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    self.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
     [superView addSubview:self];
     self.backgroundColor = bgc;
     [self addTarget:class action:func forControlEvents:UIControlEventTouchUpInside];

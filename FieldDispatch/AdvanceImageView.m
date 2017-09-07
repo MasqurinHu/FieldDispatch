@@ -18,14 +18,14 @@
     
     [self preparIndicatorView];
     
-    NSString *hashedFileName = [NSString stringWithFormat:@"Cache_%ld",[url hash]];
+    NSString *hashedFileName = [NSString stringWithFormat:@"Cache_%d",(int)[url hash]];
     //取得路徑 「找到想放的地方的網址」 URLsForDirectory是一個array
     NSURL *cachesURL = [[NSFileManager defaultManager]
                         URLsForDirectory:NSCachesDirectory
                         inDomains:NSUserDomainMask].firstObject;
     
     NSString *fullFilePathname = [cachesURL.path stringByAppendingPathComponent:hashedFileName];
-    NSLog(@"Caches Path:%@",cachesURL.path);
+//    NSLog(@"Caches Path:%@",cachesURL.path);
     
     //把電腦圖片放入uiimage 可能失敗 因為沒有載過
     UIImage *cachedImage = [UIImage imageWithContentsOfFile:fullFilePathname];

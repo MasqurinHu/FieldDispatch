@@ -53,4 +53,14 @@
     return name;
 }
 
+-(NSString *)getGroupNameWithGroupId:(int)Id {
+    NSString *groupName = @"";
+    for (MemberGroupVO *group in _groupList) {
+        if (group.groupId == Id) {
+            groupName = group.groupName;
+        }
+    }
+    return groupName;
+}
+
 @end

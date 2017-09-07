@@ -10,6 +10,7 @@
 #import "FieldDispatchDataBase.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <UserNotifications/UserNotifications.h>
 
 @interface MapVC ()<MKMapViewDelegate,CLLocationManagerDelegate,UITextFieldDelegate>
 
@@ -34,8 +35,32 @@
     MUIBottonlineTextField *missionTel;
     MUIBottonlineTextField *missionMemo;
     
+    int lock;
+}
+
+//設定本地通知
+-(void) alerttt {
+    UNMutableNotificationContent *content = [UNMutableNotificationContent new];
+    content.title = @"你好";
+    content.body = @"我是通知";
+    content.sound = [UNNotificationSound defaultSound];
+    UNNotificationRequest *request = [UNNotificationRequest
+                                      requestWithIdentifier:@"requ"
+                                      content:content
+                                      trigger:nil];
+    
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center removeAllPendingNotificationRequests];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"%@",error.description);
+        }
+    }];
+    
     
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -133,7 +158,30 @@
     backRegion.hidden = true;
     loc.hidden = true;
     missionLocAnn = [MKPointAnnotation new];
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
+//進入
+-(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+    [self alerttt];
+    NSLog(@"近來了");
+    lock = 1;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+//    [self alerttt];
+    NSLog(@"出去了");
+    lock = 0;
+}
+
+
 
 #pragma - dismissCreat
 -(void)dismissBTNFN{
@@ -296,6 +344,7 @@
     MissionVO *mission = [MissionVO new];
     mission.groupId = 1;
     mission.missionCreateMemberId = [MemberDatabase stand].memberId;
+    mission.contactPerson = @"周子榆";
     mission.missionName = missionName.text;
     mission.messionTel = missionTel.text;
     mission.missionMemo = missionMemo.text;
@@ -317,8 +366,10 @@
     [createMission1 setValue:@(mission.groupId) forKey:@"groupId"];
     [createMission1 setValue:@(mission.missionCreateMemberId) forKey:@"createMemberid"];
     [createMission1 setValue:mission.missionName forKey:@"missionName"];
+    [createMission1 setValue:mission.contactPerson forKey:@"contactPerson"];
     [createMission1 setValue:mission.messionTel forKey:@"missionTel"];
     [createMission1 setValue:mission.missionMemo forKey:@"missionMemo"];
+    [createMission1 setObject:@(mission.executorId) forKey:@"executorId"];
     
     
     NSMutableArray *wpl = [NSMutableArray new];
@@ -444,6 +495,18 @@
     [MemberDatabase stand].location = userLoc;
     
     
+    if (lock == 0) {
+        if (userLoc.coordinate.latitude > 30.0) {
+                lock = 1;
+        }
+        
+        //設定範圍
+        CLCircularRegion *region = [[CLCircularRegion alloc] initWithCenter:userLoc.coordinate radius:100 identifier:@"report"];
+        // id用變數 每個點要有自己的id
+        [locManager requestStateForRegion:region];
+        //    [locManager stopMonitoringForRegion:region];
+        [locManager startMonitoringForRegion:region];
+    }
     
     
 }
@@ -519,6 +582,9 @@
      }];
     
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

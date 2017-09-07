@@ -10,6 +10,59 @@
 
 @implementation UIView (AutoLayout)
 
++(void)atTargetCT_Withself:(UIView *)selfView
+                    target:(UIView *)target
+                 superView:(UIView *)superView
+               multiplierX:(CGFloat)multiplierX
+               multiplierY:(CGFloat)multiplierY
+                      gapX:(CGFloat)gapX
+                      gapY:(CGFloat)gapY {
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
+    [superView addConstraint:[NSLayoutConstraint
+                              constraintWithItem:selfView
+                              attribute:NSLayoutAttributeLeading
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:target
+                              attribute:NSLayoutAttributeTrailing
+                              multiplier:multiplierX
+                              constant:gapX]];
+    [superView addConstraint:[NSLayoutConstraint
+                              constraintWithItem:selfView
+                              attribute:NSLayoutAttributeCenterY
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:target
+                              attribute:NSLayoutAttributeCenterY
+                              multiplier:multiplierY
+                              constant:gapY]];
+}
+
++(void)atTargetLB_WithSelf:(UIView *)selfView
+                    target:(UIView *)target
+                 superView:(UIView *)superView
+               multiplierX:(CGFloat)multiplierX
+               multiplierY:(CGFloat)multiplierY
+                      gapX:(CGFloat)gapX
+                      gapY:(CGFloat)gapY {
+    selfView.translatesAutoresizingMaskIntoConstraints = false;
+    [superView addConstraint:[NSLayoutConstraint
+                              constraintWithItem:selfView
+                              attribute:NSLayoutAttributeLeading
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:target
+                              attribute:NSLayoutAttributeLeading
+                              multiplier:multiplierX
+                              constant:gapX]];
+    [superView addConstraint:[NSLayoutConstraint
+                              constraintWithItem:selfView
+                              attribute:NSLayoutAttributeTop
+                              relatedBy:NSLayoutRelationEqual
+                              toItem:target
+                              attribute:NSLayoutAttributeBottom
+                              multiplier:multiplierY
+                              constant:gapY]];
+    
+}
+
 +(void)initArrangementWithSelf:(UIView *)selfView
                     targetView:(UIView *)target
                      superView:(UIView *)superViev

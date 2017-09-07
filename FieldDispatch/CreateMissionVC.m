@@ -217,6 +217,7 @@
     _mission.groupId = 1;
     _mission.missionCreateMemberId = [MemberDatabase stand].memberId;
     _mission.missionName = @"測試任務";
+    _mission.contactPerson = @"橋本環奈";
     _mission.messionTel = @"0987654321";
     _mission.missionMemo = @"好煩阿";
     
@@ -238,9 +239,10 @@
     [createMission setValue:@(_mission.groupId) forKey:@"groupId"];
     [createMission setValue:@(_mission.missionCreateMemberId) forKey:@"createMemberid"];
     [createMission setValue:_mission.missionName forKey:@"missionName"];
+    [createMission setValue:_mission.contactPerson forKey:@"contactPerson"];
     [createMission setValue:_mission.messionTel forKey:@"missionTel"];
     [createMission setValue:_mission.missionMemo forKey:@"missionMemo"];
-    
+    [createMission setObject:@(_mission.executorId) forKey:@"executorId"];
     
     NSMutableArray *wpl = [NSMutableArray new];
     for (MissionWorkPointVO *wp in _mission.workPointList) {
@@ -308,7 +310,6 @@
 
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     
-    NSLog(@"\n我是按鈕編號%lu",chooseBtn.tag);
     if (chooseBtn.tag == 10) {
         
         chooseArray = [MemberDatabase stand].people.groupList;

@@ -16,7 +16,6 @@ static MemberDatabase *member = nil;
     if (member == nil) {
         member = [MemberDatabase new];
         member.signInData = [[[NSUserDefaults standardUserDefaults] objectForKey:@"member"] mutableCopy];
-        NSLog(@"\n為什麼%@",member.signInData.description);
         if (member.signInData == NULL) {
             member.signInData = [NSMutableDictionary new];
         }
@@ -144,6 +143,12 @@ static MemberDatabase *member = nil;
 
 -(int)deviceType{
     return 1;
+}
+
+-(void)setLocation:(CLLocation *)location {
+    _location = location;
+    [member.signInData setObject:@(location.coordinate.latitude) forKey:@"Lat"];
+    [member.signInData setObject:@(location.coordinate.longitude) forKey:@"Lon"];
 }
 
 #pragma - FUNC

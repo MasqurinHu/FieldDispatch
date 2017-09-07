@@ -6,14 +6,13 @@
 //  Copyright © 2017年 Ｍasqurin. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 
 @interface MobileDataBase : NSObject
 
 @property (readonly,nonatomic,assign) int square;
 @property (readonly,nonatomic,assign) double rectangleWidth;
-
+@property (nonatomic,strong) NSMutableArray <UIViewController*>*uiViewcontrollerList;
 
 
 

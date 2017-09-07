@@ -15,6 +15,7 @@ static MobileDataBase *mobileDataBase = nil;
 +(instancetype)stand{
     if (mobileDataBase == nil) {
         mobileDataBase = [MobileDataBase new];
+        mobileDataBase.uiViewcontrollerList = [NSMutableArray new];
     }
     return mobileDataBase;
 }

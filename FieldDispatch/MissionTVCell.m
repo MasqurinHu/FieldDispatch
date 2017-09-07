@@ -8,11 +8,15 @@
 
 #import "MissionTVCell.h"
 #import <MapKit/MapKit.h>
+#import "FieldDispatchDataBase.h"
 
 @interface MissionTVCell()<MKMapViewDelegate>
 {
     AdvanceImageView *photo;
     MKMapView *map;
+    UILabel *missionId;
+    UILabel *type;
+    UILabel *status;
     UILabel *missionName;
     UILabel *name;
     UILabel *missionType;
@@ -25,35 +29,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    photo = [AdvanceImageView new];
-    [self addSubview:photo];
-    photo.translatesAutoresizingMaskIntoConstraints = false;
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:photo
-                         attribute:NSLayoutAttributeWidth
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:self
-                         attribute:NSLayoutAttributeHeight
-                         multiplier:.001
-                         constant:70.0]];
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:photo
-                         attribute:NSLayoutAttributeHeight
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:self
-                         attribute:NSLayoutAttributeHeight
-                         multiplier:.001
-                         constant:70.0]];
-    [UIView initAtLeftTopWithSelf:photo
-                        SuperView:self
-                         Levelgap:20.0
-                      VerticalGap:4.0];
-    NSURL *url = [NSURL URLWithString:[MemberDatabase stand].photoURL];
-    [photo loadImageWithURL:url];
     
     map = [MKMapView new];
-    map.backgroundColor = [UIColor blueColor];
     map.userInteractionEnabled = false;
     [self addSubview:map];
     map.translatesAutoresizingMaskIntoConstraints = false;
@@ -61,10 +38,10 @@
                          constraintWithItem:map
                          attribute:NSLayoutAttributeLeading
                          relatedBy:NSLayoutRelationEqual
-                         toItem:photo
-                         attribute:NSLayoutAttributeTrailing
+                         toItem:self
+                         attribute:NSLayoutAttributeLeading
                          multiplier:1.0
-                         constant:20.0]];
+                         constant:4.0]];
     [self addConstraint:[NSLayoutConstraint
                          constraintWithItem:map
                          attribute:NSLayoutAttributeTrailing
@@ -83,146 +60,255 @@
                          constant:4.0]];
     [self addConstraint:[NSLayoutConstraint
                          constraintWithItem:map
-                         attribute:NSLayoutAttributeBottom
+                         attribute:NSLayoutAttributeHeight
                          relatedBy:NSLayoutRelationEqual
                          toItem:self
-                         attribute:NSLayoutAttributeBottom
-                         multiplier:1.0
-                         constant:-30.0]];
+                         attribute:NSLayoutAttributeHeight
+                         multiplier:.0001
+                         constant:100.0]];
     
-    missionName = [UILabel new];
-    missionName.numberOfLines = 0;
-    missionName.translatesAutoresizingMaskIntoConstraints = false;
-    missionName.text = [NSString stringWithFormat:@"任務名稱：\n%@",_mission.missionName];
-    [self addSubview:missionName];
-    [missionName sizeToFit];
+    photo = [AdvanceImageView new];
+    [self addSubview:photo];
+    photo.translatesAutoresizingMaskIntoConstraints = false;
     [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:missionName
-                         attribute:NSLayoutAttributeTop
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:photo
-                         attribute:NSLayoutAttributeBottom
-                         multiplier:1.0
-                         constant:.0]];
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:missionName
-                         attribute:NSLayoutAttributeLeading
+                         constraintWithItem:photo
+                         attribute:NSLayoutAttributeWidth
                          relatedBy:NSLayoutRelationEqual
                          toItem:self
-                         attribute:NSLayoutAttributeLeading
-                         multiplier:1.0
-                         constant:4.0]];
-    
-    name = [UILabel new];
-    [self addSubview:name];
-    name.numberOfLines = 0;
-    name.translatesAutoresizingMaskIntoConstraints = false;
-    name.text = [NSString stringWithFormat:@"執行者：\n%@",_mission.missionExecutor];
-    [name sizeToFit];
+                         attribute:NSLayoutAttributeHeight
+                         multiplier:.001
+                         constant:30.0]];
     [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem: name
-                         attribute:NSLayoutAttributeTop
+                         constraintWithItem:photo
+                         attribute:NSLayoutAttributeHeight
                          relatedBy:NSLayoutRelationEqual
-                         toItem:missionName
-                         attribute:NSLayoutAttributeBottom
-                         multiplier:1.0
-                         constant:2.0]];
+                         toItem:self
+                         attribute:NSLayoutAttributeHeight
+                         multiplier:.001
+                         constant:30.0]];
     [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:name
+                         constraintWithItem:photo
                          attribute:NSLayoutAttributeLeading
                          relatedBy:NSLayoutRelationEqual
-                         toItem:missionName
-                         attribute:NSLayoutAttributeLeading
-                         multiplier:1.0
-                         constant:2.0]];
-    
-    missionType = [UILabel new];
-    missionType.numberOfLines = 0;
-    switch (_mission.missionStatus) {
-        case 1:
-            missionType.text = @"狀態：待接送";
-            break;
-        case 2:
-            missionType.text = @"狀態：前往中";
-            break;
-        case 3:
-            missionType.text = @"狀態：工作中";
-            break;
-        case 4:
-            missionType.text = @"狀態：已完成";
-            break;
-        default:
-            missionType.text = @"狀態：異常～";
-            break;
-    }
-    
-    [missionType sizeToFit];
-    [self addSubview:missionType];
-    missionType.translatesAutoresizingMaskIntoConstraints = false;
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:missionType
-                         attribute:NSLayoutAttributeLeading
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:name
-                         attribute:NSLayoutAttributeLeading
+                         toItem:map attribute:NSLayoutAttributeLeading
                          multiplier:1.0
                          constant:.0]];
     [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:missionType
-                         attribute:NSLayoutAttributeTop
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:name
-                         attribute:NSLayoutAttributeBottom
-                         multiplier:1.0
-                         constant:4.0]];
-    
-    creatTime = [UILabel new];
-    creatTime.numberOfLines = 0;
-    
-    creatTime.text = [NSString
-                      stringWithFormat:@"預約時間：%@",_mission.workPointList[0].expectedArrivalTime];
-    creatTime.translatesAutoresizingMaskIntoConstraints = false;
-    [creatTime sizeToFit];
-    [self addSubview:creatTime];
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:creatTime
-                         attribute:NSLayoutAttributeTop
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:missionType
-                         attribute:NSLayoutAttributeBottom
-                         multiplier:1.0
-                         constant:2.0]];
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:creatTime
-                         attribute:NSLayoutAttributeTrailing
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:map
-                         attribute:NSLayoutAttributeTrailing
-                         multiplier:1.0
-                         constant:.0]];
-    
-    memo = [UILabel new];
-    
-    memo.text = [NSString stringWithFormat:@"備註:%@",_mission.missionMemo];
-    memo.translatesAutoresizingMaskIntoConstraints = false;
-    [memo sizeToFit];
-    [self addSubview:memo];
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:memo
+                         constraintWithItem:photo
                          attribute:NSLayoutAttributeTop
                          relatedBy:NSLayoutRelationEqual
                          toItem:map
                          attribute:NSLayoutAttributeBottom
                          multiplier:1.0
-                         constant:2]];
+                         constant:4.0]];
+    NSURL *url = [NSURL URLWithString:[MemberDatabase stand].photoURL];
+    [photo loadImageWithURL:url];
+    
+    type = [UILabel new];
+    type.translatesAutoresizingMaskIntoConstraints = false;
+    [type sizeToFit];
+    [self addSubview:type];
     [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:memo
-                         attribute:NSLayoutAttributeLeading
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:missionType
-                         attribute:NSLayoutAttributeLeading
-                         multiplier:1.0
-                         constant:.0]];
+                        constraintWithItem:type
+                        attribute:NSLayoutAttributeLeading
+                        relatedBy:NSLayoutRelationEqual
+                        toItem:photo
+                        attribute:NSLayoutAttributeLeading
+                        multiplier:1.0
+                        constant:.0]];
+    [self addConstraint:[NSLayoutConstraint
+                        constraintWithItem:type
+                        attribute:NSLayoutAttributeTop
+                        relatedBy:NSLayoutRelationEqual
+                        toItem:photo
+                        attribute:NSLayoutAttributeBottom
+                        multiplier:1.0
+                        constant:4.0]];
+    
+    missionId = [UILabel new];
+    missionId.translatesAutoresizingMaskIntoConstraints = false;
+    [self addSubview:missionId];
+    [missionId sizeToFit];
+    [self addConstraint:[NSLayoutConstraint
+                        constraintWithItem:missionId
+                        attribute:NSLayoutAttributeLeading
+                        relatedBy:NSLayoutRelationEqual
+                        toItem:type
+                        attribute:NSLayoutAttributeLeading
+                        multiplier:1.0
+                        constant:.0]];
+    [self addConstraint:[NSLayoutConstraint
+                        constraintWithItem:missionId
+                        attribute:NSLayoutAttributeTop
+                        relatedBy:NSLayoutRelationEqual
+                        toItem:type
+                        attribute:NSLayoutAttributeBottom
+                        multiplier:1.0
+                        constant:4.0]];
+    
+    status = [UILabel new];
+    status.translatesAutoresizingMaskIntoConstraints = false;
+    [self addSubview:status];
+    [status sizeToFit];
+    [self addConstraint:[NSLayoutConstraint
+                        constraintWithItem:status
+                        attribute:NSLayoutAttributeLeading
+                        relatedBy:NSLayoutRelationEqual
+                        toItem:missionId
+                        attribute:NSLayoutAttributeLeading
+                        multiplier:1.0
+                        constant:.0]];
+    [self addConstraint:[NSLayoutConstraint
+                        constraintWithItem:status
+                        attribute:NSLayoutAttributeTop
+                        relatedBy:NSLayoutRelationEqual
+                        toItem:missionId
+                        attribute:NSLayoutAttributeBottom
+                        multiplier:1.0
+                        constant:4.0]];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:status
+//                         attribute:NSLayoutAttributeBottom
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:self
+//                         attribute:NSLayoutAttributeBottom
+//                         multiplier:1.0
+//                         constant:-4.0]];
+    
+//    
+//    missionName = [UILabel new];
+//    missionName.numberOfLines = 0;
+//    missionName.translatesAutoresizingMaskIntoConstraints = false;
+//    missionName.text = [NSString stringWithFormat:@"任務名稱：\n%@",_mission.missionName];
+//    [self addSubview:missionName];
+//    [missionName sizeToFit];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:missionName
+//                         attribute:NSLayoutAttributeTop
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:photo
+//                         attribute:NSLayoutAttributeBottom
+//                         multiplier:1.0
+//                         constant:.0]];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:missionName
+//                         attribute:NSLayoutAttributeLeading
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:self
+//                         attribute:NSLayoutAttributeLeading
+//                         multiplier:1.0
+//                         constant:4.0]];
+//    
+//    name = [UILabel new];
+//    [self addSubview:name];
+//    name.numberOfLines = 0;
+//    name.translatesAutoresizingMaskIntoConstraints = false;
+//    name.text = [NSString stringWithFormat:@"執行者：\n%@",_mission.missionExecutor];
+//    [name sizeToFit];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem: name
+//                         attribute:NSLayoutAttributeTop
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:missionName
+//                         attribute:NSLayoutAttributeBottom
+//                         multiplier:1.0
+//                         constant:2.0]];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:name
+//                         attribute:NSLayoutAttributeLeading
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:missionName
+//                         attribute:NSLayoutAttributeLeading
+//                         multiplier:1.0
+//                         constant:2.0]];
+//    
+//    missionType = [UILabel new];
+//    missionType.numberOfLines = 0;
+//    switch (_mission.missionStatus) {
+//        case 1:
+//            missionType.text = @"狀態：待接送";
+//            break;
+//        case 2:
+//            missionType.text = @"狀態：前往中";
+//            break;
+//        case 3:
+//            missionType.text = @"狀態：工作中";
+//            break;
+//        case 4:
+//            missionType.text = @"狀態：已完成";
+//            break;
+//        default:
+//            missionType.text = @"狀態：異常～";
+//            break;
+//    }
+//    
+//    [missionType sizeToFit];
+//    [self addSubview:missionType];
+//    missionType.translatesAutoresizingMaskIntoConstraints = false;
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:missionType
+//                         attribute:NSLayoutAttributeLeading
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:name
+//                         attribute:NSLayoutAttributeLeading
+//                         multiplier:1.0
+//                         constant:.0]];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:missionType
+//                         attribute:NSLayoutAttributeTop
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:name
+//                         attribute:NSLayoutAttributeBottom
+//                         multiplier:1.0
+//                         constant:4.0]];
+//    
+//    creatTime = [UILabel new];
+//    creatTime.numberOfLines = 0;
+//    
+//    creatTime.text = [NSString
+//                      stringWithFormat:@"預約時間：%@",_mission.workPointList[0].expectedArrivalTime];
+//    creatTime.translatesAutoresizingMaskIntoConstraints = false;
+//    [creatTime sizeToFit];
+//    [self addSubview:creatTime];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:creatTime
+//                         attribute:NSLayoutAttributeTop
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:missionType
+//                         attribute:NSLayoutAttributeBottom
+//                         multiplier:1.0
+//                         constant:2.0]];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:creatTime
+//                         attribute:NSLayoutAttributeTrailing
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:map
+//                         attribute:NSLayoutAttributeTrailing
+//                         multiplier:1.0
+//                         constant:.0]];
+//    
+//    memo = [UILabel new];
+//    
+//    memo.text = [NSString stringWithFormat:@"備註:%@",_mission.missionMemo];
+//    memo.translatesAutoresizingMaskIntoConstraints = false;
+//    [memo sizeToFit];
+//    [self addSubview:memo];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:memo
+//                         attribute:NSLayoutAttributeTop
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:map
+//                         attribute:NSLayoutAttributeBottom
+//                         multiplier:1.0
+//                         constant:2]];
+//    [self addConstraint:[NSLayoutConstraint
+//                         constraintWithItem:memo
+//                         attribute:NSLayoutAttributeLeading
+//                         relatedBy:NSLayoutRelationEqual
+//                         toItem:missionType
+//                         attribute:NSLayoutAttributeLeading
+//                         multiplier:1.0
+//                         constant:.0]];
 
 }
 
@@ -232,12 +318,32 @@
 }
 
 -(void)reload {
-    NSURL *url = [NSURL URLWithString:[MemberDatabase stand].photoURL];
+    PeopleVO *people = [[MemberDatabase stand] .people getPeopleWithId:_mission.missionCreateMemberId];
+    NSURL *url = [NSURL URLWithString:people.photo];
     [photo loadImageWithURL:url];
     
+    missionId.text = [NSString stringWithFormat:@"%@%d",MISSION_ID,_mission.missionId];
+    type.text = _mission.type;
+    
+    if (_mission.missionStatus == 0) {
+        status.text = MISSION_STATUS_WAIT;
+    }
+    if (_mission.missionStatus == -1) {
+        status.text = MISSION_STATUS_COMPLETED;
+    }
+    if (_mission.missionStatus == 1) {
+        int gotoPoint = 0;
+        for (MissionWorkPointVO *tmp in _mission.workPointList) {
+            if (tmp.status > 0) {
+                gotoPoint++;
+            }
+            status.text = [NSString stringWithFormat:@"%@%d",MISSION_STATUS_GOTO,gotoPoint];
+        }
+    }
+    
+    
     missionName.text = [NSString stringWithFormat:@"任務名稱：\n%@",_mission.missionName];
-    NSString *aa = [[MemberDatabase stand].people getNameWithId:_mission.missionCreateMemberId];
-    name.text = [NSString stringWithFormat:@"執行者：\n%@",aa];
+    name.text = [NSString stringWithFormat:@"執行者：\n%@",people.nickName];
     
     missionType.numberOfLines = 0;
     switch (_mission.missionStatus) {

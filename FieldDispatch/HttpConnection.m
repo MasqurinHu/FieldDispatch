@@ -102,6 +102,18 @@ static HttpConnection *http = nil;
                   NSDictionary *missionInfo = responseObject[@"missionInfo"];
                   if (missionInfo) {
                       [MemberDatabase stand].mission = [[MissionDatabaseVO alloc] initWithData:missionInfo];
+                      //尋找nav底下所有子vc 比對類型是xx 讓他做某件事情
+                      
+                      for (UIViewController *tmp in [[MobileDataBase stand].uiViewcontrollerList[1] childViewControllers]) {
+                          if ([tmp isKindOfClass:[MissionListTVC class]]) {
+                              [((UITableViewController*)tmp).tableView reloadData];
+                          }
+                          if ([tmp isKindOfClass:[MemberTVC class]]) {
+                              [((UITableViewController*)tmp).tableView reloadData];
+                          }
+                      }
+                      //array內 的uiviewcontroller 告訴編譯器 它是uiviewcontroller 使用屬性 tableView 做reloadData
+                      [((UITableViewController*)[MobileDataBase stand].uiViewcontrollerList[2]).tableView reloadData];
                   }
                   NSDictionary *memberInfo = responseObject[@"memberInfo"];
                   if (memberInfo) {

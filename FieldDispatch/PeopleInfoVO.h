@@ -18,6 +18,8 @@
 -(instancetype) initFromData:(NSDictionary*)data;
 
 -(PeopleVO*) getPeopleWithId:(int)Id;
+
+-(NSString*) getGroupNameWithGroupId:(int)Id;
 -(NSString*) getNameWithId:(int)Id;
 
 @end

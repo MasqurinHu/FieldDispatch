@@ -1,20 +1,18 @@
 //
-//  MissionTVCell.h
+//  MissionListTVCell.h
 //  FieldDispatch
 //
-//  Created by Ｍasqurin on 2017/8/12.
+//  Created by Ｍasqurin on 2017/9/1.
 //  Copyright © 2017年 Ｍasqurin. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "FieldDispatchDataBase.h"
 
-
-@interface MissionTVCell : UITableViewCell
+@interface MissionListTVCell : UITableViewCell
 
 @property (nonatomic,weak) MissionVO *mission;
-@property (nonatomic,weak) MissionTVC *missionTVC;
-
+@property (nonatomic,weak) MissionListTVC *tvc;
 -(void) reload;
 
 @end

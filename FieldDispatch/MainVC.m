@@ -24,7 +24,8 @@
     
     NSLayoutConstraint *bottonFramConstraint;
     
-    MissionTVC *fvc;
+    
+    MissionListTVC *fvc;
     MemberTVC *userInfo;
 }
 @end
@@ -44,6 +45,8 @@
     _onLionSW.on = false;
     
     pageNubber = 5;
+    
+    
     
     //假資料
     
@@ -162,12 +165,15 @@
     [main addSubview:mapVC.view];
     mapVC.view.translatesAutoresizingMaskIntoConstraints = false;
     [mapVC didMoveToParentViewController:self];
+    [[MobileDataBase stand].uiViewcontrollerList addObject:mapVC];
     
-    fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"MissionTVC"];
+    
+    fvc = [self.storyboard instantiateViewControllerWithIdentifier:@"NAVMissionListTVC"];
     [self addChildViewController:fvc];
     [main addSubview:fvc.view];
     fvc.view.translatesAutoresizingMaskIntoConstraints = false;
     [fvc didMoveToParentViewController:self];
+    [[MobileDataBase stand].uiViewcontrollerList addObject:fvc];
     
     
     userInfo = [self.storyboard instantiateViewControllerWithIdentifier:@"MemberTVC"];//
@@ -175,20 +181,23 @@
     [main addSubview:userInfo.view];
     userInfo.view.translatesAutoresizingMaskIntoConstraints = false;
     [userInfo didMoveToParentViewController:self];
+    [[MobileDataBase stand].uiViewcontrollerList addObject:userInfo];
     
     CreateMissionVC *fourVC = [self.storyboard instantiateViewControllerWithIdentifier:@"CreateMissionVC"];
     [self addChildViewController:fourVC];
     [main addSubview:fourVC.view];
     fourVC.view.translatesAutoresizingMaskIntoConstraints = false;
     [fourVC didMoveToParentViewController:self];
+    [[MobileDataBase stand].uiViewcontrollerList addObject:fourVC];
     
     
-    UserInfoVC *fiveVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UserInfoVC"];
+    UserInfoVC *fiveVC = [self.storyboard
+                          instantiateViewControllerWithIdentifier:@"UserInfoVC"];
     [self addChildViewController:fiveVC];
     [main addSubview:fiveVC.view];
     fiveVC.view.translatesAutoresizingMaskIntoConstraints = false;
     [fiveVC didMoveToParentViewController:self];
-    
+    [[MobileDataBase stand].uiViewcontrollerList addObject:fiveVC];
 //    main.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     layout = [NSMutableArray new];
@@ -300,14 +309,14 @@
                        attribute:NSLayoutAttributeTrailing
                        multiplier:1.0
                        constant:.0]];
-    [layout addObject:[NSLayoutConstraint
-                       constraintWithItem:userInfo.view
-                       attribute:NSLayoutAttributeTrailing
-                       relatedBy:NSLayoutRelationEqual
-                       toItem:main
-                       attribute:NSLayoutAttributeTrailing
-                       multiplier:1.0
-                       constant:.0]];
+//    [layout addObject:[NSLayoutConstraint
+//                       constraintWithItem:userInfo.view
+//                       attribute:NSLayoutAttributeTrailing
+//                       relatedBy:NSLayoutRelationEqual
+//                       toItem:main
+//                       attribute:NSLayoutAttributeTrailing
+//                       multiplier:1.0
+//                       constant:.0]];
     [layout addObject:[NSLayoutConstraint
                        constraintWithItem:userInfo.view
                        attribute:NSLayoutAttributeBottom
@@ -496,11 +505,34 @@
     fiveVCBtn.tag = 5;
 
     
+    
+    UIButton *cicleBT = [[UIButton alloc]
+               initWithTitle:@"十"
+               backgroundColor:[UIColor yellowColor]
+               addTarget:self
+               func:@selector(btBox)
+               superView:self.view];
+    
+    
+    cicleBT.titleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:30];
+    
+    [UIView initAtRightBotonWithSelf:cicleBT
+                           SuperView:self.view
+                            LevelGap:-20.0
+                         VerticalGap:-60.0];
+    [[cicleBT.widthAnchor constraintEqualToConstant:50.0] setActive:true];
+    [[cicleBT.heightAnchor constraintEqualToConstant:50.0] setActive:true];
+    cicleBT.layer.cornerRadius = 25.0;
+    
+}
+
+-(void)btBox {
+    MSector *se = [[MSector alloc] initSectorWithSuperView:self.view];
+    NSLog(@"%@",se.description);
 }
 
 -(void)onLion:(UISwitch*)sender{
-    [fvc.tableView reloadData];
-    [userInfo.tableView reloadData];
+    
     [self.navigationItem setTitle: @"準備中～～～"];
     if ([sender isOn] == true) {
         [MemberDatabase stand].status = 1;
@@ -509,6 +541,9 @@
             if ([res[@"result"] isEqualToString:@"true"]) {
                 [self.navigationItem setTitle: @"onLine~~"];
                 //待完成
+                
+//                [fvc.tableView reloadData];
+//                [userInfo.tableView reloadData];
             }else {
                 [_onLionSW setOn:false];
                 [MemberDatabase stand].status = 0;

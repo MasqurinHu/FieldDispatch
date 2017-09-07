@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MissionVO.h"
 
 @interface MissionTVC : UITableViewController
 
--(void)reloadTV;
+@property (nonatomic,weak) MissionVO *mission;
 
 @end

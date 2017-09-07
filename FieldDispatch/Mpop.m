@@ -66,7 +66,10 @@
 }
 
 -(void)dismissPOP{
-    self.hidden = true;
+    for (UIView * tmp in self.subviews) {
+        [tmp removeFromSuperview];
+    }
+    [self removeFromSuperview];
 }
 
 @end

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Mission ListTVC-->
+        <scene sceneID="mIo-4A-W3f">
+            <objects>
+                <tableViewController storyboardIdentifier="MissionListTVC" id="Sm3-LX-c78" customClass="MissionListTVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="A5U-e7-Nyw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MissionListTVCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="MissionListTVCell" id="yCf-gl-iVf" customClass="MissionListTVCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yCf-gl-iVf" id="rnS-Lk-DFc">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Sm3-LX-c78" id="dSr-J6-RgY"/>
+                            <outlet property="delegate" destination="Sm3-LX-c78" id="HRO-kY-PLa"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="g4J-Bk-TOf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k7s-0v-RRQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5272.8000000000002" y="107.49625187406298"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jhr-iA-rZ4">
+            <objects>
+                <navigationController storyboardIdentifier="NAVMissionListTVC" automaticallyAdjustsScrollViewInsets="NO" id="JaJ-Tm-4wO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7hI-uj-Uju">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Sm3-LX-c78" kind="relationship" relationship="rootViewController" id="lUk-CX-I6T"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hQe-yM-nyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4333.6000000000004" y="107.49625187406298"/>
+        </scene>
+        <!--MissionTVC-->
+        <scene sceneID="4rk-8U-RJx">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MissionTVC" storyboardName="MissionTVC" referencedIdentifier="MissionTVC" id="kuf-vE-ERp" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jP0-FD-wAP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6006" y="111"/>
+        </scene>
+    </scenes>
+</document>

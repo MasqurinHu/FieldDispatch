@@ -10,7 +10,9 @@
 #import "FieldDispatchDataBase.h"
 
 @interface MissionTVC ()
-
+{
+    NSMutableArray *bt;
+}
 @end
 
 @implementation MissionTVC
@@ -19,16 +21,11 @@
     [super viewDidLoad];
     
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+-(void)viewWillAppear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = false;
 }
 
--(void)reloadTV {
-    [self.tableView reloadData];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -40,17 +37,34 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     return 1;
+//    return _mission.workPointList.count + 3;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return [MemberDatabase stand].mission.acceptableList.count;
+    return 1;
+    
+//    if (section == 0 || section > _mission.workPointList.count + 1) {
+//        return 1;
+//    } else if (section < _mission.workPointList.count + 1) {
+//        if (bt[section+1] == 0) {
+//            return 1;
+//        } else {
+//            return 1;
+//        }
+//    }
+//    
+//    
+//    return [MemberDatabase stand].mission.acceptableList.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MissionTVCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MissionTVCell" forIndexPath:indexPath];
-    cell.mission = [MemberDatabase stand].mission.acceptableList[indexPath.row];
+    cell.mission = _mission;
     [cell reload];
     
     // Configure the cell...
@@ -63,7 +77,7 @@
     tableView.estimatedRowHeight = 400;
     //會報自動此吋
 //    return UITableViewAutomaticDimension;
-    return 230;
+    return 250;
 }
 /*
 // Override to support conditional editing of the table view.

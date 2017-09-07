@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import <FBSDKCoreKit.h>
 #import "FieldDispatchDataBase.h"
+#import <UserNotifications/UserNotifications.h>
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @end
 
@@ -37,6 +38,14 @@
     [application registerUserNotificationSettings:settings];
     //註冊使用通知
     [application registerForRemoteNotifications];
+    
+    
+    //註冊本地通知
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:UNAuthorizationOptionAlert|UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError * _Nullable error) {
+       //
+    }];
+    center.delegate = self;
     
     return YES;
 }

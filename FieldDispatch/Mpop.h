@@ -13,6 +13,6 @@
 -(instancetype)initPopWithSelf:(UIView*)selfView
                         target:(UIView*)target
                      superView:(UIView*)superView;
-
+-(void)dismissPOP;
 
 @end

@@ -20,15 +20,17 @@
 -(instancetype)initWithData:(NSDictionary *)data {
     self = [super init];
     _missionCreateMemberId = [data[@"creatMemberId"] intValue];
+    _executorId = [data[@"executorId"] intValue];
     _createTime = data[@"createTime"];
     _groupId = [data[@"groupId"] intValue];
-    _address = data[@"missionAddress"];
+    _address = data[@"bookingAddress"];
     _missionId = [data[@"missionId"] intValue];
-    _loc.latitude = [data[@"missionLat"] floatValue];
-    _loc.longitude = [data[@"missionLon"] floatValue];
+    _loc.latitude = [data[@"bookingLat"] floatValue];
+    _loc.longitude = [data[@"bookingLon"] floatValue];
     _missionMemo = data[@"missionMemo"];
     _missionName = data[@"missionName"];
-    _messionTel = data[@"missionTel"];
+    _contactPerson = data[@"contactPerson"];
+    _messionTel = data[@"contactPersonTel"];
     
     if (data[@"missionStatus"]) {
         _missionStatus = [data[@"missionStatus"] intValue];

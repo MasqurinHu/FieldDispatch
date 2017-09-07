@@ -21,7 +21,7 @@
 		450B737A1F3EDCF6008A2458 /* CheckSignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450B73791F3EDCF6008A2458 /* CheckSignIn.storyboard */; };
 		450B737D1F3EDDA2008A2458 /* SignInVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450B737B1F3EDDA2008A2458 /* SignInVC.storyboard */; };
 		450B73801F3EE5C2008A2458 /* MissionTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 450B737F1F3EE5C2008A2458 /* MissionTVC.m */; };
-		450B73851F3EE7EA008A2458 /* Mission.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450B73831F3EE7EA008A2458 /* Mission.storyboard */; };
+		450B73851F3EE7EA008A2458 /* MissionListTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450B73831F3EE7EA008A2458 /* MissionListTVC.storyboard */; };
 		450B73881F3EE8D8008A2458 /* MissionTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 450B73871F3EE8D8008A2458 /* MissionTVCell.m */; };
 		450B738B1F3F22EC008A2458 /* MissionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 450B738A1F3F22EC008A2458 /* MissionVO.m */; };
 		450B738E1F4004E7008A2458 /* FieldDispatchLoginVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 450B738C1F4004E7008A2458 /* FieldDispatchLoginVC.storyboard */; };
@@ -42,6 +42,12 @@
 		4545229E1F55A78300CB59D2 /* MemberTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4545229D1F55A78300CB59D2 /* MemberTVCell.m */; };
 		454522A11F55A7D600CB59D2 /* Member.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4545229F1F55A7D600CB59D2 /* Member.storyboard */; };
 		4563B8031F3DE1D000FCE61E /* AdvanceImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4563B8021F3DE1D000FCE61E /* AdvanceImageView.m */; };
+		45834E431F5934E400B9B28A /* MissionListTVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 45834E421F5934E400B9B28A /* MissionListTVCell.m */; };
+		45834E471F5937D900B9B28A /* MissionListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 45834E461F5937D900B9B28A /* MissionListTVC.m */; };
+		45834E4A1F593F8C00B9B28A /* MissionTVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45834E481F593F8B00B9B28A /* MissionTVC.storyboard */; };
+		45834E4D1F5A5D6F00B9B28A /* UILabel+MLabelProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 45834E4C1F5A5D6F00B9B28A /* UILabel+MLabelProgram.m */; };
+		45834E501F5A9BEA00B9B28A /* MLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 45834E4F1F5A9BEA00B9B28A /* MLoading.m */; };
+		45834E5C1F5C2CC400B9B28A /* MSector.m in Sources */ = {isa = PBXBuildFile; fileRef = 45834E5B1F5C2CC400B9B28A /* MSector.m */; };
 		4586F2631F45613400EEBFE1 /* MissionWorkPointVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2621F45613400EEBFE1 /* MissionWorkPointVO.m */; };
 		4586F2DD1F4717F100EEBFE1 /* MLoctionVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2DC1F4717F100EEBFE1 /* MLoctionVO.m */; };
 		4586F2E31F48131400EEBFE1 /* MemberGroupVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4586F2E21F48131400EEBFE1 /* MemberGroupVO.m */; };
@@ -86,7 +92,7 @@
 		450B737C1F3EDDA2008A2458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignInVC.storyboard; sourceTree = "<group>"; };
 		450B737E1F3EE5C2008A2458 /* MissionTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionTVC.h; sourceTree = "<group>"; };
 		450B737F1F3EE5C2008A2458 /* MissionTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionTVC.m; sourceTree = "<group>"; };
-		450B73841F3EE7EA008A2458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Mission.storyboard; sourceTree = "<group>"; };
+		450B73841F3EE7EA008A2458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MissionListTVC.storyboard; sourceTree = "<group>"; };
 		450B73861F3EE8D7008A2458 /* MissionTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionTVCell.h; sourceTree = "<group>"; };
 		450B73871F3EE8D8008A2458 /* MissionTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionTVCell.m; sourceTree = "<group>"; };
 		450B73891F3F22EC008A2458 /* MissionVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionVO.h; sourceTree = "<group>"; };
@@ -126,6 +132,17 @@
 		454522A71F56F1FB00CB59D2 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Define.h; sourceTree = "<group>"; };
 		4563B8011F3DE1D000FCE61E /* AdvanceImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvanceImageView.h; sourceTree = "<group>"; };
 		4563B8021F3DE1D000FCE61E /* AdvanceImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvanceImageView.m; sourceTree = "<group>"; };
+		45834E411F5934E400B9B28A /* MissionListTVCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionListTVCell.h; sourceTree = "<group>"; };
+		45834E421F5934E400B9B28A /* MissionListTVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionListTVCell.m; sourceTree = "<group>"; };
+		45834E451F5937D900B9B28A /* MissionListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionListTVC.h; sourceTree = "<group>"; };
+		45834E461F5937D900B9B28A /* MissionListTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionListTVC.m; sourceTree = "<group>"; };
+		45834E491F593F8C00B9B28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MissionTVC.storyboard; sourceTree = "<group>"; };
+		45834E4B1F5A5D6F00B9B28A /* UILabel+MLabelProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+MLabelProgram.h"; sourceTree = "<group>"; };
+		45834E4C1F5A5D6F00B9B28A /* UILabel+MLabelProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+MLabelProgram.m"; sourceTree = "<group>"; };
+		45834E4E1F5A9BEA00B9B28A /* MLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLoading.h; sourceTree = "<group>"; };
+		45834E4F1F5A9BEA00B9B28A /* MLoading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLoading.m; sourceTree = "<group>"; };
+		45834E5A1F5C2CC400B9B28A /* MSector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSector.h; sourceTree = "<group>"; };
+		45834E5B1F5C2CC400B9B28A /* MSector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSector.m; sourceTree = "<group>"; };
 		4586F2611F45613400EEBFE1 /* MissionWorkPointVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionWorkPointVO.h; sourceTree = "<group>"; };
 		4586F2621F45613400EEBFE1 /* MissionWorkPointVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissionWorkPointVO.m; sourceTree = "<group>"; };
 		4586F2DB1F4717F100EEBFE1 /* MLoctionVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLoctionVO.h; sourceTree = "<group>"; };
@@ -215,19 +232,20 @@
 				450F7EC61F38D70B00DEF66D /* UserInfo.storyboard */,
 				450F7EC11F38CE2700DEF66D /* UserInfoVC.h */,
 				450F7EC21F38CE2700DEF66D /* UserInfoVC.m */,
+				450B73831F3EE7EA008A2458 /* MissionListTVC.storyboard */,
+				45834E451F5937D900B9B28A /* MissionListTVC.h */,
+				45834E461F5937D900B9B28A /* MissionListTVC.m */,
+				45834E411F5934E400B9B28A /* MissionListTVCell.h */,
+				45834E421F5934E400B9B28A /* MissionListTVCell.m */,
 				4586F2F01F483DFD00EEBFE1 /* CreateMissionVC.storyboard */,
 				450B73921F41C06C008A2458 /* CreateMissionVC.h */,
 				450B73931F41C06C008A2458 /* CreateMissionVC.m */,
-				450B73831F3EE7EA008A2458 /* Mission.storyboard */,
+				45834E481F593F8B00B9B28A /* MissionTVC.storyboard */,
 				450B737E1F3EE5C2008A2458 /* MissionTVC.h */,
 				450B737F1F3EE5C2008A2458 /* MissionTVC.m */,
 				450B73861F3EE8D7008A2458 /* MissionTVCell.h */,
 				450B73871F3EE8D8008A2458 /* MissionTVCell.m */,
-				4545229F1F55A7D600CB59D2 /* Member.storyboard */,
-				454522991F55A74200CB59D2 /* MemberTVC.h */,
-				4545229A1F55A74200CB59D2 /* MemberTVC.m */,
-				4545229C1F55A78300CB59D2 /* MemberTVCell.h */,
-				4545229D1F55A78300CB59D2 /* MemberTVCell.m */,
+				45834E441F59361300B9B28A /* MemberVC */,
 				450B738C1F4004E7008A2458 /* FieldDispatchLoginVC.storyboard */,
 				4526B6861F244F6100FB6035 /* FieldDispatchLoginChooseViewController.h */,
 				4526B6871F244F6100FB6035 /* FieldDispatchLoginChooseViewController.m */,
@@ -256,8 +274,14 @@
 				4526B6801F23A7BF00FB6035 /* MasqurinTool.m */,
 				4586F2F31F48492F00EEBFE1 /* Mpop.h */,
 				4586F2F41F48492F00EEBFE1 /* Mpop.m */,
+				45834E5A1F5C2CC400B9B28A /* MSector.h */,
+				45834E5B1F5C2CC400B9B28A /* MSector.m */,
+				45834E4E1F5A9BEA00B9B28A /* MLoading.h */,
+				45834E4F1F5A9BEA00B9B28A /* MLoading.m */,
 				4586F2DB1F4717F100EEBFE1 /* MLoctionVO.h */,
 				4586F2DC1F4717F100EEBFE1 /* MLoctionVO.m */,
+				45834E4B1F5A5D6F00B9B28A /* UILabel+MLabelProgram.h */,
+				45834E4C1F5A5D6F00B9B28A /* UILabel+MLabelProgram.m */,
 				450B738F1F400AE8008A2458 /* UIColor+MColor.h */,
 				450B73901F400AE8008A2458 /* UIColor+MColor.m */,
 				450A65FC1F31D85700BA96C3 /* UIButton+MButton.h */,
@@ -294,6 +318,18 @@
 				4532DBAE1F2F1CDF00375E30 /* HttpConnection.m */,
 			);
 			name = FieldDispatchDataBase;
+			sourceTree = "<group>";
+		};
+		45834E441F59361300B9B28A /* MemberVC */ = {
+			isa = PBXGroup;
+			children = (
+				4545229F1F55A7D600CB59D2 /* Member.storyboard */,
+				454522991F55A74200CB59D2 /* MemberTVC.h */,
+				4545229A1F55A74200CB59D2 /* MemberTVC.m */,
+				4545229C1F55A78300CB59D2 /* MemberTVCell.h */,
+				4545229D1F55A78300CB59D2 /* MemberTVCell.m */,
+			);
+			name = MemberVC;
 			sourceTree = "<group>";
 		};
 		4586F2ED1F4824B500EEBFE1 /* MemberGroup */ = {
@@ -439,7 +475,8 @@
 				450B738E1F4004E7008A2458 /* FieldDispatchLoginVC.storyboard in Resources */,
 				45080E371F1DD73300E6F590 /* LaunchScreen.storyboard in Resources */,
 				450F7EC81F38D70B00DEF66D /* UserInfo.storyboard in Resources */,
-				450B73851F3EE7EA008A2458 /* Mission.storyboard in Resources */,
+				45834E4A1F593F8C00B9B28A /* MissionTVC.storyboard in Resources */,
+				450B73851F3EE7EA008A2458 /* MissionListTVC.storyboard in Resources */,
 				45080E3F1F1DDD8700E6F590 /* GoogleService-Info.plist in Resources */,
 				450B737D1F3EDDA2008A2458 /* SignInVC.storyboard in Resources */,
 				45080E341F1DD73300E6F590 /* Assets.xcassets in Resources */,
@@ -511,12 +548,14 @@
 				4526B6841F23ABBC00FB6035 /* MUIBottonlineTextField.m in Sources */,
 				4526B6811F23A7BF00FB6035 /* MasqurinTool.m in Sources */,
 				4526B6881F244F6100FB6035 /* FieldDispatchLoginChooseViewController.m in Sources */,
+				45834E4D1F5A5D6F00B9B28A /* UILabel+MLabelProgram.m in Sources */,
 				45E9FEBA1F2207A100025E7F /* LogIn.m in Sources */,
 				450B73881F3EE8D8008A2458 /* MissionTVCell.m in Sources */,
 				450A66011F31E29900BA96C3 /* CheckSingInVC.m in Sources */,
 				4586F2DD1F4717F100EEBFE1 /* MLoctionVO.m in Sources */,
 				4586F2F51F48492F00EEBFE1 /* Mpop.m in Sources */,
 				4586F3091F55578500EEBFE1 /* MissionDatabaseVO.m in Sources */,
+				45834E501F5A9BEA00B9B28A /* MLoading.m in Sources */,
 				4526B68E1F249A5300FB6035 /* FieldDispatchDataBase.m in Sources */,
 				4586F3031F5408F400EEBFE1 /* PeopleVO.m in Sources */,
 				4532DBAF1F2F1CDF00375E30 /* HttpConnection.m in Sources */,
@@ -524,10 +563,12 @@
 				4586F3061F553B8500EEBFE1 /* CurrentLocVO.m in Sources */,
 				450F7EBA1F38141A00DEF66D /* MemberDatabase.m in Sources */,
 				45E9FEC51F22137E00025E7F /* SingInVC.m in Sources */,
+				45834E5C1F5C2CC400B9B28A /* MSector.m in Sources */,
 				459C64FE1F29ADBA00A06324 /* TeamMembers.m in Sources */,
 				45080E291F1DD73300E6F590 /* AppDelegate.m in Sources */,
 				450B738B1F3F22EC008A2458 /* MissionVO.m in Sources */,
 				4586F2631F45613400EEBFE1 /* MissionWorkPointVO.m in Sources */,
+				45834E471F5937D900B9B28A /* MissionListTVC.m in Sources */,
 				450B73801F3EE5C2008A2458 /* MissionTVC.m in Sources */,
 				450F7EC31F38CE2700DEF66D /* UserInfoVC.m in Sources */,
 				459C65971F2B04B000A06324 /* UIView+AutoLayout.m in Sources */,
@@ -543,6 +584,7 @@
 				450B73911F400AE8008A2458 /* UIColor+MColor.m in Sources */,
 				459630B41F25E9F5004BD775 /* MUIButtonAutoLayout.m in Sources */,
 				4586F2E31F48131400EEBFE1 /* MemberGroupVO.m in Sources */,
+				45834E431F5934E400B9B28A /* MissionListTVCell.m in Sources */,
 				45080E261F1DD73300E6F590 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,12 +624,12 @@
 			name = SignInVC.storyboard;
 			sourceTree = "<group>";
 		};
-		450B73831F3EE7EA008A2458 /* Mission.storyboard */ = {
+		450B73831F3EE7EA008A2458 /* MissionListTVC.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				450B73841F3EE7EA008A2458 /* Base */,
 			);
-			name = Mission.storyboard;
+			name = MissionListTVC.storyboard;
 			sourceTree = "<group>";
 		};
 		450B738C1F4004E7008A2458 /* FieldDispatchLoginVC.storyboard */ = {
@@ -612,6 +654,14 @@
 				454522A01F55A7D600CB59D2 /* Base */,
 			);
 			name = Member.storyboard;
+			sourceTree = "<group>";
+		};
+		45834E481F593F8B00B9B28A /* MissionTVC.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				45834E491F593F8C00B9B28A /* Base */,
+			);
+			name = MissionTVC.storyboard;
 			sourceTree = "<group>";
 		};
 		4586F2F01F483DFD00EEBFE1 /* CreateMissionVC.storyboard */ = {

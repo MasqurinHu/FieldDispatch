@@ -18,7 +18,9 @@
 @property (nonatomic,assign) CLLocationCoordinate2D loc;
 @property (nonatomic,assign) int groupId;
 @property (nonatomic,assign) int missionCreateMemberId;
+@property (nonatomic,assign) int executorId;
 @property (nonatomic,strong) NSString *missionName;
+@property (nonatomic,strong) NSString *contactPerson;
 @property (nonatomic,strong) NSString *messionTel;
 @property (nonatomic,strong) NSString *address;
 @property (nonatomic,strong) NSMutableArray <MissionWorkPointVO*>*workPointList;
@@ -27,6 +29,8 @@
 
 @property (nonatomic,assign) int missionStatus;
 @property (nonatomic,strong) NSString *missionExecutor;                 //任務執行者
+
+@property (nonatomic,strong) NSString *type;
 
 -(instancetype) initWithData:(NSDictionary*)data;
 
