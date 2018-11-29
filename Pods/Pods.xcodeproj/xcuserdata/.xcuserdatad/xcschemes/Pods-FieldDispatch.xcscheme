@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3124054258B542C2A8303C516AAC0D50'
-               BlueprintName = 'Pods-FieldDispatch'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-FieldDispatch.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "29C2D8DB13F16F1963B6A3931E37D32B"
+               BlueprintName = "Pods-FieldDispatch"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libPods-FieldDispatch.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
